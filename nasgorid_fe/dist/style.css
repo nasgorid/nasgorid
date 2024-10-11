@@ -192,6 +192,17 @@ input:focus ~ .highlight {
   animation: ripples .4s ease-in;
 }
 
+.btn_pesan{
+	color: #fafafa;
+	background-color: crimson;
+	border-radius: 50%;
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+	-ms-border-radius: 50%;
+	-o-border-radius: 50%;
+	width: 20%;
+	height: 100%;
+}
 
 /* Ripples animation */
 
@@ -230,6 +241,7 @@ footer img {
 	width: 80px;
 	transition: all .2s ease;
 }
+
 
 footer img:hover { opacity: .83; }
 
