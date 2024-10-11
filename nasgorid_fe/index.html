@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nasgor.id | Home-cooked food</title>
+    <link rel="stylesheet" href="dist/output.css" />
+    <link rel="stylesheet" href="path/to/font-awesome/css/all.min.css" />
+    <link rel="icon" href="./img/logo.png" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+  </head>
+
+  <body>
+    <!-- navbar section start -->
+    <header
+      class="bg-transparent absolute top-0 left-0 w-full flex items-center z-10 justify-between"
+    >
+      <div class="container font-nunito">
+        <div class="flex items-center justify-between relative">
+          <div class="px-4">
+            <h1 class="text-4xl font-bold block py-6">
+              Nasgor.id<span class="text-red-600">.</span>
+            </h1>
+          </div>
+          <div class="flex items-center px-4">
+            <button
+              id="hamburger"
+              name="hamburger"
+              type="button"
+              class="block absolute right-4 justify-between lg:hidden"
+            >
+              <span
+                class="hamburger-line transition duration-300 ease-in-out origin-top-left"
+              ></span>
+              <span
+                class="hamburger-line transition duration-300 ease-in-out"
+              ></span>
+              <span
+                class="hamburger-line transition duration-300 ease-in-out origin-bottom-left"
+              ></span>
+            </button>
+            <nav
+              id="nav-menu"
+              class="hidden absolute py-5 bg-white shadow-lg rounded-lg max-w-[250px] w-full right-4 top-full lg:block lg:static lg:bg-transparent lg:max-w-full lg:shadow-none lg:rounded-none"
+            >
+              <ul class="block lg:flex">
+                <li class="group">
+                  <a
+                    href="#home"
+                    class="text-base mx-8 group-hover:border-b-2 border-red-600"
+                    >Home</a
+                  >
+                </li>
+                <li class="group">
+                  <a
+                    href="#about"
+                    class="text-base mx-8 group-hover:border-b-2 border-red-600"
+                    >About</a
+                  >
+                </li>
+                <li class="group">
+                  <a
+                    href="#menu"
+                    class="text-base mx-8 group-hover:border-b-2 border-red-600"
+                    >Menu</a
+                  >
+                </li>
+                <li class="group">
+                  <a
+                    href="#chef"
+                    class="text-base mx-8 group-hover:border-b-2 border-red-600"
+                    >Chef</a
+                  >
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </header>
+    <!-- navbar section end -->
+
+    <!-- hero section start -->
+    <section id="home" class="py-36 bg-gray-100">
+      <div class="container">
+        <div class="flex flex-wrap">
+          <div class="w-full self-end px-4 lg:w-1/2 lg:order-2">
+            <img src="./img/hero.png" alt="" class="w-10/12 mx-auto" />
+          </div>
+          <div
+            class="w-full self-center px-4 mt-10 text-center lg:w-1/2 lg:order-1 lg:text-left"
+          >
+            <h1 class="text-6xl font-cursive pb-3">
+              Enjoy Your <span class="block">Delicious Food</span>
+            </h1>
+            <h2 class="text-xl mb-5">
+              Nikmati makanannya dengan makan bersama keluarga kalian atau
+              dengan orang yang berharga
+            </h2>
+            <a
+              href="#"
+              class="text-base font-semibold text-white bg-red-600 py-3 px-8 rounded-full hover:shadow-lg hover:opacity-80 transition duration-300 ease-in-out"
+              >Book a Table</a
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- hero section end -->
+
+    <!-- about section start -->
+    <section id="about" class="pt-28">
+      <p class="text-sm text-center">ABOUT US</p>
+      <div class="container">
+        <h1 class="font-cursive text-4xl text-center pb-16">
+          LEARN MORE<span class="text-red-500"> ABOUT US</span>
+        </h1>
+        <div class="flex flex-wrap">
+          <div class="w-full px-4 mb-5 lg:w-3/5">
+            <img src="./img/img/about.jpg" alt="Left Image" class="w-full" />
+          </div>
+          <div class="w-full px-4 lg:w-2/5">
+            <p class="italic max-w-xl">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            </p>
+            <p class="flex">
+              <i class="material-icons text-red-600 text-4xl">done_all</i> Harga
+              Murah
+            </p>
+            <p class="flex">
+              <i class="material-icons text-red-600 text-4xl">done_all</i>
+              Toping banyak
+            </p>
+            <p class="flex">
+              <i class="material-icons text-red-600 text-4xl">done_all</i> Bumbu
+              buatan sendiri
+            </p>
+            <p class="flex">
+              <i class="material-icons text-red-600 text-4xl">done_all</i> Enak
+            </p>
+            <p class="mb-5 max-w-xl">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              Voluptates odio velit laborum est accusantium voluptate architecto
+              in possimus optio, dolorem repellendus quod consequatur quia
+              ducimus officia magni culpa numquam doloremque.
+            </p>
+            <div class="flex items-center">
+              <img
+                src="./img/img/about-2.jpg"
+                alt="Lower Right Image"
+                class="lg:w-80"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- about section end -->
+
+    <!-- about section menu start -->
+    <section id="menu" class="pt-36 pb-23">
+      <div class="container">
+        <h1 class="font-cursive text-4xl text-center">
+          check our <span class="text-red-600">yummy menu</span>
+        </h1>
+        <div class="flex flex-wrap">
+          <div class="w-full self-center my-7 text-lg">
+              <div class="flex justify-center gap-9">
+                  <!-- <button id="starters" class="transition border-red-500 hover:border-b-2">
+                      starters
+                  </button> -->
+                  <!-- <button id="lunch" class="transition border-red-500 hover:border-b-2">
+                      lunch
+                  </button> -->
+              </div>
+          </div>
+      </div>
+      
+        <!-- section starter start -->
+        <!-- <div id="starterSection" >
+          <div class="block text-center w-full">
+            <h2 class="text-gray-500">Menu</h2>
+            <h2 class="text-red-500 text-3xl">Starters</h2>
+          </div>
+          <div class="pt-10">
+            <div>
+              <a href="" class="">
+                <img src="img/img/menu/menu-item-1.png" alt="" class="w-full lg:w-3/12 mx-auto"
+                />
+              </a>
+              <div class="text-center">
+                <h1 class="text-2xl">Dimsum</h1>
+                <p class="text-gray-500">
+                  isi 6 pcs dengan meiliki varian toping dari crab, wortel, dan rumput laut
+                </p>
+                <p class="text-red-600 font-bold text-xl">Rp 16.000</p>
+              </div>
+            </div>
+          </div>
+        </div> -->
+        <!-- section starter end -->
+
+        <!-- section lunch start -->
+        <div id="lunchSection">
+          <div class="block text-center w-full">
+            <!-- <h2 class="text-gray-500">Menu</h2> -->
+            <h2 class="text-red-500 text-3xl">MENU</h2>
+          </div>
+          <div
+            class="pt-10 flex flex-col items-center lg:flex lg:flex-row gap-10"
+          >
+            <div>
+              <a href="" class="lg:order-1">
+                <img src="img/img/menu/nasigorengbiasa.png" alt="Nasi Goreng Biasa" class="w-full lg:w-3/5 mx-auto max-w-xs"/>
+              </a>
+              <div class="text-center">
+                <h1 class="text-2xl">Mie Jagoan level 0</h1>
+                <p class="text-gray-500">
+                  Mie jagoan tanpa pedas dan cocok untuk orang yang tidak suka
+                  pedas
+                </p>
+                <p class="text-red-600 font-bold text-xl">Rp 8.000</p>
+              </div>
+            </div>
+            <div>
+              <a href="" class="lg:order-2">
+                <img
+                src="img/img/menu/nasigorengsosis.png"
+                alt="Nasi Goreng Sosis"
+                class="w-full lg:w-3/5 mx-auto"
+                style="max-width: 950px"
+              />                        
+              </a>
+              <div class="text-center">
+                <h1 class="text-2xl">Mie Jagoan level 1</h1>
+                <p class="text-gray-500">
+                  Mie jagoan dengan pedas 1 sendok dan cocok untuk orang<br />yang
+                  tidak suka pedas tetapi ingin merasakan pedasnya mie
+                </p>
+                <p class="text-red-600 font-bold text-xl">Rp 8.000</p>
+              </div>
+            </div>
+          </div>
+          <div
+            class="pt-10 flex flex-col items-center lg:flex lg:flex-row gap-10"
+          >
+            <div>
+              <a href="" class="lg:order-3">
+                <img src="img/img/menu/nasigorengseafood.png" alt="Nasi Goreng Seafood" class="w-full lg:w-3/5 mx-auto" style="max-width: 1200px;"/>
+              </a>
+              <div class="text-center">
+                <h1 class="text-2xl">Mie Jagoan level 3</h1>
+                <p class="text-gray-500">
+                  Mie jagoan pedas 2 sendok dan cocok untuk orang yang suka
+                  pedas yang pas
+                </p>
+                <p class="text-red-600 font-bold text-xl">Rp 9.000</p>
+              </div>
+            </div>
+            <div>
+              <a href="" class="lg:order-4">
+                <img src="img/img/menu/kwetiaugoreng.png" alt="Kwetiau Goreng" class="w-full lg:w-3/5 mx-auto max-w-lg"
+                />
+              </a>
+              <div class="text-center">
+                <h1 class="text-2xl">Mie Jagoan level 4</h1>
+                <p class="text-gray-500">
+                  Mie jagoan pedas 3 sendok dan cocok untuk orang yang suka
+                  dengan tantangan pedas
+                </p>
+                <p class="text-red-600 font-bold text-xl">Rp 10.000</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- section lunch end -->
+    </section>
+    <!-- about section menu end -->
+
+    <!-- about section chef start -->
+    <section id="chef" class="pt-36 pb-23">
+      <div class="container">
+        <h1 class="font-cursive text-4xl text-center">
+          Our <span class="text-red-600">Profesional</span> Cheff
+        </h1>
+      </div>
+      <div>
+        
+      </div>
+    </section>
+    <!-- about section chef end -->
+    <script src="./dist/js/script.js"></script>
+  </body>
+</html>
