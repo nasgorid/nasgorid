@@ -27,3 +27,16 @@
 //     hamburger.classList.toggle('hamburger-active');
 //     navMenu.classList.toggle('hidden');
 // });
+
+// Kode JavaScript ini bisa dimasukkan ke dalam file dist/js/script.js
+const cartButton = document.getElementById("cart-button");
+const cartSidebar = document.getElementById("cart-sidebar");
+const closeCartButton = document.getElementById("close-cart");
+
+cartButton.addEventListener("click", () => {
+    cartSidebar.classList.toggle("translate-x-full");
+});
+
+closeCartButton.addEventListener("click", () => {
+    cartSidebar.classList.add("translate-x-full");
+});

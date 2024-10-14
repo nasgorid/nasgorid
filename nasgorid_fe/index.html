@@ -11,8 +11,7 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
     />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
   </head>
 
   <body>
@@ -72,7 +71,7 @@
                 </li>
                 <li class="group">
                   <a
-                    href="#chef"
+                    href="chef.html"
                     class="text-base mx-8 group-hover:border-b-2 border-red-600"
                     >Chef</a
                   >
@@ -84,6 +83,15 @@
                     >Login</a
                   >
                 </li>
+                <li class="group">
+                  <button
+                    id="cart-button"
+                    class="text-base mx-8 group-hover:border-b-2 border-red-600"
+                  >
+                    Cart
+                  </button>
+                </li>
+                
               </ul>
             </nav>
           </div>
@@ -91,6 +99,20 @@
       </div>
     </header>
     <!-- navbar section end -->
+
+  <!-- Sidebar Offcanvas untuk Keranjang Belanja -->
+  <div id="cart-sidebar" class="fixed top-0 right-0 h-full bg-white shadow-lg transform translate-x-full transition-transform duration-300 ease-in-out">
+    <div class="p-5">
+      <h2 class="text-xl font-bold">Keranjang Belanja</h2>
+      <ul>
+        <li>Item 1</li>
+        <li>Item 2</li>
+        <li>Item 3</li>
+      </ul>
+      <button id="close-cart" class="mt-4 text-red-600">Tutup</button>
+    </div>
+  </div>
+    <!-- offcanvas sidebar end -->
 
     <!-- hero section start -->
     <section id="home" class="py-36 bg-gray-100">
@@ -170,53 +192,6 @@
     </section>
     <!-- about section end -->
 
-    <!-- about section chef start -->
-    <section id="chef" class="pt-10 pb-23">
-      <div class="container">
-        <h1 class="font-cursive text-4xl text-center">
-          Chef <span class="text-red-600">Profesional</span> Kami
-        </h1>
-    
-        <div class="row mt-5">
-          <!-- Profil Chef Pertama -->
-         <div class="col-md-6 mb-4 d-flex flex-column align-items-center">
-    <img src="img/img/chefs/chefs-4.png" class="rounded-circle me-3" alt="Chef Rudi Setiawan" style="width: 150px; height: 150px;">
-    <div class="card">
-        <div class="card-body">
-            <h5 class="card-title">Rudi Setiawan</h5>
-            <p class="card-text">Kepala Koki</p>
-            <p class="card-text">Pendidikan: Sekolah Tinggi Pariwisata Trisakti (2000)</p>
-            <p class="card-text">Sejak tahun 2010, beliau menjabat sebagai Kepala Koki di Restoran Bintang.</p>
-        </div>
-    </div>
-</div>
-    
-          <!-- Profil Chef Kedua -->
-          <div class="col-md-6 mb-4 d-flex">
-            <img src="img/img/chefs/chefs-2.jpg" class="rounded-circle me-3" alt="Chef Siti Aminah" style="width: 150px; height: 150px;">
-            <div>
-              <h5 class="card-title">Siti Aminah</h5>
-              <p class="card-text">Koki Pastry</p>
-              <p>Pendidikan: Sekolah Kuliner Indonesia (2015)</p>
-              <p class="card-text">Siti mengkhususkan diri dalam pembuatan kue dan dessert yang artistik.</p>
-            </div>
-          </div>
-    
-          <!-- Profil Chef Ketiga -->
-          <div class="col-md-6 mb-4 d-flex">
-            <img src="img/img/chefs/chefs-1.jpg" class="rounded-circle me-3" alt="Chef Budi Hartono" style="width: 150px; height: 150px;">
-            <div>
-              <h5 class="card-title">Budi Hartono</h5>
-              <p class="card-text">Sous Chef</p>
-              <p>Pendidikan: Akademi Kuliner Jakarta (2010)</p>
-              <p class="card-text">Budi dikenal dengan inovasinya dalam masakan tradisional Indonesia.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    
-    <!-- about section chef end -->
     <script src="./dist/js/script.js"></script>
   </body>
 </html>
