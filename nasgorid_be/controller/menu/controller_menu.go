@@ -4,6 +4,7 @@ import (
     "context"
     "fmt"
     "log"
+    "time"
 	 // Sesuaikan dengan package config kamu
     "nasgorid/models/menu" // Sesuaikan dengan package model/menu kamu
     "go.mongodb.org/mongo-driver/bson"
@@ -44,4 +45,21 @@ func GetAllMenu(menuCollection *mongo.Collection) {
             fmt.Printf("Nama: %s, Harga: %.2f, Tersedia: %t\n", menu.NamaMenu, menu.Harga, menu.Tersedia)
         }
     }
+}
+
+// InsertMenu inserts a new menu item into the "menu" collection
+func InsertMenu(menu menu.Menu, db *mongo.Database) error {
+    menuCollection := db.Collection("menu")
+
+    ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+    defer cancel()
+
+    _, err := menuCollection.InsertOne(ctx, menu)
+    if err != nil {
+        log.Printf("Error inserting menu: %v", err)
+        return err
+    }
+
+    fmt.Println("Menu berhasil ditambahkan")
+    return nil
 }
