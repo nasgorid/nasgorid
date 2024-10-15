@@ -83,3 +83,20 @@ func UpdateMenu(id string, updatedData bson.M, db *mongo.Database) error {
     fmt.Println("Menu berhasil diperbarui")
     return nil
 }
+
+// DeleteMenu deletes a menu item based on its ID
+func DeleteMenu(id string, db *mongo.Database) error {
+    menuCollection := db.Collection("menu")
+
+    ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+    defer cancel()
+
+    _, err := menuCollection.DeleteOne(ctx, bson.M{"_id": id})
+    if err != nil {
+        log.Printf("Error deleting menu: %v", err)
+        return err
+    }
+
+    fmt.Println("Menu berhasil dihapus")
+    return nil
+}
