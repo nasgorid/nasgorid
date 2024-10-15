@@ -63,3 +63,23 @@ func InsertMenu(menu menu.Menu, db *mongo.Database) error {
     fmt.Println("Menu berhasil ditambahkan")
     return nil
 }
+
+// UpdateMenu updates a menu item based on its ID
+func UpdateMenu(id string, updatedData bson.M, db *mongo.Database) error {
+    menuCollection := db.Collection("menu")
+
+    filter := bson.M{"_id": id}
+    update := bson.M{"$set": updatedData}
+
+    ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+    defer cancel()
+
+    _, err := menuCollection.UpdateOne(ctx, filter, update)
+    if err != nil {
+        log.Printf("Error updating menu: %v", err)
+        return err
+    }
+
+    fmt.Println("Menu berhasil diperbarui")
+    return nil
+}
