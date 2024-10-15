@@ -1041,3 +1041,15 @@ video {
   transform: translateX(100%);
   transition: transform 0.3s ease-in-out;
 }
+
+.btn_pesan{
+	color: #fafafa;
+	background-color: crimson;
+	border-radius: 50%;
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+	-ms-border-radius: 50%;
+	-o-border-radius: 50%;
+	width: 20%;
+	height: 100%;
+}
