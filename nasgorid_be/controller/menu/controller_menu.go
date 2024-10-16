@@ -6,7 +6,7 @@ import (
     "log"
     "time"
 	 // Sesuaikan dengan package config kamu
-    "nasgorid/models/menu" // Sesuaikan dengan package model/menu kamu
+    "nasgorid_be/models/menu" // Sesuaikan dengan package model/menu kamu
     "go.mongodb.org/mongo-driver/bson"
     "go.mongodb.org/mongo-driver/mongo"
 )

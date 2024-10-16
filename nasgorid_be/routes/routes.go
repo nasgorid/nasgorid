@@ -1,7 +1,7 @@
 package routes
 
 import (
-    "nasgorid/controller/auth"
+    "nasgorid_be/controller/auth"
 
     "github.com/gorilla/mux"
 )

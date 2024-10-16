@@ -6,7 +6,7 @@ import (
     "log"
     "time"
 
-    "nasgorid/models/transaksi" // Sesuaikan dengan path model transaksi kamu
+    "nasgorid_be/models/transaksi" // Sesuaikan dengan path model transaksi kamu
     "go.mongodb.org/mongo-driver/bson"
     "go.mongodb.org/mongo-driver/bson/primitive"
     "go.mongodb.org/mongo-driver/mongo"

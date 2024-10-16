@@ -1,4 +1,4 @@
-module nasgorid
+module nasgorid_be
 
 go 1.21
 

@@ -3,8 +3,8 @@ package pelanggan
 import (
 	"context"
 	"encoding/json"
-	"nasgorid/config"
-	"nasgorid/models/pelanggan"
+	"nasgorid_be/config"
+	"nasgorid_be/models/pelanggan"
 	"net/http"
 	"time"
 

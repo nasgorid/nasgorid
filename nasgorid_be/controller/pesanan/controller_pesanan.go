@@ -6,7 +6,7 @@ import (
 	"log"
 	"time"
 
-	"nasgorid/models/pesanan" // Sesuaikan dengan path model pesanan kamu
+	"nasgorid_be/models/pesanan" // Sesuaikan dengan path model pesanan kamu
 
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"

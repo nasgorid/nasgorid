@@ -6,9 +6,9 @@ import (
     "log"
     "net/http"
 
-    "nasgorid/config"    // Sesuaikan dengan package config kamu
-    "nasgorid/models/menu" // Sesuaikan dengan package model/menu kamu
-    "nasgorid/controller/auth"       // Tambahkan ini jika kamu ingin menggunakan fungsi register
+    "nasgorid_be/config"    // Sesuaikan dengan package config kamu
+    "nasgorid_be/models/menu" // Sesuaikan dengan package model/menu kamu
+    "nasgorid_be/controller/auth"       // Tambahkan ini jika kamu ingin menggunakan fungsi register
     "go.mongodb.org/mongo-driver/bson"
     "go.mongodb.org/mongo-driver/mongo"
     "github.com/gorilla/mux"

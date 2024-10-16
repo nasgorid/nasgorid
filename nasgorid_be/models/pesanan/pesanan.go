@@ -2,7 +2,7 @@ package pesanan
 
 import (
     "time"
-    "nasgorid/models/menu"
+    "nasgorid_be/models/menu"
     "go.mongodb.org/mongo-driver/bson/primitive"
 )
 
