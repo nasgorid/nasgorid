@@ -4,11 +4,14 @@ import (
     "context"
     "fmt"
     "log"
+    "net/http"
 
-    "nasgorid/config"   // Sesuaikan dengan package config kamu
+    "nasgorid/config"    // Sesuaikan dengan package config kamu
     "nasgorid/models/menu" // Sesuaikan dengan package model/menu kamu
+    "nasgorid/controller/auth"       // Tambahkan ini jika kamu ingin menggunakan fungsi register
     "go.mongodb.org/mongo-driver/bson"
     "go.mongodb.org/mongo-driver/mongo"
+    "github.com/gorilla/mux"
 )
 
 func main() {
@@ -18,18 +21,32 @@ func main() {
     // Akses collection "menu" dari database
     menuCollection := db.Collection("menu")
 
-    // Menampilkan semua data dari collection "menu"
-    showAllMenu(menuCollection)
+    // Membuat router dengan mux
+    r := mux.NewRouter()
+
+    // Endpoint untuk menampilkan semua data menu
+    r.HandleFunc("/menu", func(w http.ResponseWriter, r *http.Request) {
+        showAllMenu(menuCollection, w, r)
+    }).Methods("GET")
+
+    // Endpoint untuk registrasi pelanggan
+    r.HandleFunc("/register", auth.Register).Methods("POST")
+
+    // Jalankan server di port 8080
+    log.Println("Server running at http://localhost:8080")
+    log.Fatal(http.ListenAndServe(":8080", r))
 }
 
 // Fungsi untuk menampilkan semua data dari collection "menu"
-func showAllMenu(menuCollection *mongo.Collection) {
+func showAllMenu(menuCollection *mongo.Collection, w http.ResponseWriter, _ *http.Request) {
     var menus []menu.Menu
 
     // Query untuk mendapatkan semua data di collection "menu"
     cursor, err := menuCollection.Find(context.TODO(), bson.D{})
     if err != nil {
         log.Fatal("Error finding documents: ", err)
+        http.Error(w, "Gagal mengambil data menu", http.StatusInternalServerError)
+        return
     }
     log.Println("Koneksi ke collection 'menu' berhasil.")
     defer cursor.Close(context.TODO())
@@ -39,6 +56,8 @@ func showAllMenu(menuCollection *mongo.Collection) {
         var menu menu.Menu
         if err = cursor.Decode(&menu); err != nil {
             log.Fatal("Error decoding document: ", err)
+            http.Error(w, "Error decoding menu data", http.StatusInternalServerError)
+            return
         }
         menus = append(menus, menu)
     }
@@ -46,15 +65,17 @@ func showAllMenu(menuCollection *mongo.Collection) {
     // Cek error setelah iterasi
     if err := cursor.Err(); err != nil {
         log.Fatal("Cursor error: ", err)
+        http.Error(w, "Cursor error", http.StatusInternalServerError)
+        return
     }
 
     // Tampilkan semua menu yang ditemukan
     if len(menus) == 0 {
-        fmt.Println("Tidak ada menu yang ditemukan.")
+        fmt.Fprintln(w, "Tidak ada menu yang ditemukan.")
     } else {
-        fmt.Println("Daftar Menu:")
+        fmt.Fprintln(w, "Daftar Menu:")
         for _, menu := range menus {
-            fmt.Printf("Nama: %s, Harga: %.2f, Tersedia: %t\n", menu.NamaMenu, menu.Harga, menu.Tersedia)
+            fmt.Fprintf(w, "Nama: %s, Harga: %.2f, Tersedia: %t\n", menu.NamaMenu, menu.Harga, menu.Tersedia)
         }
     }
 }
