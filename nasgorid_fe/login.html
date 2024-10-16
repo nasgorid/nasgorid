@@ -1,34 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SignIn&SignUp</title>
     <link rel="stylesheet" type="text/css" href="dist/style.css"/>
-    <script
-      src="https://kit.fontawesome.com/64d58efce2.js"
-      crossorigin="anonymous"
-    ></script>
-  
-  </head>
-  <body>
+    <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
+</head>
+<body>
     <hgroup>
         <h1>Masuk ke Akun Anda</h1>
     </hgroup>
-      <form>
+    <form id="loginForm">
         <div class="group">
-          <input type="text"><span class="highlight"></span><span class="bar"></span>
-          <label>Username</label>
+            <input type="text" name="username" required><span class="highlight"></span><span class="bar"></span>
+            <label>Username</label>
         </div>
         <div class="group">
-          <input type="email"><span class="highlight"></span><span class="bar"></span>
-          <label>Password</label>
+            <input type="password" name="password" required><span class="highlight"></span><span class="bar"></span>
+            <label>Password</label>
         </div>
-        <button type="button" class="button buttonBlue">Login
-          <div class="ripples buttonRipples"><span class="ripplesCircle"></span></div>
+        <button type="submit" class="button buttonBlue">Login
+            <div class="ripples buttonRipples"><span class="ripplesCircle"></span></div>
         </button>
         <a href="register.html">Belum Punya Akun?</a>
-      </form>
+    </form>
     <script src="dist/js/app.js"></script>
-  </body>
+</body>
 </html>
