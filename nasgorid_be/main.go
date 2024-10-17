@@ -50,6 +50,9 @@ func main() {
     // Endpoint untuk registrasi pelanggan
     r.HandleFunc("/register", auth.Register).Methods("POST")
 
+    // Endpoint untuk registrasi pelanggan
+    r.HandleFunc("/login", auth.Login).Methods("POST")
+
     // Jalankan server di port 8080
     log.Println("Server running at http://localhost:8081")
     log.Fatal(http.ListenAndServe(":8081", enableCors(r)))
