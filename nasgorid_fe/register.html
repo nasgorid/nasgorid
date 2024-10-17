@@ -3,43 +3,30 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SignIn&SignUp</title>
-    <link rel="stylesheet" type="text/css" href="dist/style.css"/>
+    <title>Register</title>
+    <link rel="stylesheet" href="dist/signin.css">
     <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
+
 </head>
 <body>
-    <hgroup>
-        <h1>Buat Akun Anda</h1>
-    </hgroup>
+
+<div class="form-container">
+    <h1>Buat Akun Anda</h1>
     <form id="registerForm">
-        <div class="group">
-            <input type="text" name="username" required><span class="highlight"></span><span class="bar"></span>
-            <label>Username</label>
-        </div>
-        <div class="group">
-            <input type="email" name="email" required><span class="highlight"></span><span class="bar"></span>
-            <label>Email</label>
-        </div>
-        <div class="group">
-            <input type="password" name="password" required><span class="highlight"></span><span class="bar"></span>
-            <label>Password</label>
-        </div>
-        <div class="group">
-            <input type="text" name="nama" required><span class="highlight"></span><span class="bar"></span>
-            <label>Nama</label>
-        </div>
-        <div class="group">
-            <input type="text" name="nomor_telepon" required><span class="highlight"></span><span class="bar"></span>
-            <label>Nomor Telepon</label>
-        </div>
-        <div class="group">
-            <input type="text" name="alamat" required><span class="highlight"></span><span class="bar"></span>
-            <label>Alamat</label>
-        </div>
-        <button type="submit" class="button buttonBlue">Register
-            <div class="ripples buttonRipples"><span class="ripplesCircle"></span></div>
-        </button>
+        <input type="text" name="username" class="input-field" placeholder="Username" required>
+        <input type="text" name="nama" class="input-field" placeholder="Nama" required>
+        <input type="email" name="email" class="input-field" placeholder="Email" required>
+        <input type="tel" name="nomor_telepon" class="input-field" placeholder="Nomor Telepon" required>
+        <input type="text" name="alamat" class="input-field" placeholder="Alamat" required>
+        <input type="password" name="password" class="input-field" placeholder="Password" required>
+        <input type="password" name="confirm_password" class="input-field" placeholder="Konfirmasi Password" required>
+        <button type="submit" class="register-button">Register</button>
     </form>
-    <script src="dist/js/register/register.js"></script> <!-- Pastikan ini berada di sini -->
+    <p class="login-link">
+        Sudah punya akun? <a href="login.html">Login di sini</a>
+    </p>
+</div>
+
+<script src="dist/js/register/register.js"></script> <!-- Pastikan ini berada di sini -->
 </body>
 </html>
