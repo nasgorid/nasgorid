@@ -33,8 +33,8 @@ func main() {
     r.HandleFunc("/register", auth.Register).Methods("POST")
 
     // Jalankan server di port 8080
-    log.Println("Server running at http://localhost:8080")
-    log.Fatal(http.ListenAndServe(":8080", r))
+    log.Println("Server running at http://localhost:8081")
+    log.Fatal(http.ListenAndServe(":8081", r))
 }
 
 // Fungsi untuk menampilkan semua data dari collection "menu"
