@@ -47,3 +47,23 @@ func GetPelangganByID(w http.ResponseWriter, r *http.Request) {
 
     json.NewEncoder(w).Encode(pelanggan)
 }
+
+// UpdatePelanggan handles updating pelanggan data by ID
+func UpdatePelanggan(w http.ResponseWriter, r *http.Request) {
+    params := mux.Vars(r)
+    id, _ := primitive.ObjectIDFromHex(params["id"])
+
+    var updatedData bson.M
+    json.NewDecoder(r.Body).Decode(&updatedData)
+
+    updatedData["updated_at"] = primitive.NewDateTimeFromTime(time.Now())
+
+    collection := config.ConnectDB().Collection("pelanggan")
+    _, err := collection.UpdateOne(context.TODO(), bson.M{"_id": id}, bson.M{"$set": updatedData})
+    if err != nil {
+        http.Error(w, "Error updating pelanggan", http.StatusInternalServerError)
+        return
+    }
+
+    json.NewEncoder(w).Encode("Pelanggan updated successfully")
+}
