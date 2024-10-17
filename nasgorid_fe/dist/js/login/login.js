@@ -5,7 +5,7 @@ document.getElementById("loginForm").addEventListener("submit", function(event) 
     const data = Object.fromEntries(formData); // Mengonversi FormData ke objek biasa
 
     // Mengirim request ke endpoint login
-    fetch("http://localhost:8080/login", { // Ganti dengan URL backend Anda
+    fetch("http://localhost:8081/login", { // Ganti dengan URL backend Anda
         method: "POST",
         headers: {
             "Content-Type": "application/json", // Tentukan tipe konten
@@ -20,9 +20,11 @@ document.getElementById("loginForm").addEventListener("submit", function(event) 
     })
     .then(data => {
         console.log('Success:', data); // Proses sukses
-        // Anda bisa menampilkan pesan atau melakukan navigasi setelah login berhasil
+        alert('Login berhasil!'); // Menampilkan pemberitahuan
+        // Anda bisa melakukan navigasi setelah login berhasil
     })
     .catch((error) => {
         console.error('Error:', error); // Menangani error
+        alert('Login gagal. Silakan coba lagi.'); // Menampilkan pesan error
     });
 });
