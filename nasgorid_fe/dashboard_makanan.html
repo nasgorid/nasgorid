@@ -54,43 +54,49 @@
           <a href="" class="btn">Import to xlsx</a>
         </div>
         <table>
-          <tr>
-            <th>Profil</th>
-            <th>Nama Makanan</th>
-            <th>Harga</th>
-          </tr>
-          <tr>
-            <td><i class="fa-solid fa-user"></i></td>
-            <td>Mas Wisnu Ganteng</td>
-            <td><i class="fa-solid fa-circle-info"></i></td>
-          </tr>
-          <tr>
-            <td><i class="fa-solid fa-user"></i></td>
-            <td>Mas Wisnu Ganteng</td>
-            <td><i class="fa-solid fa-circle-info"></i></td>
-          </tr>
-          <tr>
-            <td><i class="fa-solid fa-user"></i></td>
-            <td>Mas Wisnu Ganteng</td>
-            <td><i class="fa-solid fa-circle-info"></i></td>
-          </tr>
-          <tr>
-            <td><i class="fa-solid fa-user"></i></td>
-            <td>Mas Wisnu Ganteng</td>
-            <td><i class="fa-solid fa-circle-info"></i></td>
-          </tr>
-          <tr>
-            <td><i class="fa-solid fa-user"></i></td>
-            <td>Mas Wisnu Ganteng</td>
-            <td><i class="fa-solid fa-circle-info"></i></td>
-          </tr>
-          <tr>
-            <td><i class="fa-solid fa-user"></i></td>
-            <td>Mas Wisnu Ganteng</td>
-            <td><i class="fa-solid fa-circle-info"></i></td>
-          </tr>
+          <thead>
+            <tr>
+              <th>Gambar</th>
+              <th>Nama Makanan</th>
+              <th>Harga</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Data akan dimasukkan oleh JavaScript -->
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
+
+  <!-- Tambahkan JavaScript untuk mengambil data dari API -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      // Fungsi untuk mengambil data menu dari endpoint API
+      fetch("http://localhost:8081/menu") // Ganti dengan URL endpoint API kamu
+        .then(response => response.json())
+        .then(data => {
+          const tableBody = document.querySelector("table tbody");
+          let rows = "";
+
+          // Iterasi data menu dan buat baris tabel untuk setiap menu
+          data.forEach(menu => {
+            rows += `
+              <tr>
+                
+                <td>${menu.NamaMenu}</td>
+                <td>Rp. ${menu.Harga.toLocaleString()}</td>
+                <td>${menu.Tersedia ? 'Tersedia' : 'Tidak Tersedia'}</td>
+              </tr>
+            `;
+          });
+
+          // Masukkan baris ke dalam tabel
+          tableBody.innerHTML = rows;
+        })
+        .catch(error => console.error('Error:', error));
+    });
+  </script>
 </body>
 </html>

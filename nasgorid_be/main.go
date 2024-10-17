@@ -1,18 +1,36 @@
 package main
 
 import (
-    "context"
-    "fmt"
-    "log"
-    "net/http"
+	"context"
+	"fmt"
+	"log"
+	"net/http"
 
-    "nasgorid_be/config"    // Sesuaikan dengan package config kamu
-    "nasgorid_be/models/menu" // Sesuaikan dengan package model/menu kamu
-    "nasgorid_be/controller/auth"       // Tambahkan ini jika kamu ingin menggunakan fungsi register
-    "go.mongodb.org/mongo-driver/bson"
-    "go.mongodb.org/mongo-driver/mongo"
-    "github.com/gorilla/mux"
+	"nasgorid_be/config"          // Sesuaikan dengan package config kamu
+	"nasgorid_be/controller/auth" // Tambahkan ini jika kamu ingin menggunakan fungsi register
+	"nasgorid_be/models/menu" // Sesuaikan dengan package model/menu kamu
+
+	"github.com/gorilla/mux"
+	"go.mongodb.org/mongo-driver/bson"
+	"go.mongodb.org/mongo-driver/mongo"
 )
+
+func enableCors(next http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Access-Control-Allow-Origin", "*") // Mengizinkan semua origin
+		w.Header().Set("Access-Control-Allow-Methods", "GET, POST, OPTIONS") // Mengizinkan metode yang diinginkan
+		w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
+
+		// Jika request adalah OPTIONS, balas dengan status 200
+		if r.Method == "OPTIONS" {
+			w.WriteHeader(http.StatusOK)
+			return
+		}
+
+		// Lanjutkan ke handler berikutnya
+		next.ServeHTTP(w, r)
+	})
+}
 
 func main() {
     // Menghubungkan ke MongoDB menggunakan fungsi dari config
@@ -34,7 +52,7 @@ func main() {
 
     // Jalankan server di port 8080
     log.Println("Server running at http://localhost:8081")
-    log.Fatal(http.ListenAndServe(":8081", r))
+    log.Fatal(http.ListenAndServe(":8081", enableCors(r)))
 }
 
 // Fungsi untuk menampilkan semua data dari collection "menu"
@@ -79,3 +97,5 @@ func showAllMenu(menuCollection *mongo.Collection, w http.ResponseWriter, _ *htt
         }
     }
 }
+
+
