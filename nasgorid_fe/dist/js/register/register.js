@@ -5,7 +5,7 @@ document.getElementById("registerForm").addEventListener("submit", function(even
     const data = Object.fromEntries(formData); // Mengonversi FormData ke objek biasa
 
     // Mengirim request ke endpoint register
-    fetch("http://localhost:8080/register", { // Ganti dengan URL backend Anda
+    fetch("http://localhost:8081/register", { // Ganti dengan URL backend Anda
         method: "POST",
         headers: {
             "Content-Type": "application/json", // Tentukan tipe konten
