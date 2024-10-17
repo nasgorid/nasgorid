@@ -1,14 +1,20 @@
 package menu
 
 import (
-    "context"
-    "fmt"
-    "log"
-    "time"
-	 // Sesuaikan dengan package config kamu
-    "nasgorid_be/models/menu" // Sesuaikan dengan package model/menu kamu
-    "go.mongodb.org/mongo-driver/bson"
-    "go.mongodb.org/mongo-driver/mongo"
+	"context"
+	"encoding/json"
+	"fmt"
+	"log"
+	"net/http"
+	"time"
+
+	// Sesuaikan dengan package config kamu
+	"nasgorid_be/config"
+	"nasgorid_be/models/menu" // Sesuaikan dengan package model/menu kamu
+	"nasgorid_be/models/pelanggan"
+
+	"go.mongodb.org/mongo-driver/bson"
+	"go.mongodb.org/mongo-driver/mongo"
 )
 
 func GetAllMenu(menuCollection *mongo.Collection) {
@@ -99,4 +105,24 @@ func DeleteMenu(id string, db *mongo.Database) error {
 
     fmt.Println("Menu berhasil dihapus")
     return nil
+}
+
+// GetAllPelanggan fetches all pelanggan from the database
+func GetAllPelanggan(w http.ResponseWriter, r *http.Request) {
+    var pelanggans []pelanggan.Pelanggan
+    collection := config.ConnectDB().Collection("pelanggan")
+
+    cursor, err := collection.Find(context.TODO(), bson.D{})
+    if err != nil {
+        log.Fatal(err)
+    }
+    defer cursor.Close(context.TODO())
+
+    for cursor.Next(context.TODO()) {
+        var pelanggan pelanggan.Pelanggan
+        cursor.Decode(&pelanggan)
+        pelanggans = append(pelanggans, pelanggan)
+    }
+
+    json.NewEncoder(w).Encode(pelanggans)
 }
