@@ -2,7 +2,6 @@ package main
 
 import (
 	"context"
-	"fmt"
 	"log"
 	"net/http"
 
@@ -90,15 +89,7 @@ func showAllMenu(menuCollection *mongo.Collection, w http.ResponseWriter, _ *htt
         return
     }
 
-    // Tampilkan semua menu yang ditemukan
-    if len(menus) == 0 {
-        fmt.Fprintln(w, "Tidak ada menu yang ditemukan.")
-    } else {
-        fmt.Fprintln(w, "Daftar Menu:")
-        for _, menu := range menus {
-            fmt.Fprintf(w, "Nama: %s, Harga: %.2f, Tersedia: %t\n", menu.NamaMenu, menu.Harga, menu.Tersedia)
-        }
-    }
+
 }
 
 
