@@ -1,10 +1,14 @@
 package routes
 
 import (
-    "nasgorid_be/controller/auth"
-    "nasgorid_be/controller/menu" // Tambahkan ini untuk menghubungkan controller menu
-    "nasgorid_be/controller/pelanggan" // Import controller pelanggan
-    "github.com/gorilla/mux"
+	"nasgorid_be/controller/auth"
+	"nasgorid_be/controller/menu"      // Tambahkan ini untuk menghubungkan controller menu
+	"nasgorid_be/controller/pelanggan" // Import controller pelanggan
+	"nasgorid_be/controller/pesanan"
+	"net/http"
+
+	"github.com/gorilla/mux"
+	"go.mongodb.org/mongo-driver/mongo"
 )
 
 // SetAuthRoutes defines routes for user authentication (register, login)
@@ -24,6 +28,27 @@ func SetMenuRoutes(router *mux.Router) {
 func SetPelangganRoutes(router *mux.Router) {
     router.HandleFunc("/pelanggan/{id}", pelanggan.GetPelangganByID).Methods("GET")     // Get pelanggan by ID
     router.HandleFunc("/pelanggan/{id}", pelanggan.UpdatePelanggan).Methods("PUT")      // Update pelanggan by ID
+}
+func SetPesananRoutes(router *mux.Router, pesananCollection *mongo.Collection) {
+	router.HandleFunc("/pesanan", func(w http.ResponseWriter, r *http.Request) {
+		pesanan.GetAllPesanan(w, r, pesananCollection)
+	}).Methods("GET")
+
+	router.HandleFunc("/pesanan/{id}", func(w http.ResponseWriter, r *http.Request) {
+		pesanan.GetPesananByID(w, r, pesananCollection)
+	}).Methods("GET")
+
+	router.HandleFunc("/pesanan", func(w http.ResponseWriter, r *http.Request) {
+		pesanan.InsertPesanan(w, r, pesananCollection)
+	}).Methods("POST")
+
+	router.HandleFunc("/pesanan/{id}", func(w http.ResponseWriter, r *http.Request) {
+		pesanan.UpdatePesanan(w, r, pesananCollection)
+	}).Methods("PUT")
+
+	router.HandleFunc("/pesanan/{id}", func(w http.ResponseWriter, r *http.Request) {
+		pesanan.DeletePesanan(w, r, pesananCollection)
+	}).Methods("DELETE")
 }
 
 // InitializeRoutes combines all routes
