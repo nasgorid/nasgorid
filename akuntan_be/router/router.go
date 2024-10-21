@@ -20,8 +20,7 @@ func SetupRouter() *mux.Router {
     protected := r.PathPrefix("/protected").Subrouter()
     protected.Use(auth.AuthMiddleware)
     protected.HandleFunc("/", ProtectedHandler).Methods("GET")
-
-    return r
+ return r
 }
 
 // Contoh handler untuk route yang dilindungi
