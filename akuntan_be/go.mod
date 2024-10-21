@@ -1,4 +1,4 @@
-module nasgorid_be
+module akuntan
 
 go 1.21
 
