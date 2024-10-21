@@ -23,7 +23,7 @@ nav ul li {
 }
 
 nav ul li a {
-    color: white;
+    color: rgb(0, 0, 0);
     text-decoration: none;
 }
 
@@ -37,7 +37,7 @@ main {
 }
 
 .stat {
-    background-color: rgb(255, 255, 255);
+    background-color: rgb(0, 0, 0);
     padding: 1rem;
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -59,7 +59,7 @@ ul {
 }
 
 ul li {
-    background-color: rgb(94, 153, 202);
+    background-color: rgb(201, 230, 253);
     padding: 10px;
     margin-bottom: 10px;
     border-radius: 5px;
@@ -76,12 +76,12 @@ ul li {
 
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f9;
+    background-color: #ffffff;
     color: #333;
 }
 
 header {
-    background-color: #0274d9;
+    background-color: #0989fa;
     padding: 10px 20px;
     display: flex;
     justify-content: space-between;
@@ -145,7 +145,7 @@ header {
 }
 
 .new-invoice {
-    background-color: #0274d9;
+    background-color: #959596;
     color: white;
     padding: 10px 20px;
     border: none;
