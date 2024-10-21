@@ -16,10 +16,10 @@ func SetupRouter() *mux.Router {
     // Route untuk login user
     r.HandleFunc("/login", auth.LoginUser).Methods("POST")
 
-    // Jika ada route yang memerlukan autentikasi
-    protected := r.PathPrefix("/protected").Subrouter()
-    protected.Use(auth.AuthMiddleware)
-    protected.HandleFunc("/", ProtectedHandler).Methods("GET")
+    // // Jika ada route yang memerlukan autentikasi
+    // protected := r.PathPrefix("/protected").Subrouter()
+    // protected.Use(auth.AuthMiddleware)
+    // protected.HandleFunc("/", ProtectedHandler).Methods("GET")
  return r
 }
 

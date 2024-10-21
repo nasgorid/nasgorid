@@ -5,7 +5,7 @@ import (
 	"context"
 	"encoding/json"
 	"net/http"
-	"strings"
+	// "strings"
 	"time"
 
 	"akuntan/config"
@@ -82,67 +82,71 @@ func LoginUser(w http.ResponseWriter, r *http.Request) {
         return
     }
 
-    // Buat JWT token
-    expirationTime := time.Now().Add(24 * time.Hour) // Token berlaku selama 24 jam
-    claims := &Claims{
-        Email: foundUser.Email,
-        RegisteredClaims: jwt.RegisteredClaims{
-            ExpiresAt: jwt.NewNumericDate(expirationTime),
-        },
-    }
+    // Kirim respon sukses
+    response := map[string]string{"message": "Login successful"}
+    json.NewEncoder(w).Encode(response)
 
-    token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
-    tokenString, err := token.SignedString(jwtKey)
-    if err != nil {
-        http.Error(w, "Failed to generate token", http.StatusInternalServerError)
-        return
-    }
+    // // Buat JWT token
+    // expirationTime := time.Now().Add(24 * time.Hour) // Token berlaku selama 24 jam
+    // claims := &Claims{
+    //     Email: foundUser.Email,
+    //     RegisteredClaims: jwt.RegisteredClaims{
+    //         ExpiresAt: jwt.NewNumericDate(expirationTime),
+    //     },
+    // }
 
-    // Kirim token sebagai respon
-    w.Header().Set("Content-Type", "application/json")
-    json.NewEncoder(w).Encode(map[string]string{
-        "token": tokenString,
-    })
+    // token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
+    // tokenString, err := token.SignedString(jwtKey)
+    // if err != nil {
+    //     http.Error(w, "Failed to generate token", http.StatusInternalServerError)
+    //     return
+    // }
+
+    // // Kirim token sebagai respon
+    // w.Header().Set("Content-Type", "application/json")
+    // json.NewEncoder(w).Encode(map[string]string{
+    //     "token": tokenString,
+    // })
 }
 
 
 // Definisikan tipe baru untuk context key
-type contextKey string
+// type contextKey string
 
-// Middleware untuk memvalidasi token JWT
-func AuthMiddleware(next http.Handler) http.Handler {
-    return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-        authHeader := r.Header.Get("Authorization")
-        if authHeader == "" {
-            http.Error(w, "Missing token", http.StatusUnauthorized)
-            return
-        }
+// // Middleware untuk memvalidasi token JWT
+// func AuthMiddleware(next http.Handler) http.Handler {
+//     return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+//         authHeader := r.Header.Get("Authorization")
+//         if authHeader == "" {
+//             http.Error(w, "Missing token", http.StatusUnauthorized)
+//             return
+//         }
 
-        parts := strings.Split(authHeader, " ")
-        if len(parts) != 2 || parts[0] != "Bearer" {
-            http.Error(w, "Invalid token format", http.StatusUnauthorized)
-            return
-        }
+//         parts := strings.Split(authHeader, " ")
+//         if len(parts) != 2 || parts[0] != "Bearer" {
+//             http.Error(w, "Invalid token format", http.StatusUnauthorized)
+//             return
+//         }
 
-        tokenString := parts[1]
+//         tokenString := parts[1]
 
-        // Validasi token JWT
-        claims := &Claims{}
-        token, err := jwt.ParseWithClaims(tokenString, claims, func(token *jwt.Token) (interface{}, error) {
-            return jwtKey, nil
-        })
+//         // Validasi token JWT
+//         claims := &Claims{}
+//         token, err := jwt.ParseWithClaims(tokenString, claims, func(token *jwt.Token) (interface{}, error) {
+//             return jwtKey, nil
+//         })
 
-        if err != nil || !token.Valid {
-            http.Error(w, "Invalid or expired token", http.StatusUnauthorized)
-            return
-        }
+//         if err != nil || !token.Valid {
+//             http.Error(w, "Invalid or expired token", http.StatusUnauthorized)
+//             return
+//         }
 
-        // Gunakan contextKey sebagai tipe key untuk context
-        emailKey := contextKey("email")
-        ctx := context.WithValue(r.Context(), emailKey, claims.Email)
-        next.ServeHTTP(w, r.WithContext(ctx))
-    })
-}
+//         // Gunakan contextKey sebagai tipe key untuk context
+//         emailKey := contextKey("email")
+//         ctx := context.WithValue(r.Context(), emailKey, claims.Email)
+//         next.ServeHTTP(w, r.WithContext(ctx))
+//     })
+// }
 
 
 
