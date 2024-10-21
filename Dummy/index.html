@@ -3,57 +3,89 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aplikasi Akuntansi</title>
-    <link rel="stylesheet" href="/staic/css/style.css">
+    <title>Dashboard Akuntansi</title>
+    <link rel="stylesheet" href="/Dummy/static/css/style.css">
 </head>
 <body>
+
+    <!-- Navigation Bar -->
     <header>
-        <h1>Aplikasi Akuntansi</h1>
+
         <nav>
-            <ul>
-                <li><a href="#dashboard">Dashboard</a></li>
-                <li><a href="#invoices">Invoices</a></li>
-                <li><a href="#expenses">Expenses</a></li>
-                <li><a href="#reports">Reports</a></li>
+            <ul class="nav-menu">
+                <li>Dashboard</li>
+                <li>Business</li>
+                <li>Accounting</li>
+                <li>Projects</li>
+                <li>Contacts</li>
             </ul>
         </nav>
-    </header>
 
-    <main>
-        <section id="dashboard">
-            <h2>Dashboard</h2>
-            <div class="stats">
-                <div class="stat">
-                    <h3>Total Pendapatan</h3>
-                    <p>Rp 10,000,000</p>
+            
+            <!-- Profile Section -->
+            <div class="user-profile">
+                <img src="/Dummy/static/img/ImageAcc.png" alt="User Profile" class="user-image" id="user-avatar">
+                <div class="dropdown" id="profile-dropdown">
+                    <button onclick="toggleDropdown()" class="dropbtn">▼</button>
+                    <div class="dropdown-content" id="dropdown-content">
+                        <a href="#">Account Settings</a>
+                        <a href="#">Profile</a>
+                        <a href="#">Logout</a>
+                    </div>
                 </div>
-                <div class="stat">
-                    <h3>Total Pengeluaran</h3>
-                    <p>Rp 5,000,000</p>
-                </div>
+            </div>
+        </div>
+    </header>
+    
+
+    <!-- Main Dashboard -->
+    <main class="dashboard">
+        <!-- Business Bank Account Card -->
+        <section class="card bank-account">
+            <h2>Business Bank Account</h2>
+            <p>306-234-12345678</p>
+            <p>Reconciled <span class="balance">(100.00)</span></p>
+            <div class="chart">
+                <!-- Placeholder for chart -->
+                <img src="chart-placeholder.png" alt="Bank Balance Chart">
             </div>
         </section>
 
-        <section id="invoices">
-            <h2>Invoices</h2>
-            <ul id="invoice-list">
-                <!-- Faktur akan diisi dengan JavaScript -->
+        <!-- Account Watchlist -->
+        <section class="card watchlist">
+            <h2>Account Watchlist</h2>
+            <ul>
+                <li>Accounts Payable: 2,400.00</li>
+                <li>Accounts Receivable: 5,345.00</li>
+                <li>Advertising: 1,300.00</li>
             </ul>
         </section>
 
-        <section id="expenses">
-            <h2>Expenses</h2>
-            <ul id="expense-list">
-                <!-- Pengeluaran akan diisi dengan JavaScript -->
+        <!-- Business Performance -->
+        <section class="card performance">
+            <h2>Business Performance</h2>
+            <ul>
+                <li>Accounts Payable Days: 1.60</li>
+                <li>Accounts Receivable Days: 1.60</li>
             </ul>
         </section>
 
-        <section id="reports">
-            <h2>Reports</h2>
-            <!-- Laporan keuangan akan ditampilkan di sini -->
+        <!-- Invoices Owed To You -->
+        <section class="card invoices">
+            <h2>Invoices Owed To You</h2>
+            <button class="new-invoice">New Sales Invoice</button>
+            <div class="invoice-stats">
+                <p>4 Draft Invoices: 2,058.00</p>
+                <p>10 Awaiting Payment: 18,073.95</p>
+                <p>8 Overdue: 14,653.95</p>
+            </div>
+            <div class="chart">
+                <!-- Placeholder for invoice chart -->
+                <img src="chart-placeholder.png" alt="Invoice Chart">
+            </div>
         </section>
     </main>
 
-    <script src="app.js"></script>
+
 </body>
 </html>
