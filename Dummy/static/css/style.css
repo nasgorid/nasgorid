@@ -27,6 +27,8 @@ nav ul li a {
     text-decoration: none;
 }
 
+
+
 main {
     padding: 2rem;
 }
@@ -59,11 +61,16 @@ ul {
 }
 
 ul li {
-    background-color: rgb(201, 230, 253);
+    background-color: #DBE2EF;
     padding: 10px;
     margin-bottom: 10px;
     border-radius: 5px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+ul li:hover {
+    background-color:  rgb(201, 230, 253);
+    
 }
 
 /* new */
@@ -76,7 +83,7 @@ ul li {
 
 body {
     font-family: Arial, sans-serif;
-    background-color: #ffffff;
+    background-color: #F9F7F7;
     color: #333;
 }
 
