@@ -5,12 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard Akuntansi</title>
     <link rel="stylesheet" href="/Dummy/static/css/style.css">
+
+    <style>
+        /* Background Image Styling */
+        body {
+            background-image: url('/Dummy/static/img/image.png'); /* Ganti dengan path gambar background */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+    </style>
+
 </head>
 <body>
 
     <!-- Navigation Bar -->
     <header>
-
         <nav>
             <ul class="nav-menu">
                 <li style="background-color: #112D4E;"><a href="index.html" style="color: rgb(255, 255, 255);">Dashboard</a></li>
@@ -21,23 +32,19 @@
             </ul>
         </nav>
 
-            
-
-            <div class="user-profile">
-                <img src="/Dummy/static/img/ImageAcc.png" alt="User Profile" class="user-image" id="user-avatar">
-                <div class="dropdown" id="profile-dropdown">
-                    <button onclick="toggleDropdown()" class="dropbtn">▼</button>
-                    <div class="dropdown-content" id="dropdown-content">
-                        <a href="#">Account Settings</a>
-                        <a href="profile.html">Profile</a>
-                        <a href="LP.html">Logout</a>
-                    </div>
+        <div class="user-profile">
+            <img src="/Dummy/static/img/ImageAcc.png" alt="User Profile" class="user-image" id="user-avatar">
+            <div class="dropdown" id="profile-dropdown">
+                <button onclick="toggleDropdown()" class="dropbtn">▼</button>
+                <div class="dropdown-content" id="dropdown-content">
+                    <a href="#">Account Settings</a>
+                    <a href="profile.html">Profile</a>
+                    <a href="LP.html">Logout</a>
                 </div>
             </div>
         </div>
     </header>
     
-
     <!-- Main Dashboard -->
     <main class="dashboard">
         <!-- Business Bank Account Card -->
@@ -85,7 +92,6 @@
             </div>
         </section>
     </main>
-
 
 </body>
 </html>
