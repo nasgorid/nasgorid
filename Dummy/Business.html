@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard Akuntansi</title>
     <link rel="stylesheet" href="/Dummy/static/css/style.css">
+
+ 
 </head>
 <body>
 
@@ -37,8 +39,84 @@
         </div>
     </header>
     
+ <!-- Main Business Dashboard Content -->
+ <div class="business-dashboard">
+    <h1>Business Overview</h1>
 
+    <!-- Business Statistics -->
+    <section class="statistics">
+        <div class="stat-card">
+            <h3>Total Revenue</h3>
+            <p>$500,000</p>
+        </div>
 
+        <div class="stat-card">
+            <h3>Total Expenses</h3>
+            <p>$200,000</p>
+        </div>
 
+        <div class="stat-card">
+            <h3>Net Profit</h3>
+            <p>$300,000</p>
+        </div>
+    </section>
+
+    <!-- Graph Section -->
+    <section class="graph-section">
+        <h2>Monthly Revenue and Expenses</h2>
+        <div class="chart-container">
+            <canvas id="businessChart"></canvas>
+        </div>
+    </section>
+
+    <!-- Employee and Customer Data -->
+    <section class="data-section">
+        <div class="data-table">
+            <h2>Employee Overview</h2>
+            <table>
+                <tr>
+                    <th>Name</th>
+                    <th>Position</th>
+                    <th>Department</th>
+                </tr>
+                <tr>
+                    <td>Waskitho</td>
+                    <td>Manager</td>
+                    <td>HR</td>
+                </tr>
+                <tr>
+                    <td>Anton</td>
+                    <td>Accountant</td>
+                    <td>Finance</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="data-table">
+            <h2>Customer Overview</h2>
+            <table>
+                <tr>
+                    <th>Customer Name</th>
+                    <th>Location</th>
+                    <th>Total Orders</th>
+                </tr>
+                <tr>
+                    <td>PT.Sudirjo.TBK</td>
+                    <td>New York</td>
+                    <td>150</td>
+                </tr>
+                <tr>
+                    <td>PT.Sinar Gelap</td>
+                    <td>San Francisco</td>
+                    <td>200</td>
+                </tr>
+            </table>
+        </div>
+    </section>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="/Dummy/static/js/business.js"></script>
 </body>
 </html>
