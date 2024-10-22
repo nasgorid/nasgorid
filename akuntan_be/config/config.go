@@ -1,4 +1,3 @@
-// database/connection.go
 package config
 
 import (
@@ -13,9 +12,9 @@ import (
 var Client *mongo.Client
 var UserCollection *mongo.Collection
 var ProductCollection *mongo.Collection
+var SalesTransactionCollection *mongo.Collection // Tambahkan ini untuk transaksi penjualan
 
 func InitMongoDB() {
-    // Gunakan MongoDB URI yang diberikan
     uri := "mongodb+srv://karamissuu:karamissu1@cluster0.lyovb.mongodb.net/?retryWrites=true&w=majority"
 
     ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
@@ -35,5 +34,6 @@ func InitMongoDB() {
 
     Client = client
     UserCollection = Client.Database("akuntan").Collection("user")
-    ProductCollection = client.Database("akuntan").Collection("produk")
+    ProductCollection = Client.Database("akuntan").Collection("produk")
+    SalesTransactionCollection = Client.Database("akuntan").Collection("transaksi_penjualan") // Tambahkan ini
 }

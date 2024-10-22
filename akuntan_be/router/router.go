@@ -5,6 +5,7 @@ import (
     "github.com/gorilla/mux"
     "akuntan/handler/auth"
     "akuntan/handler/produk"
+    "akuntan/handler/transaksi_penjualan"
     "net/http"
 )
 
@@ -24,6 +25,14 @@ func SetupRouter() *mux.Router {
 	r.HandleFunc("/products/{id}", produk.GetProductByID).Methods("GET")
 	r.HandleFunc("/products/{id}", produk.UpdateProduct).Methods("PUT")
 	r.HandleFunc("/products/{id}", produk.DeleteProduct).Methods("DELETE")
+
+    // Rute untuk transaksi penjualan
+	r.HandleFunc("/transaksi", transaksi_penjualan.CreateSalesTransaction).Methods("POST")
+	r.HandleFunc("/transaksi", transaksi_penjualan.GetSalesTransactions).Methods("GET")
+	r.HandleFunc("/transaksi/{id}", transaksi_penjualan.GetSalesTransactionByID).Methods("GET")
+	r.HandleFunc("/transaksi/{id}", transaksi_penjualan.UpdateSalesTransaction).Methods("PUT")
+	r.HandleFunc("/transaksi/{id}", transaksi_penjualan.DeleteSalesTransaction).Methods("DELETE")
+
 
     // // Jika ada route yang memerlukan autentikasi
     // protected := r.PathPrefix("/protected").Subrouter()
