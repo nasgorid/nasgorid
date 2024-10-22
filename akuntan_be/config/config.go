@@ -35,4 +35,5 @@ func InitMongoDB() {
 
     Client = client
     UserCollection = Client.Database("akuntan").Collection("user")
+    ProductCollection = client.Database("akuntan").Collection("produk")
 }
