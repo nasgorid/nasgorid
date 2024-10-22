@@ -10,6 +10,7 @@ import (
 	"akuntan/config"
 	"akuntan/models/produk"
 
+	"github.com/gorilla/mux"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 )
@@ -23,7 +24,7 @@ func CreateProduct(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// Set waktu pembuatan produk
-	newProduct.CreatedAt = time.Now().Unix()
+	newProduct.CreatedAt = time.Now()
 
 	// Insert produk ke MongoDB
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
@@ -97,8 +98,10 @@ func GetProductByID(w http.ResponseWriter, r *http.Request) {
 
 // Fungsi untuk mengupdate produk berdasarkan ID
 func UpdateProduct(w http.ResponseWriter, r *http.Request) {
-	// Ambil parameter ID dari URL
-	id := r.URL.Query().Get("id")
+	// Ambil parameter ID dari URL menggunakan gorilla/mux
+	vars := mux.Vars(r)
+	id := vars["id"]
+
 	objectID, err := primitive.ObjectIDFromHex(id)
 	if err != nil {
 		http.Error(w, "Invalid product ID", http.StatusBadRequest)
@@ -121,6 +124,7 @@ func UpdateProduct(w http.ResponseWriter, r *http.Request) {
 			"name":        updatedProduct.Name,
 			"description": updatedProduct.Description,
 			"price":       updatedProduct.Price,
+			"category":    updatedProduct.Category,
 			"stock":       updatedProduct.Stock,
 			"updatedAt":   time.Now(),
 		},
@@ -137,10 +141,14 @@ func UpdateProduct(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(map[string]string{"message": "Product updated successfully"})
 }
 
+
+
 // Fungsi untuk menghapus produk berdasarkan ID
 func DeleteProduct(w http.ResponseWriter, r *http.Request) {
-	// Ambil parameter ID dari URL
-	id := r.URL.Query().Get("id")
+	// Ambil parameter ID dari URL menggunakan gorilla/mux
+	vars := mux.Vars(r)
+	id := vars["id"]
+
 	objectID, err := primitive.ObjectIDFromHex(id)
 	if err != nil {
 		http.Error(w, "Invalid product ID", http.StatusBadRequest)
