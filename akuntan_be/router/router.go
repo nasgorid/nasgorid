@@ -4,6 +4,7 @@ package router
 import (
     "github.com/gorilla/mux"
     "akuntan/handler/auth"
+    "akuntan/handler/produk"
     "net/http"
 )
 
@@ -15,6 +16,14 @@ func SetupRouter() *mux.Router {
 
     // Route untuk login user
     r.HandleFunc("/login", auth.LoginUser).Methods("POST")
+
+
+    	// Route untuk Produk
+	r.HandleFunc("/products", produk.CreateProduct).Methods("POST")
+	r.HandleFunc("/products", produk.GetProducts).Methods("GET")
+	r.HandleFunc("/products/{id}", produk.GetProductByID).Methods("GET")
+	r.HandleFunc("/products/{id}", produk.UpdateProduct).Methods("PUT")
+	r.HandleFunc("/products/{id}", produk.DeleteProduct).Methods("DELETE")
 
     // // Jika ada route yang memerlukan autentikasi
     // protected := r.PathPrefix("/protected").Subrouter()
