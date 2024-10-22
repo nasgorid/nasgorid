@@ -234,3 +234,50 @@
     }
   }
   
+  /*Background*/
+
+  body {
+    background-image: url('/Dummy/static/img/image.png'); /* Ganti path ini sesuai lokasi gambar */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed; /* Agar background tidak bergeser saat di-scroll */
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* Untuk memastikan form tetap terbaca */
+.background {
+    background-color: rgba(0, 0, 0, 0.7); /* Memberikan overlay gelap */
+    padding: 50px;
+    border-radius: 10px;
+}
+
+/* .container {
+    max-width: 800px;
+    margin: 100px auto;
+}
+
+.app-title span {
+    color: #fff; 
+}
+
+.app-contact {
+    color: #ccc;
+}
+
+.app-form-control {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 10px;
+}
+
+.app-form-button {
+    background-color: #5c9dff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+} */
