@@ -12,7 +12,7 @@ import (
 
 var Client *mongo.Client
 var UserCollection *mongo.Collection
-var TransaksiCollection *mongo.Collection
+var ProductCollection *mongo.Collection
 
 func InitMongoDB() {
     // Gunakan MongoDB URI yang diberikan
