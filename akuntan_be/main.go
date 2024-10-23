@@ -10,20 +10,25 @@ import (
 )
 
 // Middleware untuk menangani CORS
-func enableCORS(next http.Handler) http.Handler {
-    return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-        w.Header().Set("Access-Control-Allow-Origin", "*")
-        w.Header().Set("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS")
-        w.Header().Set("Access-Control-Allow-Headers", "Content-Type, Authorization")
+func corsMiddleware(next http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		log.Println("Handling CORS for request:", r.Method, r.URL.Path)
 
-        // Jika request method adalah OPTIONS, kirim status OK langsung
-        if r.Method == "OPTIONS" {
-            w.WriteHeader(http.StatusOK)
-            return
-        }
+		// Mengizinkan semua origin
+		w.Header().Set("Access-Control-Allow-Origin", "*")
+		// Mengizinkan method-method yang diizinkan
+		w.Header().Set("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, DELETE")
+		// Mengizinkan headers tertentu
+		w.Header().Set("Access-Control-Allow-Headers", "Content-Type, Authorization")
 
-        next.ServeHTTP(w, r)
-    })
+		// Mengizinkan request OPTIONS untuk preflight CORS
+		if r.Method == "OPTIONS" {
+			w.WriteHeader(http.StatusOK)
+			return
+		}
+
+		next.ServeHTTP(w, r)
+	})
 }
 
 func main() {
@@ -33,9 +38,10 @@ func main() {
 	// Setup Router
 	r := router.SetupRouter()
 
-	// Pasang middleware CORS
-    r.Use(enableCORS)
+	// Terapkan middleware CORS ke semua rute
+	r.Use(corsMiddleware)
 
+	
 	// Jalankan server di port 8080
 	log.Println("Server is running on port 8081...")
 	if err := http.ListenAndServe(":8081", r); err != nil {

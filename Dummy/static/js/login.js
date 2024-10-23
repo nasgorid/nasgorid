@@ -1,5 +1,7 @@
-const loginButton = document.getElementById('login-btn');
-loginButton.addEventListener('click', async () => {
+document.getElementById('loginForm').addEventListener('submit', async function(event) {
+    event.preventDefault(); // Mencegah form dari reload halaman
+
+    // Mengambil nilai dari input form
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
 
@@ -7,22 +9,27 @@ loginButton.addEventListener('click', async () => {
         const response = await fetch('http://localhost:8081/login', {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ email: email, password: password })
+            body: JSON.stringify({
+                email: email,
+                password: password
+            })
         });
 
+        // Menangani response dari server
+        const result = await response.json();
+        
         if (response.ok) {
-            const data = await response.json();
-            alert(data.message);
-            window.location.href = 'dashboard.html'; // Redirect on success
+            alert("Login berhasil!");
+            // Redirect ke halaman yang diinginkan setelah login
+            window.location.href = "/dashboard.html";
         } else {
-            const errorData = await response.json();
-            alert(errorData.message || 'Login failed');
+            alert("Login gagal: " + result.message);
         }
+
     } catch (error) {
-        console.error('Error:', error);
-        alert('Failed to fetch');
+        console.error("Error:", error);
+        alert("Terjadi kesalahan saat login. Silakan coba lagi.");
     }
 });
-    

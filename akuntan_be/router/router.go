@@ -6,6 +6,7 @@ import (
     "akuntan/handler/auth"
     "akuntan/handler/produk"
     "akuntan/handler/transaksi_penjualan"
+    "akuntan/handler/transaksi_pengeluaran"
     "net/http"
 )
 
@@ -32,6 +33,14 @@ func SetupRouter() *mux.Router {
 	r.HandleFunc("/transaksi/{id}", transaksi_penjualan.GetSalesTransactionByID).Methods("GET")
 	r.HandleFunc("/transaksi/{id}", transaksi_penjualan.UpdateSalesTransaction).Methods("PUT")
 	r.HandleFunc("/transaksi/{id}", transaksi_penjualan.DeleteSalesTransaction).Methods("DELETE")
+
+     // Rute untuk transaksi pengeluaran
+    r.HandleFunc("/expense", transaksi_pengeluaran.CreateExpenseTransaction).Methods("POST")
+    r.HandleFunc("/expense", transaksi_pengeluaran.GetExpenses).Methods("GET")
+    r.HandleFunc("/expense/{id}", transaksi_pengeluaran.GetExpenseByID).Methods("GET")
+    r.HandleFunc("/expense/{id}", transaksi_pengeluaran.UpdateExpense).Methods("PUT")
+    r.HandleFunc("/expense/{id}", transaksi_pengeluaran.DeleteExpense).Methods("DELETE")
+
 
 
     // // Jika ada route yang memerlukan autentikasi
