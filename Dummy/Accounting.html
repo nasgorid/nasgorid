@@ -5,6 +5,113 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard Akuntansi</title>
     <link rel="stylesheet" href="/Dummy/static/css/style.css">
+    <style>
+        /* General Styles */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+}
+
+h1, h2, h3 {
+    color: #112D4E;
+    text-align: center;
+}
+
+p {
+    color: #3F72AF;
+}
+
+/* Accounting Dashboard */
+.accounting-dashboard {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.transactions, .financial-summary, .accounts {
+    background-color: white;
+    padding: 20px;
+    margin: 20px 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.transactions table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.transactions table th, .transactions table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+}
+
+.transactions table th {
+    background-color: #3F72AF;
+    color: white;
+}
+
+.summary-card {
+    background-color: #f4f4f4;
+    padding: 15px;
+    margin: 10px;
+    border-left: 5px solid #3F72AF;
+    text-align: center;
+}
+
+.summary-card h3 {
+    margin: 0 0 10px 0;
+}
+
+.accounts {
+    display: flex;
+    justify-content: space-between;
+}
+
+.accounts-card {
+    background-color: #f4f4f4;
+    padding: 20px;
+    flex: 1;
+    margin: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    border-left: 5px solid #3F72AF;
+}
+
+.accounts-card h2 {
+    margin-bottom: 20px;
+}
+
+/* Button Styles */
+button {
+    background-color: #3F72AF;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #112D4E;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .accounts {
+        flex-direction: column;
+    }
+
+    .transactions table, .accounts-card {
+        font-size: 14px;
+    }
+}
+
+    </style>
 </head>
 <body>
 
@@ -37,8 +144,70 @@
         </div>
     </header>
     
+ <!-- Main Accounting Dashboard Content -->
+ <div class="accounting-dashboard">
+    <h1>Accounting Overview</h1>
 
+    <!-- Recent Transactions -->
+    <section class="transactions">
+        <h2>Recent Transactions</h2>
+        <table>
+            <tr>
+                <th>Date</th>
+                <th>Description</th>
+                <th>Amount</th>
+            </tr>
+            <tr>
+                <td>2024-10-01</td>
+                <td>Office Supplies</td>
+                <td>$200</td>
+            </tr>
+            <tr>
+                <td>2024-10-05</td>
+                <td>Software Subscription</td>
+                <td>$500</td>
+            </tr>
+            <tr>
+                <td>2024-10-10</td>
+                <td>Employee Salaries</td>
+                <td>$5,000</td>
+            </tr>
+        </table>
+    </section>
 
+    <!-- Financial Summary -->
+    <section class="financial-summary">
+        <h2>Financial Summary</h2>
+        <div class="summary-card">
+            <h3>Total Income</h3>
+            <p>$100,000</p>
+        </div>
 
+        <div class="summary-card">
+            <h3>Total Expenses</h3>
+            <p>$70,000</p>
+        </div>
+
+        <div class="summary-card">
+            <h3>Net Profit</h3>
+            <p>$30,000</p>
+        </div>
+    </section>
+
+    <!-- Accounts Payable and Receivable -->
+    <section class="accounts">
+        <div class="accounts-card">
+            <h2>Accounts Payable</h2>
+            <p>$10,000</p>
+        </div>
+
+        <div class="accounts-card">
+            <h2>Accounts Receivable</h2>
+            <p>$15,000</p>
+        </div>
+    </section>
+</div>
+
+<script src="/Dummy/static/js/accounting.js"></script>
 </body>
 </html>
