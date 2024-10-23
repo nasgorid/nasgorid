@@ -7,6 +7,7 @@ import (
     "akuntan/handler/produk"
     "akuntan/handler/transaksi_penjualan"
     "akuntan/handler/transaksi_pengeluaran"
+    "akuntan/handler/pelanggan"
     "net/http"
 )
 
@@ -40,6 +41,13 @@ func SetupRouter() *mux.Router {
     r.HandleFunc("/expense/{id}", transaksi_pengeluaran.GetExpenseByID).Methods("GET")
     r.HandleFunc("/expense/{id}", transaksi_pengeluaran.UpdateExpense).Methods("PUT")
     r.HandleFunc("/expense/{id}", transaksi_pengeluaran.DeleteExpense).Methods("DELETE")
+
+    	// Customer Routes
+	r.HandleFunc("/customers", pelanggan.CreateCustomer).Methods("POST")
+	r.HandleFunc("/customers", pelanggan.GetCustomers).Methods("GET")
+	r.HandleFunc("/customers/{id}", pelanggan.GetCustomerByID).Methods("GET")
+	r.HandleFunc("/customers/{id}", pelanggan.UpdateCustomer).Methods("PUT")
+	r.HandleFunc("/customers/{id}", pelanggan.DeleteCustomer).Methods("DELETE")
 
 
 
