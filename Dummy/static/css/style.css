@@ -1,8 +1,14 @@
+*, *:before, *:after {
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #ffffff;
+    background: linear-gradient(to right, #ffffff 0%, #ffffff 100%);
 }
 
 header {
@@ -82,7 +88,7 @@ ul li:hover {
 }
 
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Montserrat', sans-serif;
     background-color: #F9F7F7;
     color: #333;
 }
