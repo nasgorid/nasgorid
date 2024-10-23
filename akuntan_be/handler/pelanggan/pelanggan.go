@@ -9,6 +9,7 @@ import (
 	"akuntan/config"
 	"akuntan/models/pelanggan"
 
+	"github.com/gorilla/mux"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 )
@@ -89,7 +90,10 @@ func GetCustomerByID(w http.ResponseWriter, r *http.Request) {
 
 // UpdateCustomer handles updating a customer by ID
 func UpdateCustomer(w http.ResponseWriter, r *http.Request) {
-	id := r.URL.Query().Get("id")
+	// Ambil parameter ID dari URL menggunakan gorilla/mux
+	vars := mux.Vars(r)
+	id := vars["id"]
+	
 	objectID, err := primitive.ObjectIDFromHex(id)
 	if err != nil {
 		http.Error(w, "Invalid customer ID", http.StatusBadRequest)
@@ -127,7 +131,10 @@ func UpdateCustomer(w http.ResponseWriter, r *http.Request) {
 
 // DeleteCustomer handles deleting a customer by ID
 func DeleteCustomer(w http.ResponseWriter, r *http.Request) {
-	id := r.URL.Query().Get("id")
+	// Ambil parameter ID dari URL menggunakan gorilla/mux
+	vars := mux.Vars(r)
+	id := vars["id"]
+	
 	objectID, err := primitive.ObjectIDFromHex(id)
 	if err != nil {
 		http.Error(w, "Invalid customer ID", http.StatusBadRequest)
