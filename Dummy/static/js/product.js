@@ -38,3 +38,8 @@ async function fetchProducts() {
 
 // Call the function to fetch and display products when the page loads
 window.onload = fetchProducts;
+
+document.getElementById('exportCsvBtn').addEventListener('click', function() {
+    // Redirect to the CSV export endpoint
+    window.location.href = "http://localhost:8081/products-export-csv";
+});
