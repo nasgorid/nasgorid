@@ -108,3 +108,84 @@ body {
     }
   }
   
+  /* Container settings */
+.container {
+  padding: 20px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+/* Product Management Header */
+.product-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.product-header h1 {
+  font-size: 24px;
+}
+
+.add-product-btn {
+  background-color: #3f72af;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.add-product-btn:hover {
+  background-color: #2f5d9f;
+}
+
+/* Search and Filter section */
+.search-filter {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+#search-bar {
+  width: 70%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+#sort-options {
+  width: 25%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Pagination */
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.pagination a {
+  color: #112d4e;
+  padding: 8px 16px;
+  text-decoration: none;
+  transition: background-color .3s;
+  border: 1px solid #ddd;
+  margin: 0 4px;
+  border-radius: 5px;
+}
+
+.pagination a.active {
+  background-color: #3f72af;
+  color: white;
+  border: 1px solid #3f72af;
+}
+
+.pagination a:hover:not(.active) {
+  background-color: #ddd;
+}
