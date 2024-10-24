@@ -43,3 +43,8 @@ document.getElementById('exportCsvBtn').addEventListener('click', function() {
     // Redirect to the CSV export endpoint
     window.location.href = "http://localhost:8081/products-export-csv";
 });
+
+document.getElementById('addProductBtn').addEventListener('click', function() {
+    // Redirect to AddProduct.html
+    window.location.href = "AddProduct.html";
+});

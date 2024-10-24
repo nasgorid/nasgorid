@@ -120,32 +120,27 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 10px; /* Less margin to bring it closer to the dropdown */
+  flex-wrap: wrap; /* Ensure buttons wrap properly above the dropdown */
 }
 
 .product-header h1 {
   font-size: 24px;
 }
 
-.add-product-btn {
+.add-product-btn, .export-csv-btn {
   background-color: #3f72af;
   color: white;
   padding: 10px 20px;
   border: none;
   cursor: pointer;
   border-radius: 5px;
+  margin-left: 10px; /* Reduce margin for closer alignment */
 }
 
-.export-csv-btn {
-  background-color: #3f72af;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  cursor: pointer;
-  border-radius: 5px;
-}
 
-.add-product-btn:hover {
+
+.add-product-btn:hover, .export-csv-btn:hover {
   background-color: #2f5d9f;
 }
 
@@ -153,13 +148,13 @@ body {
 .search-filter {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 }
 
 #search-bar {
   width: 70%;
   padding: 10px;
-  font-size: 16px;
+  font-size: 20px;
   border: 1px solid #ccc;
   border-radius: 5px;
 }
