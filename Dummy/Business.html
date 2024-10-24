@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard Akuntansi</title>
     <link rel="stylesheet" href="/Dummy/static/css/style.css">
-
+    
     <style>
         /* Background Image Styling */
         body {
@@ -16,6 +16,7 @@
             background-attachment: fixed;
         }
     </style>
+
     
 </head>
 <body>
@@ -74,9 +75,97 @@
     <!-- Graph Section -->
     <section class="graph-section">
         <h2>Monthly Revenue and Expenses</h2>
+        <div class="monthly-revenue-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Month</th>
+                        <th>Income</th>
+                        <th>Expense</th>
+                        <th>Profit/Loss</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>January</td>
+                        <td>$5,000</td>
+                        <td>$3,000</td>
+                        <td>$2,000</td>
+                    </tr>
+                    <tr>
+                        <td>February</td>
+                        <td>$5,500</td>
+                        <td>$3,500</td>
+                        <td>$2,000</td>
+                    </tr>
+                    <tr>
+                        <td>March</td>
+                        <td>$7,200</td>
+                        <td>$4,200</td>
+                        <td>$3,000</td>
+                    </tr>
+                    <tr>
+                        <td>April</td>
+                        <td>$6,000</td>
+                        <td>$3,800</td>
+                        <td>$2,200</td>
+                    </tr>
+                    <tr>
+                        <td>May</td>
+                        <td>$7,500</td>
+                        <td>$4,300</td>
+                        <td>$3,200</td>
+                    </tr>
+                    <tr>
+                        <td>June</td>
+                        <td>$6,200</td>
+                        <td>$4,600</td>
+                        <td>$1,600</td>
+                    </tr>
+                    <tr>
+                        <td>July</td>
+                        <td>$5,500</td>
+                        <td>$4,900</td>
+                        <td>$600</td>
+                    </tr>
+                    <tr>
+                        <td>August</td>
+                        <td>$8,000</td>
+                        <td>$5,800</td>
+                        <td>$2,200</td>
+                    </tr>
+                    <tr>
+                        <td>September</td>
+                        <td>$9,200</td>
+                        <td>$6,200</td>
+                        <td>$3,000</td>
+                    </tr>
+                    <tr>
+                        <td>October</td>
+                        <td>$6,400</td>
+                        <td>$5,500</td>
+                        <td>$900</td>
+                    </tr>
+                    <tr>
+                        <td>November</td>
+                        <td>$7,500</td>
+                        <td>$6,200</td>
+                        <td>$1,300</td>
+                    </tr>
+                    <tr>
+                        <td>December</td>
+                        <td>$7,200</td>
+                        <td>$6,200</td>
+                        <td>$1,000</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
         <div class="chart-container">
             <canvas id="businessChart"></canvas>
         </div>
+
     </section>
 
     <!-- Employee and Customer Data -->
