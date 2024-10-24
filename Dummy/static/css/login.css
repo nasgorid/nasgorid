@@ -33,7 +33,9 @@ body {
 
 .login-container input[type="text"],
 .login-container input[type="password"],
-.login-container input[type="email"]
+.login-container input[type="email"],
+.login-container input[type="name"],
+.login-container input[type="umkm-name"]
 {
     width: 100%;
     padding: 15px;
