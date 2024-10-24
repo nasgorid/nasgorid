@@ -34,6 +34,8 @@ func SetupRouter() *mux.Router {
 	r.HandleFunc("/transaksi/{id}", transaksi_penjualan.GetSalesTransactionByID).Methods("GET")
 	r.HandleFunc("/transaksi/{id}", transaksi_penjualan.UpdateSalesTransaction).Methods("PUT")
 	r.HandleFunc("/transaksi/{id}", transaksi_penjualan.DeleteSalesTransaction).Methods("DELETE")
+    r.HandleFunc("/transaksi/export-csv", transaksi_penjualan.ExportSalesTransactionsCSV).Methods("GET")
+
 
      // Rute untuk transaksi pengeluaran
     r.HandleFunc("/expense", transaksi_pengeluaran.CreateExpenseTransaction).Methods("POST")

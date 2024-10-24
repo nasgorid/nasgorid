@@ -9,9 +9,14 @@ import (
 	"akuntan/config"
 	"akuntan/models/transaksi_penjualan"
 
+	"os"
+
 	"github.com/gorilla/mux"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
+
+	"encoding/csv"
+	"fmt"
 )
 
 // Fungsi untuk menambahkan transaksi penjualan baru
@@ -162,4 +167,65 @@ func DeleteSalesTransaction(w http.ResponseWriter, r *http.Request) {
 	// Kirim respon sukses
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(map[string]string{"message": "Sales transaction deleted successfully"})
+}
+
+
+// ExportSalesTransactionsToCSV mengexport semua transaksi penjualan ke CSV
+func ExportSalesTransactionsCSV(w http.ResponseWriter, r *http.Request) {
+    // Ambil semua data transaksi dari MongoDB
+    ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
+    defer cancel()
+
+    cursor, err := config.SalesTransactionCollection.Find(ctx, bson.M{})
+    if err != nil {
+        http.Error(w, "Failed to fetch sales transactions", http.StatusInternalServerError)
+        return
+    }
+    defer cursor.Close(ctx)
+
+    // Buat file CSV
+    file, err := os.Create("sales_transactions.csv")
+    if err != nil {
+        http.Error(w, "Failed to create CSV file", http.StatusInternalServerError)
+        return
+    }
+    defer file.Close()
+
+    writer := csv.NewWriter(file)
+    defer writer.Flush()
+
+    // Tulis header CSV
+    header := []string{"ID", "Transaction Date", "Customer Name", "Total Amount", "Payment Method", "Payment Status"}
+    if err := writer.Write(header); err != nil {
+        http.Error(w, "Failed to write header to CSV", http.StatusInternalServerError)
+        return
+    }
+
+    // Tulis data transaksi ke CSV
+    for cursor.Next(ctx) {
+        var transaction transaksi_penjualan.SalesTransaction
+        if err := cursor.Decode(&transaction); err != nil {
+            http.Error(w, "Error decoding sales transaction", http.StatusInternalServerError)
+            return
+        }
+
+        record := []string{
+            transaction.ID.Hex(), // Konversi ObjectID ke string
+            transaction.TransactionDate.Format(time.RFC3339),
+            transaction.CustomerName,
+            fmt.Sprintf("%.2f", transaction.TotalAmount), // Format total amount
+            transaction.PaymentMethod,
+            transaction.PaymentStatus,
+        }
+
+        if err := writer.Write(record); err != nil {
+            http.Error(w, "Failed to write transaction to CSV", http.StatusInternalServerError)
+            return
+        }
+    }
+
+    // Kirim respon sukses
+    w.Header().Set("Content-Type", "text/csv")
+    w.Header().Set("Content-Disposition", "attachment;filename=sales_transactions.csv")
+    http.ServeFile(w, r, "sales_transactions.csv")
 }
