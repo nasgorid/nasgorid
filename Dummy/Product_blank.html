@@ -6,6 +6,16 @@
     <title>Dashboard Akuntansi</title>
     <link rel="stylesheet" href="/Dummy/static/css/product.css">
     <link rel="stylesheet" href="/Dummy/static/css/style.css">
+    <style>
+        /* Background Image Styling */
+        body {
+            background:#d8eaff; /* Ganti dengan path gambar background */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+    </style>
 </head>
 <body>
 
@@ -37,48 +47,55 @@
         </div>
         </div>
     </header>
-    
+
+    <!-- Product Management Section -->
     <div class="container">
-
-        <div class="row header blue">
-            <div class="cell">
-                Name Product
-            </div>
-            <div class="cell">
-                Price
-            </div>
-            <div class="cell">
-                Category
-            </div>
-            <div class="cell">
-                Description
-            </div>
-            <div class="cell">
-                Stock
-            </div>
+        <div class="product-header">
+            <h1>Product Management</h1>
+            <!-- Add Product Button -->
+            <button class="add-product-btn">Add New Product</button>
         </div>
-        
-        <div class="row">
-            <div class="cell" data-title="Product">
-                Product
-            </div>
-            <div class="cell" data-title="Unit Price">
-                $$$
-            </div>
-            <div class="cell" data-title="Quantity">
-                00
-            </div>
-            <div class="cell" data-title="Date Sold">
-                MM/DD/YYYY
-            </div>
-            <div class="cell" data-title="Status">
-                status
-            </div>
-        </div>
-        
 
+        <!-- Search Bar -->
+        <div class="search-filter">
+            <input type="text" id="search-bar" placeholder="Search for products...">
+            <!-- Sorting Dropdown -->
+            <select id="sort-options">
+                <option value="name">Sort by Name</option>
+                <option value="price">Sort by Price</option>
+                <option value="category">Sort by Category</option>
+                <option value="stock">Sort by Stock</option>
+            </select>
+        </div>
+
+        <!-- Product Table -->
+<div id="product-table">
+    <div class="row header blue">
+        <div class="cell">Name Product</div>
+        <div class="cell">Price</div>
+        <div class="cell">Category</div>
+        <div class="cell">Description</div>
+        <div class="cell">Stock</div>
+    </div>
+</div>
+
+        
+        <!-- The fetched products will be inserted here -->
+
+        <!-- Pagination -->
+        <div class="pagination">    
+            <a href="#">&laquo;</a>
+            <a href="#" class="active">1</a>
+            <a href="#">2</a>
+            <a href="#">3</a>
+            <a href="#">4</a>
+            <a href="#">5</a>
+            <a href="#">&raquo;</a>
+        </div>
     </div>
 
+    <!-- Include external JavaScript file -->
+    <script src="/Dummy/static/js/product.js"></script>
 
 </body>
 </html>
