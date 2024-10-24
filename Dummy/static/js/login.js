@@ -1,35 +1,44 @@
-document.getElementById('loginForm').addEventListener('submit', async function(event) {
-    event.preventDefault(); // Mencegah form dari reload halaman
+document.addEventListener('DOMContentLoaded', function () {
+    const loginButton = document.getElementById('login-btn'); // Ganti selector tombol login
+    const emailInput = document.getElementById('email'); // Ganti selector untuk email
+    const passwordInput = document.getElementById('password');
 
-    // Mengambil nilai dari input form
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
+    loginButton.addEventListener('click', function (event) {
+        event.preventDefault(); // Mencegah pengiriman form secara default
+        const email = emailInput.value; // Ambil nilai dari input email
+        const password = passwordInput.value;
 
-    try {
-        const response = await fetch('http://localhost:8081/login', {
+        if (!email || !password) {
+            alert('Please complete all fields');
+            return;
+        }
+
+        const data = {
+            email: email, // Ganti username dengan email
+            password: password,
+        };
+
+        fetch('http://localhost:8081/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({
-                email: email,
-                password: password
-            })
+            body: JSON.stringify(data),
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Login failed');
+            }
+            return response.json();
+        })
+        .then(result => {
+            console.log(result);
+            alert('Login successful!');
+            window.location.href = 'index.html';
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Login failed. Check your email and password.');
         });
-
-        // Menangani response dari server
-        const result = await response.json();
-        
-        if (response.ok) {
-            alert("Login berhasil!");
-            // Redirect ke halaman yang diinginkan setelah login
-            window.location.href = "/dashboard.html";
-        } else {
-            alert("Login gagal: " + result.message);
-        }
-
-    } catch (error) {
-        console.error("Error:", error);
-        alert("Terjadi kesalahan saat login. Silakan coba lagi.");
-    }
+    });
 });

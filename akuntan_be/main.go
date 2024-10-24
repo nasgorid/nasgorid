@@ -1,50 +1,81 @@
-// main.go
 package main
 
 import (
+	"akuntan/config"
+	"akuntan/handler/auth"
+	"akuntan/handler/laporan"
+	"akuntan/handler/pelanggan"
+	"akuntan/handler/produk"
+	"akuntan/handler/transaksi_pengeluaran"
+	"akuntan/handler/transaksi_penjualan"
+	"fmt"
 	"log"
 	"net/http"
 
-	"akuntan/config"
-	"akuntan/router"
+	"github.com/gorilla/mux"
+	"github.com/rs/cors"
 )
 
-// Middleware untuk menangani CORS
-func corsMiddleware(next http.Handler) http.Handler {
-	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		log.Println("Handling CORS for request:", r.Method, r.URL.Path)
-
-		// Mengizinkan semua origin
-		w.Header().Set("Access-Control-Allow-Origin", "*")
-		// Mengizinkan method-method yang diizinkan
-		w.Header().Set("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, DELETE")
-		// Mengizinkan headers tertentu
-		w.Header().Set("Access-Control-Allow-Headers", "Content-Type, Authorization")
-
-		// Mengizinkan request OPTIONS untuk preflight CORS
-		if r.Method == "OPTIONS" {
-			w.WriteHeader(http.StatusOK)
-			return
-		}
-
-		next.ServeHTTP(w, r)
-	})
-}
-
 func main() {
-	// Inisialisasi koneksi ke MongoDB
 	config.InitMongoDB()
+	fmt.Println("Hello World")
 
-	// Setup Router
-	r := router.SetupRouter()
+	router := mux.NewRouter()
 
-	// Terapkan middleware CORS ke semua rute
-	r.Use(corsMiddleware)
+	// Route untuk registrasi user
+	router.HandleFunc("/register", auth.RegisterUser).Methods("POST")
 
-	
-	// Jalankan server di port 8080
-	log.Println("Server is running on port 8081...")
-	if err := http.ListenAndServe(":8081", r); err != nil {
-		log.Fatal("Server failed to start: ", err)
-	}
+	// Route untuk login user
+	router.HandleFunc("/login", auth.LoginUser).Methods("POST")
+
+	// Route untuk Produk
+	router.HandleFunc("/products", produk.CreateProduct).Methods("POST")
+	router.HandleFunc("/products", produk.GetProducts).Methods("GET")
+	router.HandleFunc("/products/{id}", produk.GetProductByID).Methods("GET")
+	router.HandleFunc("/products/{id}", produk.UpdateProduct).Methods("PUT")
+	router.HandleFunc("/products/{id}", produk.DeleteProduct).Methods("DELETE")
+
+	// Rute untuk transaksi penjualan
+	router.HandleFunc("/transaksi", transaksi_penjualan.CreateSalesTransaction).Methods("POST")
+	router.HandleFunc("/transaksi", transaksi_penjualan.GetSalesTransactions).Methods("GET")
+	router.HandleFunc("/transaksi/{id}", transaksi_penjualan.GetSalesTransactionByID).Methods("GET")
+	router.HandleFunc("/transaksi/{id}", transaksi_penjualan.UpdateSalesTransaction).Methods("PUT")
+	router.HandleFunc("/transaksi/{id}", transaksi_penjualan.DeleteSalesTransaction).Methods("DELETE")
+	router.HandleFunc("/transaksi-export-csv", transaksi_penjualan.ExportSalesTransactionsCSV).Methods("GET")
+
+	// Rute untuk transaksi pengeluaran
+	router.HandleFunc("/expense", transaksi_pengeluaran.CreateExpenseTransaction).Methods("POST")
+	router.HandleFunc("/expense", transaksi_pengeluaran.GetExpenses).Methods("GET")
+	router.HandleFunc("/expense/{id}", transaksi_pengeluaran.GetExpenseByID).Methods("GET")
+	router.HandleFunc("/expense/{id}", transaksi_pengeluaran.UpdateExpense).Methods("PUT")
+	router.HandleFunc("/expense/{id}", transaksi_pengeluaran.DeleteExpense).Methods("DELETE")
+
+	// Customer Routes
+	router.HandleFunc("/customers", pelanggan.CreateCustomer).Methods("POST")
+	router.HandleFunc("/customers", pelanggan.GetCustomers).Methods("GET")
+	router.HandleFunc("/customers/{id}", pelanggan.GetCustomerByID).Methods("GET")
+	router.HandleFunc("/customers/{id}", pelanggan.UpdateCustomer).Methods("PUT")
+	router.HandleFunc("/customers/{id}", pelanggan.DeleteCustomer).Methods("DELETE")
+
+	// Rute untuk Laporan Keuangan
+	router.HandleFunc("/reports", laporan.CreateFinancialReport).Methods("POST")
+	router.HandleFunc("/reports", laporan.GetFinancialReports).Methods("GET")
+	router.HandleFunc("/reports/{id}", laporan.GetFinancialReportByID).Methods("GET")
+	router.HandleFunc("/reports/{id}", laporan.DeleteFinancialReport).Methods("DELETE")
+
+	allowedOrigins := []string{"http://127.0.0.1:5500"}
+
+	c := cors.New(cors.Options{
+		AllowedOrigins:   allowedOrigins,
+		AllowCredentials: true,
+		AllowedMethods:   []string{"GET", "POST", "PUT", "DELETE"},
+		AllowedHeaders:   []string{"Content-Type", "Authorization"},
+		Debug:            true,
+	})
+
+	handler := c.Handler(router)
+
+	fmt.Println("Server is running on http://localhost:8081")
+	log.Fatal(http.ListenAndServe(":8081", handler))
+
 }

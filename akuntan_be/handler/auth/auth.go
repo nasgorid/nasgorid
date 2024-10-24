@@ -11,18 +11,17 @@ import (
 	"akuntan/config"
 	"akuntan/models/user"
 
-	"github.com/golang-jwt/jwt/v4"
 	"go.mongodb.org/mongo-driver/bson"
 	"golang.org/x/crypto/bcrypt"
 )
 
-var jwtKey = []byte("your_secret_key") // Gantilah dengan secret key Anda
+// var jwtKey = []byte("your_secret_key") // Gantilah dengan secret key Anda
 
-// Struct untuk JWT claims
-type Claims struct {
-    Email string `json:"email"`
-    jwt.RegisteredClaims
-}
+// // Struct untuk JWT claims
+// type Claims struct {
+//     Email string `json:"email"`
+//     jwt.RegisteredClaims
+// }
 
 
 func RegisterUser(w http.ResponseWriter, r *http.Request) {
