@@ -8,6 +8,7 @@ import (
     "akuntan/handler/transaksi_penjualan"
     "akuntan/handler/transaksi_pengeluaran"
     "akuntan/handler/pelanggan"
+    "akuntan/handler/laporan"
     "net/http"
 )
 
@@ -51,7 +52,11 @@ func SetupRouter() *mux.Router {
 	r.HandleFunc("/customers/{id}", pelanggan.UpdateCustomer).Methods("PUT")
 	r.HandleFunc("/customers/{id}", pelanggan.DeleteCustomer).Methods("DELETE")
 
-
+        // Rute untuk Laporan Keuangan
+    r.HandleFunc("/reports", laporan.CreateFinancialReport).Methods("POST")
+    r.HandleFunc("/reports", laporan.GetFinancialReports).Methods("GET")
+    r.HandleFunc("/reports/{id}", laporan.GetFinancialReportByID).Methods("GET")
+    r.HandleFunc("/reports/{id}", laporan.DeleteFinancialReport).Methods("DELETE")
 
     // // Jika ada route yang memerlukan autentikasi
     // protected := r.PathPrefix("/protected").Subrouter()
