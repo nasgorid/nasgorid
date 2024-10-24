@@ -118,8 +118,7 @@ body {
 /* Product Management Header */
 .product-header {
   display: flex;
-  justify-content: flex-start; /* Align items to the left */
-  gap: 10px; /* Add a small gap between buttons */
+  justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
 }
@@ -137,7 +136,14 @@ body {
   border-radius: 5px;
 }
 
-
+.export-csv-btn {
+  background-color: #3f72af;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
 
 .add-product-btn:hover {
   background-color: #2f5d9f;
