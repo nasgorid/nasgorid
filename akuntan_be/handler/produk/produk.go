@@ -6,6 +6,8 @@ import (
 	"encoding/json"
 	"net/http"
 	"time"
+	"encoding/csv"
+	"fmt"
 
 	"akuntan/config"
 	"akuntan/models/produk"
@@ -168,4 +170,73 @@ func DeleteProduct(w http.ResponseWriter, r *http.Request) {
 	// Kirim respon sukses
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(map[string]string{"message": "Product deleted successfully"})
+}
+
+
+// Fungsi untuk mengekspor data produk ke CSV
+func ExportProductsToCSV(w http.ResponseWriter, r *http.Request) {
+	var products []produk.Product
+
+	// Ambil data produk dari MongoDB
+	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
+	defer cancel()
+
+	cursor, err := config.ProductCollection.Find(ctx, bson.M{})
+	if err != nil {
+		http.Error(w, "Failed to fetch products", http.StatusInternalServerError)
+		return
+	}
+	defer cursor.Close(ctx)
+
+	for cursor.Next(ctx) {
+		var prod produk.Product
+		if err := cursor.Decode(&prod); err != nil {
+			http.Error(w, "Error decoding product", http.StatusInternalServerError)
+			return
+		}
+		products = append(products, prod)
+	}
+
+	// Tentukan header respons sebagai file CSV
+	w.Header().Set("Content-Disposition", "attachment; filename=products.csv")
+	w.Header().Set("Content-Type", "text/csv")
+
+	// Buat writer CSV
+	csvWriter := csv.NewWriter(w)
+	defer csvWriter.Flush()
+
+	// Tulis header CSV
+	headers := []string{"ID", "Name", "Price", "Category", "Description", "Stock", "Created At", "Updated At"}
+	if err := csvWriter.Write(headers); err != nil {
+		http.Error(w, "Failed to write CSV headers", http.StatusInternalServerError)
+		return
+	}
+
+	// Tulis data produk ke CSV
+	for _, product := range products {
+		row := []string{
+			product.ID,
+			product.Name,
+			formatPrice(product.Price),       // Format harga
+			product.Category,
+			product.Description,
+			formatStock(product.Stock),       // Format stok
+			product.CreatedAt.Format(time.RFC3339),
+			product.UpdatedAt.Format(time.RFC3339),
+		}
+		if err := csvWriter.Write(row); err != nil {
+			http.Error(w, "Failed to write product data to CSV", http.StatusInternalServerError)
+			return
+		}
+	}
+}
+
+// Fungsi untuk format harga menjadi string
+func formatPrice(price float64) string {
+	return fmt.Sprintf("%.2f", price)
+}
+
+// Fungsi untuk format stok menjadi string
+func formatStock(stock int) string {
+	return fmt.Sprintf("%d", stock)
 }
