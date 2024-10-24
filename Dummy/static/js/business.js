@@ -60,3 +60,4 @@ async function fetchCustomers() {
 
 // Fetch initial data
 showSales();
+fetchCustomers();
