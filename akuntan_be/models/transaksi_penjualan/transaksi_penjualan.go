@@ -1,10 +1,14 @@
 package transaksi_penjualan
 
-import "time"
+import (
+	"time"
+
+	"go.mongodb.org/mongo-driver/bson/primitive"
+)
 
 // SalesTransaction adalah struct untuk transaksi penjualan
 type SalesTransaction struct {
-    ID            string    `bson:"_id,omitempty" json:"id,omitempty"`
+    ID            primitive.ObjectID    `bson:"_id,omitempty" json:"id,omitempty"`
     TransactionDate time.Time `bson:"transactionDate" json:"transactionDate"`
     CustomerName  string    `bson:"customer_name" json:"customer_name"`
     Products      []Product `bson:"products" json:"products"`
@@ -15,7 +19,7 @@ type SalesTransaction struct {
 
 // Product adalah struct untuk produk dalam transaksi penjualan
 type Product struct {
-    ID          string  `bson:"_id,omitempty" json:"id,omitempty"`
+    ID          primitive.ObjectID  `bson:"_id,omitempty" json:"id,omitempty"`
     Name        string  `bson:"name" json:"name"`
     Price       float64 `bson:"price" json:"price"`
     Category    string  `bson:"category" json:"category"`
