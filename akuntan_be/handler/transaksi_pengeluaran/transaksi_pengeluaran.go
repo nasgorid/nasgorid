@@ -67,7 +67,11 @@ func GetExpenses(w http.ResponseWriter, r *http.Request) {
 
 // GetExpenseByID mengambil transaksi pengeluaran berdasarkan ID
 func GetExpenseByID(w http.ResponseWriter, r *http.Request) {
-    id := r.URL.Query().Get("id")
+    // id := r.URL.Query().Get("id")
+
+    vars := mux.Vars(r)
+	id := vars["id"]
+
     objectID, err := primitive.ObjectIDFromHex(id)
     if err != nil {
         http.Error(w, "Invalid expense transaction ID", http.StatusBadRequest)
