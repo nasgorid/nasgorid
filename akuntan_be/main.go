@@ -34,6 +34,8 @@ func main() {
 	router.HandleFunc("/products/{id}", produk.GetProductByID).Methods("GET")
 	router.HandleFunc("/products/{id}", produk.UpdateProduct).Methods("PUT")
 	router.HandleFunc("/products/{id}", produk.DeleteProduct).Methods("DELETE")
+	router.HandleFunc("/products-export-csv", produk.ExportProductsToCSV).Methods("GET")
+
 
 	// Rute untuk transaksi penjualan
 	router.HandleFunc("/transaksi", transaksi_penjualan.CreateSalesTransaction).Methods("POST")

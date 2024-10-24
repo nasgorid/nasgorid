@@ -128,19 +128,18 @@ body {
   font-size: 24px;
 }
 
-.add-product-btn, .export-csv-btn {
+.add-product-btn {
   background-color: #3f72af;
   color: white;
   padding: 10px 20px;
   border: none;
   cursor: pointer;
   border-radius: 5px;
-  margin-left: 10px; /* Reduce margin for closer alignment */
 }
 
 
 
-.add-product-btn:hover, .export-csv-btn:hover {
+.add-product-btn:hover {
   background-color: #2f5d9f;
 }
 
