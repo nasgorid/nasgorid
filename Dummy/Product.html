@@ -9,12 +9,38 @@
     <style>
         /* Background Image Styling */
         body {
-            background:#d8eaff; /* Ganti dengan path gambar background */
+            background: #d8eaff; /* Change to background image path */
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
             background-attachment: fixed;
         }
+
+        /* Basic styles for the pagination */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .pagination a {
+            margin: 0 5px;
+            text-decoration: none;
+            padding: 5px 10px;
+            border: 1px solid #112D4E;
+            color: #112D4E;
+        }
+        .pagination a.active {
+            background-color: #112D4E;
+            color: white;
+        }
+
+        /* Gaya Umum untuk Tabel */
+        #product-table {
+            width: 100%; /* Memastikan tabel mengambil lebar penuh */
+            border-collapse: collapse; /* Menghapus spasi antara border cell */
+        }
+
+        
     </style>
 </head>
 <body>
@@ -23,11 +49,11 @@
     <header>
         <nav>
             <ul class="nav-menu">
-                <li><a href="index.html" >Dashboard</a></li>
-                <li><a href="Business.html" >Business</a></li>
-                <li><a href="Accounting.html" >Accounting</a></li>
+                <li><a href="index.html">Dashboard</a></li>
+                <li><a href="Business.html">Business</a></li>
+                <li><a href="Accounting.html">Accounting</a></li>
                 <li style="background-color: #112D4E;"><a href="Product.html" style="color: rgb(255, 255, 255);">Product</a></li>
-                <li><a href="Contacts.html" >Contact Us</a></li>
+                <li><a href="Contacts.html">Contact Us</a></li>
             </ul>
         </nav>
 
@@ -49,14 +75,14 @@
         <div class="product-header">
             <h1>Product Management</h1>
             <!-- Add Product Button -->
-            <button class="add-product-btn">Add New Product</button>
+            <button class="add-product-btn" onclick="addNewProduct()"><a href="AddProduct.html">Add New Product</a></button>
         </div>
 
         <!-- Search Bar -->
         <div class="search-filter">
-            <input type="text" id="search-bar" placeholder="Search for products...">
+            <input type="text" id="search-bar" placeholder="Search for products..." oninput="filterProducts()">
             <!-- Sorting Dropdown -->
-            <select id="sort-options">
+            <select id="sort-options" onchange="sortProducts()">
                 <option value="name">Sort by Name</option>
                 <option value="price">Sort by Price</option>
                 <option value="category">Sort by Category</option>
@@ -65,121 +91,138 @@
         </div>
 
         <!-- Product Table -->
-        <div class="row header blue">
-            <div class="cell">Name Product</div>
-            <div class="cell">Price</div>
-            <div class="cell">Category</div>
-            <div class="cell">Description</div>
-            <div class="cell">Stock</div>
-        </div>
-        
-        <div class="row">
-            <div class="cell" data-title="Product">Solid oak work table</div>
-            <div class="cell" data-title="Unit Price">$800</div>
-            <div class="cell" data-title="Quantity">10</div>
-            <div class="cell" data-title="Date Sold">03/15/2014</div>
-            <div class="cell" data-title="Status">Waiting for Pickup</div>
-        </div>
-        
-        <div class="row">
-            <div class="cell" data-title="Product">Leather iPhone wallet</div>
-            <div class="cell" data-title="Unit Price">$45</div>
-            <div class="cell" data-title="Quantity">120</div>
-            <div class="cell" data-title="Date Sold">02/28/2014</div>
-            <div class="cell" data-title="Status">In Transit</div>
-        </div>
-        
-        <div class="row">
-            <div class="cell" data-title="Product">27" Apple Thunderbolt displays</div>
-            <div class="cell" data-title="Unit Price">$1000</div>
-            <div class="cell" data-title="Quantity">25</div>
-            <div class="cell" data-title="Date Sold">02/10/2014</div>
-            <div class="cell" data-title="Status">Delivered</div>
-        </div>
-        
-        <div class="row">
-            <div class="cell" data-title="Product">Bose studio headphones</div>
-            <div class="cell" data-title="Unit Price">$60</div>
-            <div class="cell" data-title="Quantity">90</div>
-            <div class="cell" data-title="Date Sold">01/14/2014</div>
-            <div class="cell" data-title="Status">Delivered</div>
-        </div>
-
-        <div class="row">
-            <div class="cell" data-title="Product">AMD Ryzen Threadripper</div>
-            <div class="cell" data-title="Unit Price">$6000</div>
-            <div class="cell" data-title="Quantity">1</div>
-            <div class="cell" data-title="Date Sold">02/24/2014</div>
-            <div class="cell" data-title="Status">Pending For Payment</div>
-        </div>
-
-        <div class="row">
-            <div class="cell" data-title="Product">Intel Core i9-14300K</div>
-            <div class="cell" data-title="Unit Price">$4999</div>
-            <div class="cell" data-title="Quantity">1</div>
-            <div class="cell" data-title="Date Sold">07/28/2014</div>
-            <div class="cell" data-title="Status">Delivered</div>
-        </div>
-
-        <div class="row">
-            <div class="cell" data-title="Product">Intel Core i10-17300K</div>
-            <div class="cell" data-title="Unit Price">$9999</div>
-            <div class="cell" data-title="Quantity">1</div>
-            <div class="cell" data-title="Date Sold">01/18/2014</div>
-            <div class="cell" data-title="Status">Delivered</div>
-        </div>
-
-        <div class="row">
-            <div class="cell" data-title="Product">Horses Shoes</div>
-            <div class="cell" data-title="Unit Price">$30</div>
-            <div class="cell" data-title="Quantity">100</div>
-            <div class="cell" data-title="Date Sold">09/20/2014</div>
-            <div class="cell" data-title="Status">Pending For Payment</div>
-        </div>
-
-        <div class="row">
-            <div class="cell" data-title="Product">Flying Shoes</div>
-            <div class="cell" data-title="Unit Price">$1000</div>
-            <div class="cell" data-title="Quantity">1</div>
-            <div class="cell" data-title="Date Sold">07/27/2014</div>
-            <div class="cell" data-title="Status">Delivered</div>
-        </div>
-
-        <div class="row">
-            <div class="cell" data-title="Product">Backflip scatter</div>
-            <div class="cell" data-title="Unit Price">$999</div>
-            <div class="cell" data-title="Quantity">1</div>
-            <div class="cell" data-title="Date Sold">03/23/2014</div>
-            <div class="cell" data-title="Status">In Transit</div>
-        </div>
-
-        <div class="row">
-            <div class="cell" data-title="Product">Lamborgini Aventador</div>
-            <div class="cell" data-title="Unit Price">$8000K</div>
-            <div class="cell" data-title="Quantity">1</div>
-            <div class="cell" data-title="Date Sold">05/22/2014</div>
-            <div class="cell" data-title="Status">In Transit</div>
-        </div>
-
-        <div class="row">
-            <div class="cell" data-title="Product">Nasa's Super Computer</div>
-            <div class="cell" data-title="Unit Price">$9999K</div>
-            <div class="cell" data-title="Quantity">1</div>
-            <div class="cell" data-title="Date Sold">10/28/2014</div>
-            <div class="cell" data-title="Status">Delivered</div>
-        </div>
+        <div id="product-table"></div>
 
         <!-- Pagination -->
-        <div class="pagination">    
-            <a href="#">&laquo;</a>
-            <a href="#" class="active">1</a>
-            <a href="#">2</a>
-            <a href="#">3</a>
-            <a href="#">4</a>
-            <a href="#">5</a>
-            <a href="#">&raquo;</a>
+        <div class="pagination" id="pagination">
+            <a href="#" onclick="changePage(-1)">&laquo;</a>
+            <span id="page-numbers"></span>
+            <a href="#" onclick="changePage(1)">&raquo;</a>
         </div>
     </div>
 
+    <script>
+        const products = [
+            { name: "Solid oak work table", price: 800, category: "Furniture", stock: 10, date: "2024-10-01", status: "Available" },
+            { name: "Leather iPhone wallet", price: 45, category: "Accessories", stock: 120, date: "2024-10-02", status: "Available" },
+            { name: "27\" Apple Thunderbolt displays", price: 1000, category: "Electronics", stock: 25, date: "2024-10-03", status: "Out of Stock" },
+            { name: "Bose studio headphones", price: 60, category: "Audio", stock: 90, date: "2024-10-04", status: "Available" },
+            { name: "AMD Ryzen Threadripper", price: 6000, category: "Computers", stock: 1, date: "2024-10-05", status: "Available" },
+            { name: "Intel Core i9-14300K", price: 4999, category: "Computers", stock: 1, date: "2024-10-06", status: "Available" },
+            { name: "Intel Core i10-17300K", price: 9999, category: "Computers", stock: 1, date: "2024-10-07", status: "Out of Stock" },
+            { name: "Horses Shoes", price: 30, category: "Sports", stock: 100, date: "2024-10-08", status: "Available" },
+            { name: "Flying Shoes", price: 1000, category: "Fictional", stock: 1, date: "2024-10-09", status: "Available" },
+            { name: "Backflip scatter", price: 999, category: "Toys", stock: 1, date: "2024-10-10", status: "Available" },
+            { name: "Lamborghini Aventador", price: 8000, category: "Cars", stock: 1, date: "2024-10-11", status: "Out of Stock" },
+            { name: "NASA's Super Computer", price: 9999000, category: "Technology", stock: 1, date: "2024-10-12", status: "Available" },
+            { name: "Wireless Gaming Mouse", price: 70, category: "Accessories", stock: 50, date: "2024-10-13", status: "Available" },
+            { name: "4K Ultra HD TV", price: 1200, category: "Electronics", stock: 15, date: "2024-10-14", status: "Available" },
+            { name: "Smartphone Stand", price: 20, category: "Accessories", stock: 200, date: "2024-10-15", status: "Available" },
+            { name: "Electric Kettle", price: 30, category: "Home Appliances", stock: 80, date: "2024-10-16", status: "Available" },
+            { name: "Gaming Chair", price: 250, category: "Furniture", stock: 30, date: "2024-10-17", status: "Available" },
+        ];
+
+        let currentPage = 1;
+        const itemsPerPage = 10;
+
+        function renderProducts(productsToRender) {
+            const productTable = document.getElementById("product-table");
+            productTable.innerHTML = `
+                <div class="row header blue">
+                    <div class="cell">Name Product</div>
+                    <div class="cell">Price</div>
+                    <div class="cell">Category</div>
+                    <div class="cell">Stock</div>
+                    <div class="cell">Date</div> <!-- Tambahan kolom tanggal -->
+                    <div class="cell">Status</div> <!-- Tambahan kolom status -->
+                </div>
+            `;
+
+            // Render products untuk halaman saat ini
+            productsToRender.forEach(product => {
+                const row = document.createElement("div");
+                row.className = "row";
+                row.innerHTML = `
+                    <div class="cell">${product.name}</div>
+                    <div class="cell">$${product.price}</div>
+                    <div class="cell">${product.category}</div>
+                    <div class="cell">${product.stock}</div>
+                    <div class="cell">${product.date}</div> <!-- Tambahkan tanggal -->
+                    <div class="cell">${product.status}</div> <!-- Tambahkan status -->
+                `;
+                productTable.appendChild(row);
+            });
+        }
+
+        function updatePagination(totalPages) {
+            const pageNumbers = document.getElementById("page-numbers");
+            pageNumbers.innerHTML = '';
+
+            for (let i = 1; i <= totalPages; i++) {
+                const pageLink = document.createElement('a');
+                pageLink.href = "#";
+                pageLink.innerText = i;
+                pageLink.className = (i === currentPage) ? 'active' : '';
+                pageLink.onclick = function () {
+                    currentPage = i;
+                    loadProducts();
+                };
+                pageNumbers.appendChild(pageLink);
+            }
+        }
+
+        function loadProducts() {
+            const start = (currentPage - 1) * itemsPerPage;
+            const end = start + itemsPerPage;
+            const productsToRender = products.slice(start, end);
+            renderProducts(productsToRender);
+            updatePagination(Math.ceil(products.length / itemsPerPage));
+        }
+
+        function changePage(direction) {
+            const totalPages = Math.ceil(products.length / itemsPerPage);
+            currentPage += direction;
+
+            if (currentPage < 1) currentPage = 1;
+            if (currentPage > totalPages) currentPage = totalPages;
+
+            loadProducts();
+        }
+
+        // Filter products berdasarkan input pencarian
+        function filterProducts() {
+            const searchValue = document.getElementById("search-bar").value.toLowerCase();
+            const filteredProducts = products.filter(product => product.name.toLowerCase().includes(searchValue));
+            renderProducts(filteredProducts);
+            updatePagination(Math.ceil(filteredProducts.length / itemsPerPage));
+        }
+
+        // Mengurutkan produk berdasarkan kolom tertentu
+        function sortProducts() {
+            const sortBy = document.getElementById("sort-options").value;
+            let sortedProducts;
+
+            if (sortBy === "name") {
+                sortedProducts = [...products].sort((a, b) => a.name.localeCompare(b.name));
+            } else if (sortBy === "price") {
+                sortedProducts = [...products].sort((a, b) => a.price - b.price);
+            } else if (sortBy === "category") {
+                sortedProducts = [...products].sort((a, b) => a.category.localeCompare(b.category));
+            } else if (sortBy === "stock") {
+                sortedProducts = [...products].sort((a, b) => a.stock - b.stock);
+            }
+
+            renderProducts(sortedProducts);
+            updatePagination(Math.ceil(sortedProducts.length / itemsPerPage));
+        }
+
+        function addNewProduct() {
+            // Logika untuk menambah produk baru
+            alert('Function to add a new product will go here!');
+        }
+
+        // Inisialisasi tampilan awal
+        loadProducts();
+    </script>
 </body>
 </html>
