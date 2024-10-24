@@ -15,6 +15,7 @@ var ProductCollection *mongo.Collection
 var SalesTransactionCollection *mongo.Collection
 var ExpenseTransactionCollection *mongo.Collection
 var CustomerCollection *mongo.Collection
+var ReportCollection *mongo.Collection
 
 func InitMongoDB() {
     uri := "mongodb+srv://karamissuu:karamissu1@cluster0.lyovb.mongodb.net/?retryWrites=true&w=majority"
@@ -40,4 +41,5 @@ func InitMongoDB() {
     SalesTransactionCollection = Client.Database("akuntan").Collection("transaksi_penjualan") 
     ExpenseTransactionCollection = client.Database("akuntan").Collection("transaksi_pengeluaran") 
     CustomerCollection = client.Database("akuntan").Collection("pelanggan") 
+    ReportCollection = client.Database("akuntan").Collection("laporan") 
 }
