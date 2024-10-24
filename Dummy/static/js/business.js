@@ -42,5 +42,21 @@ async function fetchExpensesData() {
     });
 }
 
+async function fetchCustomers() {
+    const response = await fetch('http://localhost:8081/customers');
+    const customersData = await response.json();
+    const customersTableBody = document.getElementById('customersTableBody');
+    customersTableBody.innerHTML = '';
+    customersData.forEach(customer => {
+        const row = `<tr>
+            <td>${customer.name}</td>
+            <td>${customer.email}</td>
+            <td>${customer.phone}</td>
+            <td>${customer.address}</td>
+        </tr>`;
+        customersTableBody.innerHTML += row;
+    });
+}
+
 // Fetch initial data
 showSales();
