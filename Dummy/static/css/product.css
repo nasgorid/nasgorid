@@ -136,6 +136,15 @@ body {
   border-radius: 5px;
 }
 
+.export-csv-btn {
+  background-color: #3f72af;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
 .add-product-btn:hover {
   background-color: #2f5d9f;
 }

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add New Product</title>
+    <link rel="stylesheet" href="/Dummy/static/css/style.css">
+    <style>
+        /* Basic styling for the form */
+        body {
+            background: #d8eaff; /* Change to your preferred background color */
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+        input[type="text"],
+        input[type="number"],
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #112D4E;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+        button:hover {
+            background-color: #0e1e2f;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Add New Product</h1>
+        <form id="add-product-form">
+            <label for="product-name">Product Name:</label>
+            <input type="text" id="product-name" required>
+
+            <label for="product-price">Price:</label>
+            <input type="number" id="product-price" required>
+
+            <label for="product-category">Category:</label>
+            <input type="text" id="product-category" required>
+
+            <label for="product-stock">Stock:</label>
+            <input type="number" id="product-stock" required>
+
+            <label for="product-date">Date:</label>
+            <input type="text" id="product-date" placeholder="YYYY-MM-DD" required>
+
+            <label for="product-status">Status:</label>
+            <select id="product-status" required>
+                <option value="Available">Available</option>
+                <option value="Out of Stock">Out of Stock</option>
+            </select>
+
+            <button type="submit">Add Product</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById("add-product-form").addEventListener("submit", function(event) {
+            event.preventDefault(); // Mencegah reload halaman
+
+            // Mengambil nilai dari input
+            const productName = document.getElementById("product-name").value;
+            const productPrice = parseFloat(document.getElementById("product-price").value);
+            const productCategory = document.getElementById("product-category").value;
+            const productStock = parseInt(document.getElementById("product-stock").value, 10);
+            const productDate = document.getElementById("product-date").value;
+            const productStatus = document.getElementById("product-status").value;
+
+            // Membuat objek produk baru
+            const newProduct = {
+                name: productName,
+                price: productPrice,
+                category: productCategory,
+                stock: productStock,
+                date: productDate,
+                status: productStatus
+            };
+
+            // Menyimpan produk ke local storage (atau dapat disesuaikan dengan backend)
+            const existingProducts = JSON.parse(localStorage.getItem('products')) || [];
+            existingProducts.push(newProduct);
+            localStorage.setItem('products', JSON.stringify(existingProducts));
+
+            // Mengarahkan kembali ke halaman produk setelah menambah produk
+            alert("Product added successfully!");
+            window.location.href = "Product.html"; // Ganti dengan rute yang sesuai untuk halaman produk
+        });
+    </script>
+</body>
+</html>
