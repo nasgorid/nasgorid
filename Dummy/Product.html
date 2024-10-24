@@ -11,7 +11,6 @@
 
     <!-- Navigation Bar -->
     <header>
-
         <nav>
             <ul class="nav-menu">
                 <li><a href="index.html" >Dashboard</a></li>
@@ -22,115 +21,91 @@
             </ul>
         </nav>
 
-            
-
-            <div class="user-profile">
-                <img src="/Dummy/static/img/ImageAcc.png" alt="User Profile" class="user-image" id="user-avatar">
-                <div class="dropdown" id="profile-dropdown">
-                    <button onclick="toggleDropdown()" class="dropbtn">▼</button>
-                    <div class="dropdown-content" id="dropdown-content">
-                        <a href="#">Account Settings</a>
-                        <a href="profile.html">Profile</a>
-                        <a href="LP.html">Logout</a>
-                    </div>
+        <div class="user-profile">
+            <img src="/Dummy/static/img/ImageAcc.png" alt="User Profile" class="user-image" id="user-avatar">
+            <div class="dropdown" id="profile-dropdown">
+                <button onclick="toggleDropdown()" class="dropbtn">▼</button>
+                <div class="dropdown-content" id="dropdown-content">
+                    <a href="#">Account Settings</a>
+                    <a href="profile.html">Profile</a>
+                    <a href="LP.html">Logout</a>
                 </div>
             </div>
         </div>
     </header>
-    
-    <div class="container">
 
+    <!-- Product Management Section -->
+    <div class="container">
+        <div class="product-header">
+            <h1>Product Management</h1>
+            <!-- Add Product Button -->
+            <button class="add-product-btn">Add New Product</button>
+        </div>
+
+        <!-- Search Bar -->
+        <div class="search-filter">
+            <input type="text" id="search-bar" placeholder="Search for products...">
+            <!-- Sorting Dropdown -->
+            <select id="sort-options">
+                <option value="name">Sort by Name</option>
+                <option value="price">Sort by Price</option>
+                <option value="category">Sort by Category</option>
+                <option value="stock">Sort by Stock</option>
+            </select>
+        </div>
+
+        <!-- Product Table -->
         <div class="row header blue">
-            <div class="cell">
-                Name Product
-            </div>
-            <div class="cell">
-                Price
-            </div>
-            <div class="cell">
-                Category
-            </div>
-            <div class="cell">
-                Description
-            </div>
-            <div class="cell">
-                Stock
-            </div>
+            <div class="cell">Name Product</div>
+            <div class="cell">Price</div>
+            <div class="cell">Category</div>
+            <div class="cell">Description</div>
+            <div class="cell">Stock</div>
         </div>
         
         <div class="row">
-            <div class="cell" data-title="Product">
-                Solid oak work table
-            </div>
-            <div class="cell" data-title="Unit Price">
-                $800
-            </div>
-            <div class="cell" data-title="Quantity">
-                10
-            </div>
-            <div class="cell" data-title="Date Sold">
-                03/15/2014
-            </div>
-            <div class="cell" data-title="Status">
-                Waiting for Pickup
-            </div>
+            <div class="cell" data-title="Product">Solid oak work table</div>
+            <div class="cell" data-title="Unit Price">$800</div>
+            <div class="cell" data-title="Quantity">10</div>
+            <div class="cell" data-title="Date Sold">03/15/2014</div>
+            <div class="cell" data-title="Status">Waiting for Pickup</div>
         </div>
         
         <div class="row">
-            <div class="cell" data-title="Product">
-                Leather iPhone wallet
-            </div>
-            <div class="cell" data-title="Unit Price">
-                $45
-            </div>
-            <div class="cell" data-title="Quantity">
-                120
-            </div>
-            <div class="cell" data-title="Date Sold">
-                02/28/2014
-            </div>
-            <div class="cell" data-title="Status">
-                In Transit
-            </div>
+            <div class="cell" data-title="Product">Leather iPhone wallet</div>
+            <div class="cell" data-title="Unit Price">$45</div>
+            <div class="cell" data-title="Quantity">120</div>
+            <div class="cell" data-title="Date Sold">02/28/2014</div>
+            <div class="cell" data-title="Status">In Transit</div>
         </div>
         
         <div class="row">
-            <div class="cell" data-title="Product">
-                27" Apple Thunderbolt displays
-            </div>
-            <div class="cell" data-title="Unit Price">
-                $1000
-            </div>
-            <div class="cell" data-title="Quantity">
-                25
-            </div>
-            <div class="cell" data-title="Date Sold">
-                02/10/2014
-            </div>
-            <div class="cell" data-title="Status">
-                Delivered
-            </div>
+            <div class="cell" data-title="Product">27" Apple Thunderbolt displays</div>
+            <div class="cell" data-title="Unit Price">$1000</div>
+            <div class="cell" data-title="Quantity">25</div>
+            <div class="cell" data-title="Date Sold">02/10/2014</div>
+            <div class="cell" data-title="Status">Delivered</div>
         </div>
         
         <div class="row">
-            <div class="cell" data-title="Product">
-                Bose studio headphones
-            </div>
-            <div class="cell" data-title="Unit Price">
-                $60
-            </div>
-            <div class="cell" data-title="Quantity">
-                90
-            </div>
-            <div class="cell" data-title="Date Sold">
-                01/14/2014
-            </div>
-            <div class="cell" data-title="Status">
-                Delivered
-            </div>
+            <div class="cell" data-title="Product">Bose studio headphones</div>
+            <div class="cell" data-title="Unit Price">$60</div>
+            <div class="cell" data-title="Quantity">90</div>
+            <div class="cell" data-title="Date Sold">01/14/2014</div>
+            <div class="cell" data-title="Status">Delivered</div>
+        </div>
+
+        <!-- Pagination -->
+        <div class="pagination">
+            <a href="#">&laquo;</a>
+            <a href="#" class="active">1</a>
+            <a href="#">2</a>
+            <a href="#">3</a>
+            <a href="#">4</a>
+            <a href="#">5</a>
+            <a href="#">&raquo;</a>
         </div>
     </div>
-
 
 </body>
 </html>
