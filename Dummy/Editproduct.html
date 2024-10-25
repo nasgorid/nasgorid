@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Product</title>
+    <link rel="stylesheet" href="/Dummy/static/css/style.css">
+    <style>
+        body {
+            background: #d8eaff; /* Change to your preferred background color */
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+        input[type="text"],
+        input[type="number"],
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #888;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+        button:hover {
+            background-color: #0e1e2f;
+        }
+        /* Styling for the "Back to Product Page" button */
+        .back-btn {
+            background-color: #888; /* Different color for the back button */
+            text-align: center;
+        }
+        .back-btn:hover {
+            background-color: #0e1e2f; /* Darker shade on hover */
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Edit Product</h1>
+    <form id="edit-product-form">
+        <label for="product-name">Name Product:</label>
+        <input type="text" id="product-name" required>
+
+        <label for="product-price">Price:</label>
+        <input type="number" id="product-price" required>
+
+        <label for="product-category">Category:</label>
+        <input type="text" id="product-category" required>
+
+        <label for="product-description">Description:</label>
+        <input type="text" id="product-description" required>
+
+        <label for="product-stock">Stock:</label>
+        <input type="number" id="product-stock" required>
+
+        <button type="submit">Update Product</button>
+    </form>
+
+    <button class="back-btn" id="backToProductBtn">Back to Product Page</button>
+</div>
+
+<script>
+    // Fetch the product by ID
+    async function fetchProductById(productId) {
+    try {
+        const response = await fetch(`http://localhost:8081/products/${productId}`);
+        
+        // Periksa apakah respons berhasil
+        if (!response.ok) {
+            const errorText = await response.text(); // Ambil teks kesalahan
+            throw new Error(`Error ${response.status}: ${errorText}`); // Buat kesalahan
+        }
+
+        const product = await response.json();
+        // Populate the form fields with the product data
+        document.getElementById('product-name').value = product.name;
+        document.getElementById('product-price').value = product.price;
+        document.getElementById('product-category').value = product.category;
+        document.getElementById('product-description').value = product.description;
+        document.getElementById('product-stock').value = product.stock;
+
+    } catch (error) {
+        console.error('Error fetching product:', error);
+    }
+}
+
+
+    // Update product
+    document.getElementById("edit-product-form").addEventListener("submit", async function(event) {
+        event.preventDefault();
+        
+        // Get form values and product ID
+        const productId = new URLSearchParams(window.location.search).get("id");
+        const productName = document.getElementById("product-name").value;
+        const productPrice = parseFloat(document.getElementById("product-price").value);
+        const productCategory = document.getElementById("product-category").value;
+        const productDescription = document.getElementById("product-description").value;
+        const productStock = parseInt(document.getElementById("product-stock").value, 10);
+
+        const updatedProduct = {
+            name: productName,
+            price: productPrice,
+            category: productCategory,
+            description: productDescription,
+            stock: productStock
+        };
+
+        try {
+            const response = await fetch(`http://localhost:8081/products/${productId}`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(updatedProduct)
+            });
+
+            if (response.ok) {
+                alert("Product updated successfully!");
+                window.location.href = "Product.html";
+            } else {
+                const errorText = await response.text();
+                alert(`Failed to update product: ${errorText}`);
+            }
+        } catch (error) {
+            console.error("Error:", error);
+            alert("An error occurred. Please try again.");
+        }
+    });
+
+    document.getElementById("backToProductBtn").addEventListener("click", function() {
+        window.location.href = "Product.html";
+    });
+
+    // Call this function on page load
+    window.onload = function() {
+        const productId = new URLSearchParams(window.location.search).get("id");
+        if (productId) {
+            fetchProductById(productId);
+        } else {
+            console.error('Product ID not found in URL');
+        }
+    };
+</script>
+</body>
+</html>
