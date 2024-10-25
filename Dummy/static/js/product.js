@@ -26,15 +26,67 @@ async function fetchProducts() {
                 <div class="cell" data-title="Category">${product.category}</div>
                 <div class="cell" data-title="Description">${product.description}</div>
                 <div class="cell" data-title="Stock">${product.stock}</div>
+                <div class="cell">
+                    <button type="button" class="btn btn-success" data-id="${product.id}">Edit</button>
+                    <button type="button" class="btn btn-danger" data-id="${product.id}">Delete</button>
+                </div>
             `;
 
             // Append the row to the table
             productTable.appendChild(row);
         });
+
+        // Add event listeners for Edit and Delete buttons
+        document.querySelectorAll('.btn-success').forEach(button => {
+            button.addEventListener('click', () => {
+                const productId = button.getAttribute('data-id');
+                editProduct(productId); // Call the edit function with the product ID
+            });
+        });
+
+        document.querySelectorAll('.btn-danger').forEach(button => {
+            button.addEventListener('click', () => {
+                const productId = button.getAttribute('data-id');
+                deleteProduct(productId); // Call the delete function with the product ID
+            });
+        });
+
     } catch (error) {
         console.error('Error fetching products:', error);
     }
 }
+
+// Example function to handle the edit action
+function editProduct(productId) {
+    // Redirect or perform other actions to edit the product with the specified ID
+    console.log('Edit product with ID:', productId);
+    window.location.href = `Edit_product.html?id=${productId}`;
+}
+
+// Example function to handle the delete action
+// Example function to handle the delete action
+async function deleteProduct(productId) {
+    // Tampilkan pesan konfirmasi sebelum menghapus
+    const isConfirmed = window.confirm("Apakah Anda yakin ingin menghapus produk ini?");
+    
+    if (!isConfirmed) {
+        return; // Jika pengguna membatalkan, hentikan proses penghapusan
+    }
+
+    try {
+        const response = await fetch(`http://localhost:8081/products/${productId}`, { method: 'DELETE' });
+        if (response.ok) {
+            alert("Produk berhasil dihapus."); // Pesan sukses
+            fetchProducts(); // Refresh the product list
+        } else {
+            alert("Gagal menghapus produk."); // Pesan error jika gagal
+        }
+    } catch (error) {
+        console.error('Error deleting product:', error);
+        alert("Terjadi kesalahan saat menghapus produk."); // Pesan error jika ada error jaringan
+    }
+}
+
 
 // Call the function to fetch and display products when the page loads
 window.onload = fetchProducts;
