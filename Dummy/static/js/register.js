@@ -1,3 +1,4 @@
+// Event listener untuk form submit
 document.getElementById('loginForm').addEventListener('submit', async function (e) {
     e.preventDefault(); // Mencegah submit form secara default
 
@@ -39,4 +40,10 @@ document.getElementById('loginForm').addEventListener('submit', async function (
         alert('Error occurred: ' + err.message);
         console.error(err);
     }
+});
+
+// Event listener untuk tombol "Back to main menu"
+document.getElementById('back-btn').addEventListener('click', function (e) {
+    e.preventDefault(); // Mencegah default button behavior
+    window.location.href = 'LP.html'; // Redirect ke halaman LP.html
 });
