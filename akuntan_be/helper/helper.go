@@ -1,8 +1,10 @@
 package helper
 
 import (
-	"time"
 	"log"
+	"time"
+
+	"go.mongodb.org/mongo-driver/bson/primitive"
 )
 
 // Mengonversi string ke time.Time dengan format "2006-01-02"
@@ -20,4 +22,12 @@ func DateToString(date time.Time) string {
 	return date.Format("2006-01-02")
 }
 
-
+// Validasi ID dan konversi ke ObjectID
+func ValidateID(id string) (primitive.ObjectID, error) {
+	objectID, err := primitive.ObjectIDFromHex(id)
+	if err != nil {
+		log.Printf("Error converting ID: %v", err)
+		return primitive.NilObjectID, err
+	}
+	return objectID, nil
+}
