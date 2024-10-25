@@ -9,7 +9,7 @@
     <style>
         /* Background Image Styling */
         body {
-            background:#d8eaff; /* Ganti dengan path gambar background */
+            background: #d8eaff; /* Ganti dengan path gambar background */
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -23,11 +23,11 @@
     <header>
         <nav>
             <ul class="nav-menu">
-                <li><a href="index.html" >Dashboard</a></li>
-                <li><a href="Business.html" >Business</a></li>
-                <li><a href="Accounting.html" >Accounting</a></li>
+                <li><a href="index.html">Dashboard</a></li>
+                <li><a href="Business.html">Business</a></li>
+                <li><a href="Accounting.html">Accounting</a></li>
                 <li style="background-color: #112D4E;"><a href="Product.html" style="color: rgb(255, 255, 255);">Product</a></li>
-                <li><a href="Contacts.html" >Contact Us</a></li>
+                <li><a href="Contacts.html">Contact Us</a></li>
             </ul>
         </nav>
 
@@ -66,30 +66,22 @@
         </div>
 
         <!-- Product Table -->
-<div id="product-table">
-    <div class="row header blue">
-        <div class="cell">Name Product</div>
-        <div class="cell">Price</div>
-        <div class="cell">Category</div>
-        <div class="cell">Description</div>
-        <div class="cell">Stock</div>
-        <div class="cell">Aksi</div>
-    </div>
-</div>
+        <div id="product-table">
+            <div class="row header blue">
+                <div class="cell">Name Product</div>
+                <div class="cell">Price</div>
+                <div class="cell">Category</div>
+                <div class="cell">Description</div>
+                <div class="cell">Stock</div>
+                <div class="cell">Aksi</div>
+            </div>
+        </div>
+
 
         
-        <!-- The fetched products will be inserted here -->
-
+        
         <!-- Pagination -->
-        <div class="pagination">    
-            <a href="#">&laquo;</a> 
-            <a href="#" class="active">1</a>
-            <a href="#">2</a>
-            <a href="#">3</a>
-            <a href="#">4</a>
-            <a href="#">5</a>
-            <a href="#">&raquo;</a>
-        </div>
+        <div class="pagination" id="pagination"></div>
     </div>
 
     <!-- Include external JavaScript file -->
