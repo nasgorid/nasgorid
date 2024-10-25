@@ -1,184 +1,193 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dashboard Akuntansi</title>
-    <link rel="stylesheet" href="/Dummy/static/css/style.css">
-    
+    <link rel="stylesheet" href="/Dummy/static/css/style.css" />
+
     <style>
-        /* Background Image Styling */
-        body {
-            background:#d8eaff; /* Change this to your background image path */
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-        }
-        .hidden {
-            display: none;
-        }
-        .table-container {
-            margin-top: 20px;
-        }
-        .table-switcher {
-    margin: 20px 0;
-    text-align: center;
-}
+      /* Background Image Styling */
+      body {
+        background: #d8eaff; /* Change this to your background image path */
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+      }
+      .hidden {
+        display: none;
+      }
+      .table-container {
+        margin-top: 20px;
+      }
+      .table-switcher {
+        margin: 20px 0;
+        text-align: center;
+      }
 
-.table-switcher button {
-    background-color: #112D4E; /* Dark blue background */
-    color: white; /* White text color */
-    border: none; /* Remove border */
-    border-radius: 5px; /* Rounded corners */
-    padding: 10px 20px; /* Padding for size */
-    margin: 0 10px; /* Space between buttons */
-    cursor: pointer; /* Pointer cursor on hover */
-    transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transition */
-}
+      .table-switcher button {
+        background-color: #112d4e; /* Dark blue background */
+        color: white; /* White text color */
+        border: none; /* Remove border */
+        border-radius: 5px; /* Rounded corners */
+        padding: 10px 20px; /* Padding for size */
+        margin: 0 10px; /* Space between buttons */
+        cursor: pointer; /* Pointer cursor on hover */
+        transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transition */
+      }
 
-.table-switcher button:hover {
-    background-color: #1B6F9A; /* Lighter blue on hover */
-    transform: scale(1.05); /* Slightly enlarge on hover */
-}
+      .table-switcher button:hover {
+        background-color: #1b6f9a; /* Lighter blue on hover */
+        transform: scale(1.05); /* Slightly enlarge on hover */
+      }
 
-.table-switcher button:focus {
-    outline: none; /* Remove outline on focus */
-}
-
+      .table-switcher button:focus {
+        outline: none; /* Remove outline on focus */
+      }
     </style>
-</head>
-<body>
-
+  </head>
+  <body>
     <!-- Navigation Bar -->
     <header>
-        <nav>
-            <ul class="nav-menu">
-                <li><a href="index.html" >Dashboard</a></li>
-                <li style="background-color: #112D4E;"><a href="Business.html" style="color: rgb(255, 255, 255);">Business</a></li>
-                <li><a href="Accounting.html">Accounting</a></li>
-                <li><a href="Product.html">Product</a></li>
-                <li><a href="Contacts.html">Contact Us</a></li>
-            </ul>
-        </nav>
-        <div class="user-profile">
-            <img src="/Dummy/static/img/ImageAcc.png" alt="User Profile" class="user-image" id="user-avatar">
-            <div class="dropdown" id="profile-dropdown">
-                <button onclick="toggleDropdown()" class="dropbtn">▼</button>
-                <div class="dropdown-content" id="dropdown-content">
-                    <!-- <a href="#">Account Settings</a> -->
-                    <a href="profile.html">Profile</a>
-                    <a href="LP.html">Logout</a>
-                </div>
-            </div>
+      <nav>
+        <ul class="nav-menu">
+          <li><a href="index.html">Dashboard</a></li>
+          <li style="background-color: #112d4e">
+            <a href="Business.html" style="color: rgb(255, 255, 255)"
+              >Business</a
+            >
+          </li>
+          <li><a href="Accounting.html">Accounting</a></li>
+          <li><a href="Product.html">Product</a></li>
+          <li><a href="Contacts.html">Contact Us</a></li>
+        </ul>
+      </nav>
+      <div class="user-profile">
+        <img
+          src="/Dummy/static/img/ImageAcc.png"
+          alt="User Profile"
+          class="user-image"
+          id="user-avatar"
+        />
+        <div class="dropdown" id="profile-dropdown">
+          <button onclick="toggleDropdown()" class="dropbtn">▼</button>
+          <div class="dropdown-content" id="dropdown-content">
+            <!-- <a href="#">Account Settings</a> -->
+            <a href="profile.html">Profile</a>
+            <a href="LP.html">Logout</a>
+          </div>
         </div>
+      </div>
     </header>
-    
+
     <!-- Main Business Dashboard Content -->
     <div class="business-dashboard">
-        <h1>Business Overview</h1>
-<!-- Business Statistics -->
-<section class="statistics">
-    <div class="stat-card">
-        <h3>Total Revenue</h3>
-        <p>$500,000</p>
-    </div>
-
-    <div class="stat-card">
-        <h3>Total Expenses</h3>
-        <p>$200,000</p>
-    </div>
-
-    <div class="stat-card">
-        <h3>Net Profit</h3>
-        <p>$300,000</p>
-    </div>
-</section>
-        <!-- Button to switch between tables -->
-        <div class="table-switcher">
-            <button onclick="showSales()">Sales Transactions</button>
-            <button onclick="showExpenses()">Expense Transactions</button>
+      <h1>Business Overview</h1>
+      <!-- Business Statistics -->
+      <section class="statistics">
+        <div class="stat-card">
+          <h3>Total Revenue</h3>
+          <p>$500,000</p>
         </div>
 
-        <!-- Sales Transactions Table -->
-        <div class="table-container" id="salesTable">
-            <h2>Sales Transactions</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Transaction Date</th>
-                        <th>Customer Name</th>
-                        <th>Total Amount</th>
-                        <th>Payment Method</th>
-                    </tr>
-                </thead>
-                <tbody id="salesTableBody">
-                    <!-- Data will be populated here -->
-                </tbody>
-            </table>
+        <div class="stat-card">
+          <h3>Total Expenses</h3>
+          <p>$200,000</p>
         </div>
 
-        <!-- Expense Transactions Table -->
-        <div class="table-container hidden" id="expensesTable">
-            <h2>Expense Transactions</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Expense Date</th>
-                        <th>Expense Name</th>
-                        <th>Amount</th>
-                        <th>Category</th>
-                    </tr>
-                </thead>
-                <tbody id="expensesTableBody">
-                    <!-- Data will be populated here -->
-                </tbody>
-            </table>
+        <div class="stat-card">
+          <h3>Net Profit</h3>
+          <p>$300,000</p>
         </div>
-        <!-- Employee and Customer Data -->
-    <section class="data-section">
+      </section>
+      <!-- Button to switch between tables -->
+      <div class="table-switcher">
+        <button onclick="showSales()">Sales Transactions</button>
+        <button onclick="showExpenses()">Expense Transactions</button>
+      </div>
+
+      <!-- Sales Transactions Table -->
+      <div class="table-container" id="salesTable">
+        <h2>Sales Transactions</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Transaction Date</th>
+              <th>Customer Name</th>
+              <th>Total Amount</th>
+              <th>Payment Method</th>
+            </tr>
+          </thead>
+          <tbody id="salesTableBody">
+            <!-- Data will be populated here -->
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Expense Transactions Table -->
+      <div class="table-container hidden" id="expensesTable">
+        <h2>Expense Transactions</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Expense Date</th>
+              <th>Expense Name</th>
+              <th>Amount</th>
+              <th>Category</th>
+            </tr>
+          </thead>
+          <tbody id="expensesTableBody">
+            <!-- Data will be populated here -->
+          </tbody>
+        </table>
+      </div>
+      <!-- Employee and Customer Data -->
+      <section class="data-section">
         <div class="data-table">
-            <h2>Employee Overview</h2>
-            <table>
-                <tr>
-                    <th>Name</th>
-                    <th>Position</th>
-                    <th>Department</th>
-                </tr>
-                <tr>
-                    <td>Waskitho</td>
-                    <td>Manager</td>
-                    <td>HR</td>
-                </tr>
-                <tr>
-                    <td>Anton</td>
-                    <td>Accountant</td>
-                    <td>Finance</td>
-                </tr>
-            </table>
+          <h2>Employee Overview</h2>
+          <table>
+            <tr>
+              <th>Name</th>
+              <th>Position</th>
+              <th>Department</th>
+            </tr>
+            <tr>
+              <td>Waskitho</td>
+              <td>Manager</td>
+              <td>HR</td>
+            </tr>
+            <tr>
+              <td>Anton</td>
+              <td>Accountant</td>
+              <td>Finance</td>
+            </tr>
+          </table>
         </div>
-        
+
         <div class="data-table" id="customersTable">
-            <h2>Customer Overview</h2>
-            <table>
+          <h2>Customer Overview</h2>
+          <!-- Add Product Button -->
+          <button class="add-product-btn" id="addProductBtn">
+            Add New Product
+          </button>
+          <table>
             <thead>
-                <tr>
+              <tr>
                 <th>Name</th>
                 <th>Email</th>
                 <th>Phone</th>
                 <th>Address</th>
-                </tr>
+              </tr>
             </thead>
             <tbody id="customersTableBody">
-                <!-- Data will be populated here -->
+              <!-- Data will be populated here -->
             </tbody>
-            </table>
+          </table>
         </div>
-    </section>
-
+      </section>
     </div>
 
     <script src="static/js/business.js"></script>
-
-</body>
+  </body>
 </html>
