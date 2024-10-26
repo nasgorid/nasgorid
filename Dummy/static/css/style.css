@@ -94,7 +94,7 @@ body {
 }
 
 header {
-    background-color: #3F72AF;
+    background-color: #34a0a4;
     padding: 10px 20px;
     display: flex;
     justify-content: space-between;
@@ -252,7 +252,7 @@ h1, h2, h3 {
 /* Business Dashboard Section */
 .business-dashboard {
     padding: 40px;
-    background-color: #d8eaff;
+    background-color: #eafcec;
 }
 
 .business-dashboard h1 {
