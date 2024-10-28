@@ -61,7 +61,7 @@ body {
   }
   
   .row.blue {
-    background: #2980b9;
+    background: #34a0a4;
   }
   
   @media screen and (max-width: 580px) {
@@ -129,7 +129,7 @@ body {
 }
 
 .add-product-btn, .export-csv-btn {
-  background-color: #3f72af;
+  background-color: #34a0a4;
   color: white;
   padding: 10px 20px;
   border: none;
@@ -141,7 +141,7 @@ body {
 
 
 .add-product-btn:hover, .export-csv-btn:hover {
-  background-color: #2f5d9f;
+  background-color: #34a0a4;
 }
 
 /* Search and Filter section */
@@ -185,7 +185,7 @@ body {
 }
 
 .pagination a.active {
-  background-color: #3f72af;
+  background-color: #34a0a4;
   color: white;
   border: 1px solid #3f72af;
 }
