@@ -5,6 +5,8 @@ import (
     "encoding/json"
     "net/http"
     "time"
+    "encoding/csv"
+    "fmt"
 
     "akuntan/config"
     "akuntan/models/transaksi_pengeluaran"
@@ -156,4 +158,52 @@ func DeleteExpense(w http.ResponseWriter, r *http.Request) {
 
     w.WriteHeader(http.StatusOK)
     json.NewEncoder(w).Encode(map[string]string{"message": "Expense transaction deleted successfully"})
+}
+
+// ExportExpensesToCSV mengekspor semua transaksi pengeluaran ke dalam file CSV
+func ExportExpensesToCSV(w http.ResponseWriter, r *http.Request) {
+    var expenses []transaksi_pengeluaran.ExpenseTransaction
+
+    ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
+    defer cancel()
+
+    cursor, err := config.ExpenseTransactionCollection.Find(ctx, bson.M{})
+    if err != nil {
+        http.Error(w, "Failed to fetch expense transactions", http.StatusInternalServerError)
+        return
+    }
+    defer cursor.Close(ctx)
+
+    for cursor.Next(ctx) {
+        var exp transaksi_pengeluaran.ExpenseTransaction
+        if err := cursor.Decode(&exp); err != nil {
+            http.Error(w, "Error decoding expense transaction", http.StatusInternalServerError)
+            return
+        }
+        expenses = append(expenses, exp)
+    }
+
+    w.Header().Set("Content-Type", "text/csv")
+    w.Header().Set("Content-Disposition", "attachment;filename=expenses.csv")
+
+    csvWriter := csv.NewWriter(w)
+    defer csvWriter.Flush()
+
+    // Menulis header CSV
+    csvWriter.Write([]string{"ID", "Expense Name", "Amount", "Category", "Payment Method", "Expense Date", "Notes", "Created At", "Updated At"})
+
+    // Menulis data transaksi ke CSV
+    for _, exp := range expenses {
+        csvWriter.Write([]string{
+            exp.ID.Hex(),
+            exp.ExpenseName,
+            fmt.Sprintf("%.2f", exp.Amount),
+            exp.Category,
+            exp.PaymentMethod,
+            exp.ExpenseDate.Format("2006-01-02"),
+            exp.Notes,
+            exp.CreatedAt.Format("2006-01-02 15:04:05"),
+            exp.UpdatedAt.Format("2006-01-02 15:04:05"),
+        })
+    }
 }

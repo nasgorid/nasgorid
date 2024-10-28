@@ -44,6 +44,7 @@ func SetupRouter() *mux.Router {
 	router.HandleFunc("/expense/{id}", transaksi_pengeluaran.GetExpenseByID).Methods("GET")
 	router.HandleFunc("/expense/{id}", transaksi_pengeluaran.UpdateExpense).Methods("PUT")
 	router.HandleFunc("/expense/{id}", transaksi_pengeluaran.DeleteExpense).Methods("DELETE")
+	router.HandleFunc("/expense-export-csv", transaksi_pengeluaran.ExportExpensesToCSV).Methods("GET")
 
 	// Customer Routes
 	router.HandleFunc("/customers", pelanggan.CreateCustomer).Methods("POST")
