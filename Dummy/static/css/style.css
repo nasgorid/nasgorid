@@ -4,12 +4,7 @@
     -moz-osx-font-smoothing: grayscale;
   }
 
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background: linear-gradient(to right, #ffffff 0%, #ffffff 100%);
-}
+
 
 header {
     background-color: #34a0a4;
@@ -75,7 +70,7 @@ ul li {
 }
 
 ul li:hover {
-    background-color:  rgb(201, 230, 253);
+    background-color:  #d7f2f4;
     
 }
 
@@ -87,11 +82,7 @@ ul li:hover {
     box-sizing: border-box;
 }
 
-body {
-    font-family: 'Montserrat', sans-serif;
-    background-color: #F9F7F7;
-    color: #333;
-}
+
 
 header {
     background-color: #34a0a4;
@@ -348,12 +339,13 @@ table tr:nth-child(even) {
 }
 
 table tr:hover {
-    background-color: #D7E2F2;
+    background-color: #b6e4e7;
+    
 }
 
 table td {
     border-bottom: 1px solid #ddd;
-    color: #333;
+    color: #146366;
 }
 
 /* Responsive Design */
