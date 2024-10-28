@@ -15,17 +15,24 @@
         const salesData = await response.json();
         const salesTableBody = document.getElementById('salesTableBody');
         salesTableBody.innerHTML = '';
+    
         salesData.forEach(sale => {
+            
+            // Loop untuk mendapatkan nama-nama produk dari setiap transaksi
+            const productNames = sale.products.map(product => product.name).join(', ');
+    
             const row = `<tr>
                 <td>${new Date(sale.transactionDate).toLocaleDateString()}</td>
                 <td>${sale.customer_name}</td>
-                <td>${sale.products_name}</td>
+                <td>${productNames}</td>
                 <td>${sale.total_amount}</td>
                 <td>${sale.payment_method}</td>
+                
             </tr>`;
             salesTableBody.innerHTML += row;
         });
     }
+    
 
     async function fetchExpensesData() {
         const response = await fetch('http://localhost:8081/expense');
