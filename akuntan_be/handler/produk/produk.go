@@ -215,7 +215,7 @@ func ExportProductsToCSV(w http.ResponseWriter, r *http.Request) {
 	// Tulis data produk ke CSV
 	for _, product := range products {
 		row := []string{
-			product.ID,
+			product.ID.Hex(),
 			product.Name,
 			formatPrice(product.Price),       // Format harga
 			product.Category,

@@ -1,10 +1,13 @@
 package produk
 
-import "time"
+import (
+    "time"
+    "go.mongodb.org/mongo-driver/bson/primitive"
+)
 
 // Product adalah struct untuk produk
 type Product struct {
-    ID          string  `bson:"_id,omitempty" json:"id,omitempty"`
+    ID          primitive.ObjectID `bson:"_id,omitempty" json:"id,omitempty"`
     Name        string  `bson:"name" json:"name"`
     Price       float64 `bson:"price" json:"price"`
     Category    string  `bson:"category" json:"category"`
