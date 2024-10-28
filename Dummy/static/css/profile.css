@@ -407,7 +407,7 @@
     left: 0;
     z-index: 1;
     overflow: hidden;
-    background: linear-gradient(150deg, #1d8cf8 20%, #3358f4 100%);
+    background: linear-gradient(150deg, #19a9bc 20%, #37b1cd6e 100%);
   }
   .theme-orange .profile-page .bg div {
     background: linear-gradient(150deg, #ff4086 20%, #fd8d76 100%);
