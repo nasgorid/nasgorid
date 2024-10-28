@@ -15,8 +15,82 @@
             background-repeat: no-repeat;
             background-attachment: fixed;
         }
-    </style>
 
+        .dashboard {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            padding: 20px;
+            min-width: 300px;
+        }
+
+        .chart img {
+            width: 100%;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style-type: none;
+        }
+
+        .nav-menu li {
+            margin-right: 20px;
+        }
+
+        .user-profile {
+            display: flex;
+            align-items: center;
+        }
+
+        .user-image {
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: white;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            min-width: 160px;
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #ddd;
+        }
+
+        .dropbtn {
+            background-color: #112D4E;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+    </style>
 </head>
 <body>
 
@@ -90,6 +164,55 @@
                 <!-- Placeholder for invoice chart -->
                 <img src="/Dummy/static/img/Invoice.png" alt="Invoice Chart">
             </div>
+        </section>
+
+        <!-- Recent Transactions -->
+        <section class="card recent-transactions">
+            <h2>Recent Transactions</h2>
+            <ul>
+                <li>Payment to Supplier: -300.00</li>
+                <li>Received from Client: +450.00</li>
+                <li>Office Supplies: -50.00</li>
+                <li>Advertising: -200.00</li>
+            </ul>
+        </section>
+
+        <!-- Budget Overview -->
+        <section class="card budget-overview">
+            <h2>Budget Overview</h2>
+            <ul>
+                <li>Total Budget: 10,000.00</li>
+                <li>Spent: 4,500.00</li>
+                <li>Remaining: 5,500.00</li>
+            </ul>
+        </section>
+
+        <!-- Upcoming Payments -->
+        <section class="card upcoming-payments">
+            <h2>Upcoming Payments</h2>
+            <ul>
+                <li>Rent: 1,200.00 (Due: 2024-11-01)</li>
+                <li>Utilities: 300.00 (Due: 2024-11-05)</li>
+                <li>Subscription: 50.00 (Due: 2024-11-10)</li>
+            </ul>
+        </section>
+
+        <!-- Alerts & Notifications -->
+        <section class="card alerts">
+            <h2>Alerts & Notifications</h2>
+            <ul>
+                <li>Overdue Invoice: 1,000.00</li>
+                <li>Low Balance Alert: Checking Account</li>
+                <li>New Message from Accountant</li>
+            </ul>
+        </section>
+
+        <!-- Quick Actions -->
+        <section class="card quick-actions">
+            <h2>Quick Actions</h2>
+            <button onclick="location.href='new_invoice.html'">Create Invoice</button>
+            <button onclick="location.href='add_transaction.html'">Add Transaction</button>
+            <button onclick="location.href='generate_report.html'">Generate Report</button>
         </section>
     </main>
 
