@@ -193,3 +193,22 @@ body {
 .pagination a:hover:not(.active) {
   background-color: #ddd;
 }
+
+/* product button */
+/* Styling untuk tombol edit dan delete agar lebih kecil dan berbentuk ikon */
+.btn-edit, .btn-delete {
+  background: none;
+  border: none;
+  color: #000000;
+  cursor: pointer;
+  font-size: 18px;
+  margin: 0 5px;
+}
+
+.btn-edit:hover {
+  color: #28a745; /* Warna hijau saat hover */
+}
+
+.btn-delete:hover {
+  color: #dc3545; /* Warna merah saat hover */
+}

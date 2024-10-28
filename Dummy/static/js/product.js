@@ -47,19 +47,32 @@ function renderProductTable(productsArray, page) {
             <div class="cell" data-title="Description">${product.description}</div>
             <div class="cell" data-title="Stock">${product.stock}</div>
             <div class="cell">
-                <button type="button" class="btn btn-success" data-id="${product.id}">Edit</button>
-                <button type="button" class="btn btn-danger" data-id="${product.id}">Delete</button>
+                <button type="button" class="btn btn-edit" data-id="${product.id}">
+                    <i class="fas fa-pencil-alt"></i> <!-- Ikon pensil untuk edit -->
+                </button>
+                <button type="button" class="btn btn-delete" data-id="${product.id}">
+                    <i class="fas fa-trash-alt"></i> <!-- Ikon tempat sampah untuk delete -->
+                </button>
             </div>
         `;
- 
-        
+
+
         
         productTable.appendChild(row);
     });
-
-    // Add event listeners to the new buttons
-    addEventListenersToButtons();
 }
+
+// Event delegation for edit and delete buttons
+document.getElementById('product-table').addEventListener('click', function(event) {
+    const target = event.target;
+    const productId = target.closest('button')?.getAttribute('data-id'); // Mengambil ID produk dari tombol terdekat
+
+    if (target.closest('.btn-edit')) {
+        editProduct(productId); // Panggil fungsi edit jika tombol edit diklik
+    } else if (target.closest('.btn-delete')) {
+        deleteProduct(productId); // Panggil fungsi delete jika tombol delete diklik
+    }
+});
 
 // Function to setup pagination
 function setupPagination(productsArray) {
