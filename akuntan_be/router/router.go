@@ -7,6 +7,7 @@ import (
 	"akuntan/handler/produk"
 	"akuntan/handler/transaksi_pengeluaran"
 	"akuntan/handler/transaksi_penjualan"
+	"akuntan/handler/statistik"
 	"github.com/gorilla/mux"
 	"github.com/rs/cors"
 	"net/http"
@@ -58,6 +59,9 @@ func SetupRouter() *mux.Router {
 	router.HandleFunc("/reports", laporan.GetFinancialReports).Methods("GET")
 	router.HandleFunc("/reports/{id}", laporan.GetFinancialReportByID).Methods("GET")
 	router.HandleFunc("/reports/{id}", laporan.DeleteFinancialReport).Methods("DELETE")
+
+	// Route untuk statistik
+	router.HandleFunc("/statistics/income", statistik.GetIncomeStatistics).Methods("GET")
 
 	return router
 }
