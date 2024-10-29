@@ -74,29 +74,32 @@ func GetProducts(w http.ResponseWriter, r *http.Request) {
 
 // Fungsi untuk mendapatkan detail produk berdasarkan ID
 func GetProductByID(w http.ResponseWriter, r *http.Request) {
-	// Ambil parameter ID dari URL
-	id := r.URL.Query().Get("id")
-	objectID, err := primitive.ObjectIDFromHex(id)
-	if err != nil {
-		http.Error(w, "Invalid product ID", http.StatusBadRequest)
-		return
-	}
+    // Ambil parameter ID dari URL menggunakan mux.Vars
+    vars := mux.Vars(r)
+    id := vars["id"]
 
-	// Ambil produk dari MongoDB
-	var product produk.Product
-	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
-	defer cancel()
+    objectID, err := primitive.ObjectIDFromHex(id)
+    if err != nil {
+        http.Error(w, "Invalid product ID", http.StatusBadRequest)
+        return
+    }
 
-	err = config.ProductCollection.FindOne(ctx, bson.M{"_id": objectID}).Decode(&product)
-	if err != nil {
-		http.Error(w, "Product not found", http.StatusNotFound)
-		return
-	}
+    // Ambil produk dari MongoDB
+    var product produk.Product
+    ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
+    defer cancel()
 
-	// Kirim produk sebagai respon
-	w.Header().Set("Content-Type", "application/json")
-	json.NewEncoder(w).Encode(product)
+    err = config.ProductCollection.FindOne(ctx, bson.M{"_id": objectID}).Decode(&product)
+    if err != nil {
+        http.Error(w, "Product not found", http.StatusNotFound)
+        return
+    }
+
+    // Kirim produk sebagai respon
+    w.Header().Set("Content-Type", "application/json")
+    json.NewEncoder(w).Encode(product)
 }
+
 
 // Fungsi untuk mengupdate produk berdasarkan ID
 func UpdateProduct(w http.ResponseWriter, r *http.Request) {
