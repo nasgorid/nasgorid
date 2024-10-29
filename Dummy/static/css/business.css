@@ -33,21 +33,21 @@
 
 .table-switcher button {
     background-color: #34a0a4;
-    /* Dark blue background */
+    /* Dark blue background  */
     color: white;
-    /* White text color */
+    /* White text color  */
     border: none;
-    /* Remove border */
+    /* Remove border  */
     border-radius: 5px;
-    /* Rounded corners */
+    /* Rounded corners  */
     padding: 10px 20px;
-    /* Padding for size */
+    /* Padding for size  */
     margin: 0 10px;
-    /* Space between buttons */
+    /* Space between buttons  */
     cursor: pointer;
-    /* Pointer cursor on hover */
+    /* Pointer cursor on hover  */
     transition: background-color 0.3s ease, transform 0.2s ease;
-    /* Smooth transition */
+    /* Smooth transition  */
 }
 
 .table-switcher button:focus {
@@ -56,8 +56,8 @@
 }
 
 .export-buttons {
-    display: inline-block;
-    float: right;
+    display: flex;
+    justify-content: flex-end;
     margin-top: -10px;
 }
 
