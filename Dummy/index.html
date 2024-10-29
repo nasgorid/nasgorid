@@ -39,7 +39,15 @@
         width: 100%;
       }
 
-      
+      .nav-menu {
+        display: flex;
+        list-style-type: none;
+      }
+
+      .nav-menu li {
+        margin-right: 20px;
+      }
+
       .user-profile {
         display: flex;
         align-items: center;
@@ -66,7 +74,7 @@
       }
 
       .dropdown-content a {
-        color: #033537;
+        color: black;
         padding: 12px 16px;
         text-decoration: none;
         display: block;
@@ -98,8 +106,8 @@
         align-items: center;
         justify-content: center;
         gap: 8px;
-        background-color: #d3ebed;
-        color: #033537;
+        background-color: #dbe2ef;
+        color: rgb(0, 0, 0);
         border: none;
         border-radius: 5px;
         padding: 10px 15px;
@@ -116,7 +124,7 @@
       }
 
       .action-button:hover {
-        background-color: #97ced1;
+        background-color: #d7f2f4;
       }
 
       /* Add styling as needed */
@@ -158,7 +166,7 @@
     <header>
       <nav>
         <ul class="nav-menu">
-          <li style="background-color: #97ced1">
+          <li style="background-color: #112d4e">
             <a href="index.html" style="color: rgb(255, 255, 255)">Dashboard</a>
           </li>
           <li><a href="Business.html">Business</a></li>
@@ -331,6 +339,17 @@
                 2700, 3000,
               ], // Data dummy saldo
               borderColor: "rgba(75, 192, 192, 1)",
+              backgroundColor: "rgba(75, 192, 192, 0.2)",
+              fill: true,
+              tension: 0.4,
+            },
+            {
+              label: "Expenses Amount",
+              data: [
+                800, 1100, 1000, 1300, 1400, 1550, 1600, 1900, 1800, 1800,
+                2000, 2000,
+              ], // Data dummy saldo
+              borderColor: 'rgba(255, 99, 132, 0.7)',
               backgroundColor: "rgba(75, 192, 192, 0.2)",
               fill: true,
               tension: 0.4,
