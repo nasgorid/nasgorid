@@ -1,378 +1,377 @@
-  <!DOCTYPE html>
-  <html lang="en">
-    <head>
-      <meta charset="UTF-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <title>Dashboard Akuntansi</title>
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-      <link rel="stylesheet" href="/Dummy/static/css/style.css" />
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard Akuntansi</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <link rel="stylesheet" href="/Dummy/static/css/style.css" />
 
-      <style>
-        /* Background Image Styling */
-        body {
-          background: #d4e6e7; /* Ganti dengan path gambar background */
-          background-size: cover;
-          background-position: center;
-          background-repeat: no-repeat;
-          background-attachment: fixed;
-        }
+    <style>
+      /* Background Image Styling */
+      body {
+        background: #d4e6e7; /* Ganti dengan path gambar background */
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+      }
 
+      .dashboard {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+        padding: 20px;
+      }
+
+      .card {
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        min-width: 300px;
+      }
+
+      .chart img {
+        width: 100%;
+      }
+
+      .nav-menu {
+        display: flex;
+        list-style-type: none;
+      }
+
+      .nav-menu li {
+        margin-right: 20px;
+      }
+
+      .user-profile {
+        display: flex;
+        align-items: center;
+      }
+
+      .user-image {
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+      }
+
+      .dropdown {
+        position: relative;
+        display: inline-block;
+      }
+
+      .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: white;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        min-width: 160px;
+        z-index: 1;
+      }
+
+      .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+      }
+
+      .dropdown-content a:hover {
+        background-color: #ddd;
+      }
+
+      .dropbtn {
+        color: white;
+        border: none;
+        cursor: pointer;
+      }
+
+      .dropdown:hover .dropdown-content {
+        display: block;
+      }
+
+      /* Styling untuk tombol di dalam Quick Actions */
+      .quick-actions {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .action-button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        background-color: #dbe2ef;
+        color: rgb(0, 0, 0);
+        border: none;
+        border-radius: 5px;
+        padding: 10px 15px;
+        font-size: 16px;
+        cursor: pointer;
+        margin: 5px 0;
+        width: 90%;
+        transition: background-color 0.3s ease;
+      }
+
+      .action-button img {
+        width: 24px;
+        height: 24px;
+      }
+
+      .action-button:hover {
+        background-color: #d7f2f4;
+      }
+
+      /* Add styling as needed */
+      .invoice-card {
+        border: 1px solid #9a9a9a;
+        padding: 10px;
+        margin-bottom: 5px;
+      }
+
+      .delete-btn {
+        color: rgb(0, 0, 0);
+        border: none;
+        padding: 5px 10px;
+        border-radius: 5px;
+        cursor: pointer;
+        float: right; /* Untuk menempatkan tombol di kanan atas card */
+        margin-top: -10px; /* Sesuaikan margin agar posisinya tepat */
+      }
+
+      .delete-btn:hover {
+        color: rgb(253, 0, 0);
+      }
+
+      @media (max-width: 768px) {
         .dashboard {
-          display: grid;
-          grid-template-columns: repeat(3, 1fr);
-          gap: 20px;
-          padding: 20px;
+          grid-template-columns: 1fr;
         }
+      }
 
-        .card {
-          background: white;
-          border-radius: 8px;
-          box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-          padding: 20px;
-          min-width: 300px;
-        }
+      .card:hover {
+        transform: scale(1.01);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      }
 
-        .chart img {
-          width: 100%;
-        }
+    </style>
+  </head>
+  <body>
+    <!-- Navigation Bar -->
+    <header>
+      <nav>
+        <ul class="nav-menu">
+          <li style="background-color: #112d4e">
+            <a href="index.html" style="color: rgb(255, 255, 255)">Dashboard</a>
+          </li>
+          <li><a href="Business.html">Business</a></li>
+          <li><a href="Accounting.html">Accounting</a></li>
+          <li><a href="Product.html">Product</a></li>
+          <li><a href="Contacts.html">Contact Us</a></li>
+        </ul>
+      </nav>
 
-        .nav-menu {
-          display: flex;
-          list-style-type: none;
-        }
+      <div class="user-profile">
+        <img
+          src="/Dummy/static/img/ImageAcc.png"
+          alt="User Profile"
+          class="user-image"
+          id="user-avatar"
+        />
+        <div class="dropdown" id="profile-dropdown">
+          <button onclick="toggleDropdown()" class="dropbtn">▼</button>
+          <div class="dropdown-content" id="dropdown-content">
+            <!-- <a href="#">Account Settings</a> -->
+            <a href="profile.html">Profile</a>
+            <a href="LP.html">Logout</a>
+          </div>
+        </div>
+      </div>
+    </header>
 
-        .nav-menu li {
-          margin-right: 20px;
-        }
+    <!-- Main Dashboard -->
+    <main class="dashboard">
+      <!-- Business Bank Account Card -->
+      <section class="card bank-account">
+        <h2>Business Bank Account</h2>
+        <p>306-234-12345678</p>
+        <p>Reconciled <span class="balance">(100.00)</span></p>
+        <div class="chart">
+          <!-- Placeholder for chart -->
+          <!-- <img src="/Dummy/static/img/chartplaceholder.webp" alt="Bank Balance Chart"> -->
+          <canvas id="bankBalanceChart" width="400" height="200"></canvas>
+        </div>
+      </section>
 
-        .user-profile {
-          display: flex;
-          align-items: center;
-        }
+      <!-- Account Watchlist -->
+      <section class="card watchlist">
+        <h2>Account Watchlist</h2>
+        <ul>
+          <li>Accounts Payable: 2,400.00</li>
+          <li>Accounts Receivable: 5,345.00</li>
+          <li>Advertising: 1,300.00</li>
+        </ul>
+      </section>
 
-        .user-image {
-          border-radius: 50%;
-          width: 40px;
-          height: 40px;
-        }
+      <!-- Business Performance -->
+      <section class="card performance">
+        <h2>Business Performance</h2>
+        <ul>
+          <li>Accounts Payable Days: 1.60</li>
+          <li>Accounts Receivable Days: 1.60</li>
+        </ul>
+      </section>
 
-        .dropdown {
-          position: relative;
-          display: inline-block;
-        }
+      <!-- Invoices Owed To You -->
+      <section class="card invoices">
+        <div id="invoicesOwedToYou">
+          <h2>Invoices Owed To You</h2>
+          <div id="invoicesOwed">
+            <!-- Saved invoices will be displayed here -->
+          </div>
+        </div>
+      </section>
 
-        .dropdown-content {
-          display: none;
-          position: absolute;
-          background-color: white;
-          box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-          min-width: 160px;
-          z-index: 1;
-        }
+      <!-- Recent Transactions -->
+      <section class="card recent-transactions">
+        <h2>Recent Transactions</h2>
+        <ul>
+          <li>Payment to Supplier: -300.00</li>
+          <li>Received from Client: +450.00</li>
+          <li>Office Supplies: -50.00</li>
+          <li>Advertising: -200.00</li>
+        </ul>
+      </section>
 
-        .dropdown-content a {
-          color: black;
-          padding: 12px 16px;
-          text-decoration: none;
-          display: block;
-        }
+      <!-- Budget Overview -->
+      <section class="card budget-overview">
+        <h2>Budget Overview</h2>
+        <ul>
+          <li>Total Budget: 10,000.00</li>
+          <li>Spent: 4,500.00</li>
+          <li>Remaining: 5,500.00</li>
+        </ul>
+      </section>
 
-        .dropdown-content a:hover {
-          background-color: #ddd;
-        }
+      <!-- Upcoming Payments -->
+      <section class="card upcoming-payments">
+        <h2>Upcoming Payments</h2>
+        <ul>
+          <li>Rent: 1,200.00 (Due: 2024-11-01)</li>
+          <li>Utilities: 300.00 (Due: 2024-11-05)</li>
+          <li>Subscription: 50.00 (Due: 2024-11-10)</li>
+        </ul>
+      </section>
 
-        .dropbtn {
-          color: white;
-          border: none;
-          cursor: pointer;
-        }
+      <!-- Alerts & Notifications -->
+      <section class="card alerts">
+        <h2>Alerts & Notifications</h2>
+        <ul>
+          <li>Overdue Invoice: 1,000.00</li>
+          <li>Low Balance Alert: Checking Account</li>
+          <li>New Message from Accountant</li>
+        </ul>
+      </section>
 
-        .dropdown:hover .dropdown-content {
-          display: block;
-        }
-
-        /* Styling untuk tombol di dalam Quick Actions */
-        .quick-actions {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-        }
-
-        .action-button {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          gap: 8px;
-          background-color: #dbe2ef;
-          color: rgb(0, 0, 0);
-          border: none;
-          border-radius: 5px;
-          padding: 10px 15px;
-          font-size: 16px;
-          cursor: pointer;
-          margin: 5px 0;
-          width: 90%;
-          transition: background-color 0.3s ease;
-        }
-
-        .action-button img {
-          width: 24px;
-          height: 24px;
-        }
-
-        .action-button:hover {
-          background-color: #d7f2f4;
-        }
-
-                /* Add styling as needed */
-                .invoice-card {
-                  border: 1px solid #9a9a9a;
-                  padding: 10px;
-                  margin-bottom: 5px;
-              }
-
-              .delete-btn {
-                color: rgb(0, 0, 0);
-                border: none;
-                padding: 5px 10px;
-                border-radius: 5px;
-                cursor: pointer;
-                float: right; /* Untuk menempatkan tombol di kanan atas card */
-                margin-top: -10px; /* Sesuaikan margin agar posisinya tepat */
-            }
-            
-            .delete-btn:hover {
-                color: rgb(253, 0, 0);
-            }
-            
-            @media (max-width: 768px) {
-              .dashboard {
-                grid-template-columns: 1fr;
-              }
-            }
-            
-            .card:hover {
-              transform: scale(1.02);
-              box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            }
-            
-      </style>
-    </head>
-    <body>
-      <!-- Navigation Bar -->
-      <header>
-        <nav>
-          <ul class="nav-menu">
-            <li style="background-color: #112d4e">
-              <a href="index.html" style="color: rgb(255, 255, 255)">Dashboard</a>
-            </li>
-            <li><a href="Business.html">Business</a></li>
-            <li><a href="Accounting.html">Accounting</a></li>
-            <li><a href="Product.html">Product</a></li>
-            <li><a href="Contacts.html">Contact Us</a></li>
-          </ul>
-        </nav>
-
-        <div class="user-profile">
+      <!-- Quick Actions -->
+      <section class="card quick-actions">
+        <h2>Quick Actions</h2>
+        <button
+          onclick="location.href='new_invoice.html'"
+          class="action-button"
+        >
           <img
-            src="/Dummy/static/img/ImageAcc.png"
-            alt="User Profile"
-            class="user-image"
-            id="user-avatar"
+            src="https://img.icons8.com/ios-glyphs/30/000000/invoice.png"
+            alt="Create Invoice"
           />
-          <div class="dropdown" id="profile-dropdown">
-            <button onclick="toggleDropdown()" class="dropbtn">▼</button>
-            <div class="dropdown-content" id="dropdown-content">
-              <!-- <a href="#">Account Settings</a> -->
-              <a href="profile.html">Profile</a>
-              <a href="LP.html">Logout</a>
-            </div>
-          </div>
-        </div>
-      </header>
+          Create Invoice
+        </button>
+        <button onclick="location.href='Business.html'" class="action-button">
+          <img
+            src="https://img.icons8.com/ios-glyphs/30/000000/money-transfer.png"
+            alt="Add Transaction"
+          />
+          Add Transaction
+        </button>
+        <button
+          onclick="location.href='generate_report.html'"
+          class="action-button"
+        >
+          <img
+            src="https://img.icons8.com/ios-glyphs/30/000000/combo-chart.png"
+            alt="Generate Report"
+          />
+          Generate Report
+        </button>
+      </section>
+    </main>
 
-      <!-- Main Dashboard -->
-      <main class="dashboard">
-        <!-- Business Bank Account Card -->
-        <section class="card bank-account">
-          <h2>Business Bank Account</h2>
-          <p>306-234-12345678</p>
-          <p>Reconciled <span class="balance">(100.00)</span></p>
-          <div class="chart">
-            <!-- Placeholder for chart -->
-            <!-- <img src="/Dummy/static/img/chartplaceholder.webp" alt="Bank Balance Chart"> -->
-            <canvas id="bankBalanceChart" width="400" height="200"></canvas>
-          </div>
-        </section>
-
-        <!-- Account Watchlist -->
-        <section class="card watchlist">
-          <h2>Account Watchlist</h2>
-          <ul>
-            <li>Accounts Payable: 2,400.00</li>
-            <li>Accounts Receivable: 5,345.00</li>
-            <li>Advertising: 1,300.00</li>
-          </ul>
-        </section>
-
-        <!-- Business Performance -->
-        <section class="card performance">
-          <h2>Business Performance</h2>
-          <ul>
-            <li>Accounts Payable Days: 1.60</li>
-            <li>Accounts Receivable Days: 1.60</li>
-          </ul>
-        </section>
-
-        <!-- Invoices Owed To You -->
-        <section class="card invoices">
-          <div id="invoicesOwedToYou">
-            <h2>Invoices Owed To You</h2>
-            <div id="invoicesOwed">
-                <!-- Saved invoices will be displayed here -->
-            </div>
-        </div>
-        </section>
-
-        <!-- Recent Transactions -->
-        <section class="card recent-transactions">
-          <h2>Recent Transactions</h2>
-          <ul>
-            <li>Payment to Supplier: -300.00</li>
-            <li>Received from Client: +450.00</li>
-            <li>Office Supplies: -50.00</li>
-            <li>Advertising: -200.00</li>
-          </ul>
-        </section>
-
-        <!-- Budget Overview -->
-        <section class="card budget-overview">
-          <h2>Budget Overview</h2>
-          <ul>
-            <li>Total Budget: 10,000.00</li>
-            <li>Spent: 4,500.00</li>
-            <li>Remaining: 5,500.00</li>
-          </ul>
-        </section>
-
-        <!-- Upcoming Payments -->
-        <section class="card upcoming-payments">
-          <h2>Upcoming Payments</h2>
-          <ul>
-            <li>Rent: 1,200.00 (Due: 2024-11-01)</li>
-            <li>Utilities: 300.00 (Due: 2024-11-05)</li>
-            <li>Subscription: 50.00 (Due: 2024-11-10)</li>
-          </ul>
-        </section>
-
-        <!-- Alerts & Notifications -->
-        <section class="card alerts">
-          <h2>Alerts & Notifications</h2>
-          <ul>
-            <li>Overdue Invoice: 1,000.00</li>
-            <li>Low Balance Alert: Checking Account</li>
-            <li>New Message from Accountant</li>
-          </ul>
-        </section>
-
-        <!-- Quick Actions -->
-        <section class="card quick-actions">
-          <h2>Quick Actions</h2>
-          <button
-            onclick="location.href='new_invoice.html'"
-            class="action-button"
-          >
-            <img
-              src="https://img.icons8.com/ios-glyphs/30/000000/invoice.png"
-              alt="Create Invoice"
-            />
-            Create Invoice
-          </button>
-          <button
-            onclick="location.href='Business.html'"
-            class="action-button"
-          >
-            <img
-              src="https://img.icons8.com/ios-glyphs/30/000000/money-transfer.png"
-              alt="Add Transaction"
-            />
-            Add Transaction
-          </button>
-          <button
-            onclick="location.href='generate_report.html'"
-            class="action-button"
-          >
-            <img
-              src="https://img.icons8.com/ios-glyphs/30/000000/combo-chart.png"
-              alt="Generate Report"
-            />
-            Generate Report
-          </button>
-        </section>
-      </main>
-
-      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-      <script>
-        const ctx = document.getElementById("bankBalanceChart").getContext("2d");
-        const bankBalanceChart = new Chart(ctx, {
-          type: "line", // Menggunakan grafik line
-          data: {
-            labels: [
-              "Jan",
-              "Feb",
-              "Mar",
-              "Apr",
-              "May",
-              "Jun",
-              "Jul",
-              "Aug",
-              "Sep",
-              "Oct",
-              "Nov",
-              "Dec",
-            ], // Data tanggal
-            datasets: [
-              {
-                label: "Balance Amount",
-                data: [
-                  1000, 1200, 1500, 1300, 1700, 1800, 2000, 2100, 2300, 2500,
-                  2700, 3000,
-                ], // Data dummy saldo
-                borderColor: "rgba(75, 192, 192, 1)",
-                backgroundColor: "rgba(75, 192, 192, 0.2)",
-                fill: true,
-                tension: 0.4,
-              },
-            ],
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+      const ctx = document.getElementById("bankBalanceChart").getContext("2d");
+      const bankBalanceChart = new Chart(ctx, {
+        type: "line", // Menggunakan grafik line
+        data: {
+          labels: [
+            "Jan",
+            "Feb",
+            "Mar",
+            "Apr",
+            "May",
+            "Jun",
+            "Jul",
+            "Aug",
+            "Sep",
+            "Oct",
+            "Nov",
+            "Dec",
+          ], // Data tanggal
+          datasets: [
+            {
+              label: "Balance Amount",
+              data: [
+                1000, 1200, 1500, 1300, 1700, 1800, 2000, 2100, 2300, 2500,
+                2700, 3000,
+              ], // Data dummy saldo
+              borderColor: "rgba(75, 192, 192, 1)",
+              backgroundColor: "rgba(75, 192, 192, 0.2)",
+              fill: true,
+              tension: 0.4,
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            legend: {
+              display: true,
+              position: "top",
+            },
           },
-          options: {
-            responsive: true,
-            plugins: {
-              legend: {
+          scales: {
+            x: {
+              title: {
                 display: true,
-                position: "top",
+                text: "Month",
               },
             },
-            scales: {
-              x: {
-                title: {
-                  display: true,
-                  text: "Month",
-                },
+            y: {
+              title: {
+                display: true,
+                text: "Amount ($)",
               },
-              y: {
-                title: {
-                  display: true,
-                  text: "Amount ($)",
-                },
-                beginAtZero: true,
-              },
+              beginAtZero: true,
             },
           },
-        });
+        },
+      });
 
-        //invoice
-
+      //invoice
 
       function deleteInvoice(index) {
         const invoices = JSON.parse(localStorage.getItem("invoices")) || [];
@@ -380,13 +379,13 @@
         localStorage.setItem("invoices", JSON.stringify(invoices));
         loadInvoices(); // Refresh the invoice list
       }
-      
+
       // Update loadInvoices to include delete button
       function loadInvoices() {
         const invoices = JSON.parse(localStorage.getItem("invoices")) || [];
         const invoicesContainer = document.getElementById("invoicesOwed");
         invoicesContainer.innerHTML = "";
-      
+
         invoices.forEach((invoice, index) => {
           const invoiceCard = document.createElement("div");
           invoiceCard.className = "invoice-card";
@@ -402,9 +401,9 @@
           invoicesContainer.appendChild(invoiceCard);
         });
       }
-      
+
       // Load invoices on page load
       window.onload = loadInvoices;
-      </script>
-    </body>
-  </html> 
+    </script>
+  </body>
+</html>
