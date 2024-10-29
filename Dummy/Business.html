@@ -67,13 +67,17 @@
         <button onclick="showSales()">Product Sales Transactions</button>
         <button onclick="showExpenses()">Expense Transactions</button>
       </div>
-      <div class="export-buttons">
-        <button class="export-csv-btn" onclick="exportCurrentTableToCSV()">Export to CSV</button>
-    </div>
+
 
       <!-- Sales Transactions Table -->
       <div class="table-container" id="salesTable">
-        <h2>Sales Transactions</h2>
+        <h2>Sales Transactions     
+          <div class="export-buttons">
+          <button class="export-csv-btn" onclick="exportCurrentTableToCSV()">Export to CSV</button>
+      </div> 
+    </h2>
+    
+
         <table>
           <thead>
             <tr>
