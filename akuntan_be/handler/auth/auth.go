@@ -5,13 +5,16 @@ import (
 	"context"
 	"encoding/json"
 	"net/http"
+
 	// "strings"
 	"time"
 
 	"akuntan/config"
 	"akuntan/models/user"
 
+	"github.com/gorilla/mux"
 	"go.mongodb.org/mongo-driver/bson"
+	"go.mongodb.org/mongo-driver/bson/primitive"
 	"golang.org/x/crypto/bcrypt"
 )
 
@@ -109,6 +112,8 @@ func LoginUser(w http.ResponseWriter, r *http.Request) {
 }
 
 
+
+
 // Definisikan tipe baru untuk context key
 // type contextKey string
 
@@ -147,5 +152,104 @@ func LoginUser(w http.ResponseWriter, r *http.Request) {
 //     })
 // }
 
+// Fungsi untuk mendapatkan daftar produk
+func GetUser(w http.ResponseWriter, r *http.Request) {
+	var users []user.User
 
+	// Ambil data dari MongoDB
+	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
+	defer cancel()
+
+	cursor, err := config.UserCollection.Find(ctx, bson.M{})
+	if err != nil {
+		http.Error(w, "Failed to fetch User", http.StatusInternalServerError)
+		return
+	}
+	defer cursor.Close(ctx)
+
+	for cursor.Next(ctx) {
+		var user user.User
+		if err := cursor.Decode(&user); err != nil {
+			http.Error(w, "Error decoding user", http.StatusInternalServerError)
+			return
+		}
+		users = append(users, user)
+	}
+
+	// Kirim data user sebagai respon
+	w.Header().Set("Content-Type", "application/json")
+	json.NewEncoder(w).Encode(users)
+}
+
+// Fungsi untuk mendapatkan detail produk berdasarkan ID
+func GetUserByID(w http.ResponseWriter, r *http.Request) {
+    // Ambil parameter ID dari URL menggunakan mux.Vars
+    vars := mux.Vars(r)
+    id := vars["id"]
+
+    objectID, err := primitive.ObjectIDFromHex(id)
+    if err != nil {
+        http.Error(w, "Invalid user ID", http.StatusBadRequest)
+        return
+    }
+
+    // Ambil produk dari MongoDB
+    var user user.User
+    ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
+    defer cancel()
+
+    err = config.UserCollection.FindOne(ctx, bson.M{"_id": objectID}).Decode(&user)
+    if err != nil {
+        http.Error(w, "User not found", http.StatusNotFound)
+        return
+    }
+
+    // Kirim produk sebagai respon
+    w.Header().Set("Content-Type", "application/json")
+    json.NewEncoder(w).Encode(user)
+}
+
+
+func UpdateUser(w http.ResponseWriter, r *http.Request) {
+	// Ambil parameter ID dari URL menggunakan gorilla/mux
+	vars := mux.Vars(r)
+	id := vars["id"]
+
+	objectID, err := primitive.ObjectIDFromHex(id)
+	if err != nil {
+		http.Error(w, "Invalid User ID", http.StatusBadRequest)
+		return
+	}
+
+	// Decode data produk yang akan diupdate
+	var updatedUser user.User
+	if err := json.NewDecoder(r.Body).Decode(&updatedUser); err != nil {
+		http.Error(w, err.Error(), http.StatusBadRequest)
+		return
+	}
+
+	// Update produk di MongoDB
+	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
+	defer cancel()
+
+	update := bson.M{
+		"$set": bson.M{
+			"name":        updatedUser.Name,
+			"email":       updatedUser.Email,
+			"password":       updatedUser.Password,
+			"umkmName":    updatedUser.UMKMName,
+			"updatedAt":   time.Now(),
+		},
+	}
+
+	_, err = config.UserCollection.UpdateOne(ctx, bson.M{"_id": objectID}, update)
+	if err != nil {
+		http.Error(w, "Failed to update User", http.StatusInternalServerError)
+		return
+	}
+
+	// Kirim respon sukses
+	w.WriteHeader(http.StatusOK)
+	json.NewEncoder(w).Encode(map[string]string{"message": "User updated successfully"})
+}
 
