@@ -1,7 +1,9 @@
+// helper/helper.go
 package helper
 
 import (
 	"log"
+	"strconv"
 	"time"
 
 	"go.mongodb.org/mongo-driver/bson/primitive"
@@ -30,4 +32,33 @@ func ValidateID(id string) (primitive.ObjectID, error) {
 		return primitive.NilObjectID, err
 	}
 	return objectID, nil
+}
+
+// FormatCurrency mengonversi angka menjadi format mata uang.
+func FormatCurrency(amount float64) string {
+	return strconv.FormatFloat(amount, 'f', 2, 64) + " IDR" // Ganti "IDR" dengan simbol mata uang yang diinginkan.
+}
+
+// GetCurrentTime mengembalikan waktu saat ini.
+func GetCurrentTime() time.Time {
+	return time.Now()
+}
+
+// Fungsi statistik
+// CalculateTotal menghitung total dari sebuah slice of float64
+func CalculateTotal(numbers []float64) float64 {
+	total := 0.0
+	for _, number := range numbers {
+		total += number
+	}
+	return total
+}
+
+// CalculateAverage menghitung rata-rata dari sebuah slice of float64
+func CalculateAverage(numbers []float64) float64 {
+	if len(numbers) == 0 {
+		return 0
+	}
+	total := CalculateTotal(numbers)
+	return total / float64(len(numbers))
 }
