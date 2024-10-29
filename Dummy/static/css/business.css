@@ -23,8 +23,12 @@
 }
 
 .table-switcher {
-    margin: 20px 0;
+    margin: 20px;
+    padding-left: 520px;
     text-align: center;
+    display: inline-block;
+    /* Keeps table-switcher in the same row as export buttons */
+
 }
 
 .table-switcher button {
@@ -51,6 +55,32 @@
     /* Remove outline on focus */
 }
 
+.export-buttons {
+    display: inline-block;
+    float: right;
+    margin-top: -10px;
+}
+
+.export-csv-btn {
+    background-color: #298588;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-left: 10px;
+}
+
+.export-csv-btn:hover {
+    background-color: #1c7376;
+    transform: scale(1.05);
+}
+
+.export-csv-btn:focus {
+    outline: none;
+}
+
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #F9F9F9;
@@ -72,7 +102,7 @@ header {
     justify-content: space-between;
     align-items: center;
     color: white;
-    
+
 }
 
 .nav-menu {
@@ -226,10 +256,10 @@ header {
 
 .table-switcher button:hover {
     background-color: #1c7376;
-     /* Lighter blue on hover */
-     transform: scale(1.05);
-     /* Slightly enlarge on hover */
-  
+    /* Lighter blue on hover */
+    transform: scale(1.05);
+    /* Slightly enlarge on hover */
+
 }
 
 .table-switcher button:focus {
