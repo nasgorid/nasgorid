@@ -11,154 +11,207 @@
     <link rel="stylesheet" href="/Dummy/static/css/style.css" />
 
     <style>
-      /* Background Image Styling */
-      body {
-        background: #d4e6e7; /* Ganti dengan path gambar background */
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-      }
-
-      .dashboard {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 20px;
-        padding: 20px;
-      }
-
-      .card {
-        background: white;
-        border-radius: 8px;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        padding: 20px;
-        min-width: 300px;
-      }
-
-      .chart img {
-        width: 100%;
-      }
-
-      .nav-menu {
-        display: flex;
-        list-style-type: none;
-      }
-
-      .nav-menu li {
-        margin-right: 20px;
-      }
-
-      .user-profile {
-        display: flex;
-        align-items: center;
-      }
-
-      .user-image {
-        border-radius: 50%;
-        width: 40px;
-        height: 40px;
-      }
-
-      .dropdown {
-        position: relative;
-        display: inline-block;
-      }
-
-      .dropdown-content {
-        display: none;
-        position: absolute;
-        background-color: white;
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-        min-width: 160px;
-        z-index: 1;
-      }
-
-      .dropdown-content a {
-        color: black;
-        padding: 12px 16px;
-        text-decoration: none;
-        display: block;
-      }
-
-      .dropdown-content a:hover {
-        background-color: #ddd;
-      }
-
-      .dropbtn {
-        color: white;
-        border: none;
-        cursor: pointer;
-      }
-
-      .dropdown:hover .dropdown-content {
-        display: block;
-      }
-
-      /* Styling untuk tombol di dalam Quick Actions */
-      .quick-actions {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-      }
-
-      .action-button {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 8px;
-        background-color: #dbe2ef;
-        color: rgb(0, 0, 0);
-        border: none;
-        border-radius: 5px;
-        padding: 10px 15px;
-        font-size: 16px;
-        cursor: pointer;
-        margin: 5px 0;
-        width: 90%;
-        transition: background-color 0.3s ease;
-      }
-
-      .action-button img {
-        width: 24px;
-        height: 24px;
-      }
-
-      .action-button:hover {
-        background-color: #d7f2f4;
-      }
-
-      /* Add styling as needed */
-      .invoice-card {
-        border: 1px solid #9a9a9a;
-        padding: 10px;
-        margin-bottom: 5px;
-      }
-
-      .delete-btn {
-        color: rgb(0, 0, 0);
-        border: none;
-        padding: 5px 10px;
-        border-radius: 5px;
-        cursor: pointer;
-        float: right; /* Untuk menempatkan tombol di kanan atas card */
-        margin-top: -10px; /* Sesuaikan margin agar posisinya tepat */
-      }
-
-      .delete-btn:hover {
-        color: rgb(253, 0, 0);
-      }
-
-      @media (max-width: 768px) {
-        .dashboard {
-          grid-template-columns: 1fr;
+        /* Reset dan Font Smoothing */
+        *, *:before, *:after {
+            box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
-      }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-      .card:hover {
-        transform: scale(1.01);
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-      }
+        /* Body dan Gaya Umum */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #d4e6e7;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            color: #022324;
+        }
 
+        /* Header */
+        header {
+            background-color: #34a0a4;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+        }
+
+        /* Menu Navigasi */
+        .nav-menu {
+            list-style: none;
+            display: flex;
+            padding: 0;
+        }
+        .nav-menu li {
+            margin: 0 10px;
+            cursor: pointer;
+            background-color: #e5f4f6;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        .nav-menu li a {
+            color: #033537;
+            text-decoration: none;
+        }
+        .nav-menu li:hover {
+            background-color: #d7f2f4;
+        }
+
+        /* Profil Pengguna */
+        .user-profile {
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+        .user-image {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+
+        /* Dropdown Menu */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        .dropbtn {
+            color: white;
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            padding-left: 5px;
+            font-size: 16px;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            right: 0;
+            background-color: white;
+            min-width: 160px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            z-index: 1;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        .dropdown-content a {
+            color: #033537;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+        }
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        /* Dashboard dan Kartu */
+        .dashboard {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            padding: 20px;
+        }
+        .card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            min-width: 300px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .card:hover {
+            transform: scale(1.01);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Quick Actions */
+        .quick-actions {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .action-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background-color: #dbe2ef;
+            color: rgb(0, 0, 0);
+            border: none;
+            border-radius: 5px;
+            padding: 10px 15px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 5px 0;
+            width: 90%;
+            transition: background-color 0.3s ease;
+        }
+        .action-button:hover {
+            background-color: #d7f2f4;
+        }
+
+        /* Kartu Invoice */
+        .invoice-card {
+            border: 1px solid #9a9a9a;
+            padding: 10px;
+            margin-bottom: 5px;
+        }
+        .delete-btn {
+            color: rgb(0, 0, 0);
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            float: right;
+            margin-top: -10px;
+        }
+        .delete-btn:hover {
+            color: rgb(253, 0, 0);
+        }
+
+        /* Tabel Data */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table th, table td {
+            padding: 12px 15px;
+            text-align: left;
+            font-size: 0.95rem;
+            color: #146366;
+        }
+        table th {
+            background-color: #34a0a4;
+            color: white;
+            font-weight: bold;
+        }
+        table tr:nth-child(even) {
+            background-color: #F9F9F9;
+        }
+        table tr:hover {
+            background-color: #b6e4e7;
+        }
+
+        /* Responsivitas */
+        @media (max-width: 768px) {
+            .dashboard {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
   </head>
   <body>
