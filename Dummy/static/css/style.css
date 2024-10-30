@@ -59,6 +59,21 @@ header {
     margin-left: 10px;
     cursor: pointer;
 }
+button {
+    background-color: #3F72AF;
+    color: white;
+    border: none;
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #5db3b6;
+}
+
 
 .dropdown {
     position: relative;
