@@ -267,3 +267,13 @@ tr  {
         font-size: 14px;
     }
 }
+
+.chart {
+    margin-top: 10px;
+    text-align: center;
+}
+
+#bankBalanceChart {
+    width: 50px;  /* Atur lebar tampilan */
+    height: 50px; /* Atur tinggi tampilan */
+}
