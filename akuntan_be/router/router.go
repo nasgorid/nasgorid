@@ -21,10 +21,9 @@ func SetupRouter() *mux.Router {
 
 	// Route for user login
 	router.HandleFunc("/login", auth.LoginUser).Methods("POST")
-	router.HandleFunc("/users", auth.GetUser).Methods("GET")
+	// router.HandleFunc("/users", auth.GetUser).Methods("GET")
 	router.HandleFunc("/users/{id}", auth.GetUserByID).Methods("GET")
 	router.HandleFunc("/users/{id}", auth.UpdateUser).Methods("PUT")
-
 
 	// Product Routes
 	router.HandleFunc("/products", produk.CreateProduct).Methods("POST")
@@ -62,8 +61,6 @@ func SetupRouter() *mux.Router {
 	router.HandleFunc("/reports", laporan.GetFinancialReports).Methods("GET")
 	router.HandleFunc("/reports/{id}", laporan.GetFinancialReportByID).Methods("GET")
 	router.HandleFunc("/reports/{id}", laporan.DeleteFinancialReport).Methods("DELETE")
-
-
 
 	return router
 }

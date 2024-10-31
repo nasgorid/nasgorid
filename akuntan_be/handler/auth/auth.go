@@ -152,34 +152,34 @@ func LoginUser(w http.ResponseWriter, r *http.Request) {
 //     })
 // }
 
-// Fungsi untuk mendapatkan daftar produk
-func GetUser(w http.ResponseWriter, r *http.Request) {
-	var users []user.User
+// // Fungsi untuk mendapatkan daftar produk
+// func GetUser(w http.ResponseWriter, r *http.Request) {
+// 	var users []user.User
 
-	// Ambil data dari MongoDB
-	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
-	defer cancel()
+// 	// Ambil data dari MongoDB
+// 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
+// 	defer cancel()
 
-	cursor, err := config.UserCollection.Find(ctx, bson.M{})
-	if err != nil {
-		http.Error(w, "Failed to fetch User", http.StatusInternalServerError)
-		return
-	}
-	defer cursor.Close(ctx)
+// 	cursor, err := config.UserCollection.Find(ctx, bson.M{})
+// 	if err != nil {
+// 		http.Error(w, "Failed to fetch User", http.StatusInternalServerError)
+// 		return
+// 	}
+// 	defer cursor.Close(ctx)
 
-	for cursor.Next(ctx) {
-		var user user.User
-		if err := cursor.Decode(&user); err != nil {
-			http.Error(w, "Error decoding user", http.StatusInternalServerError)
-			return
-		}
-		users = append(users, user)
-	}
+// 	for cursor.Next(ctx) {
+// 		var user user.User
+// 		if err := cursor.Decode(&user); err != nil {
+// 			http.Error(w, "Error decoding user", http.StatusInternalServerError)
+// 			return
+// 		}
+// 		users = append(users, user)
+// 	}
 
-	// Kirim data user sebagai respon
-	w.Header().Set("Content-Type", "application/json")
-	json.NewEncoder(w).Encode(users)
-}
+// 	// Kirim data user sebagai respon
+// 	w.Header().Set("Content-Type", "application/json")
+// 	json.NewEncoder(w).Encode(users)
+// }
 
 // Fungsi untuk mendapatkan detail produk berdasarkan ID
 func GetUserByID(w http.ResponseWriter, r *http.Request) {
