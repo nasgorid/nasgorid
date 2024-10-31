@@ -39,7 +39,6 @@ func CreateSalesTransaction(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "Failed to create sales transaction", http.StatusInternalServerError)
 		return
 	}
-
 	// Kirim respon sukses
 	w.WriteHeader(http.StatusCreated)
 	json.NewEncoder(w).Encode(map[string]string{"message": "Sales transaction created successfully"})
@@ -48,11 +47,9 @@ func CreateSalesTransaction(w http.ResponseWriter, r *http.Request) {
 // Fungsi untuk mendapatkan semua transaksi penjualan
 func GetSalesTransactions(w http.ResponseWriter, r *http.Request) {
 	var transactions []transaksi_penjualan.SalesTransaction
-
 	// Ambil data dari MongoDB
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()
-
 	cursor, err := config.SalesTransactionCollection.Find(ctx, bson.M{})
 	if err != nil {
 		http.Error(w, "Failed to fetch sales transactions", http.StatusInternalServerError)
@@ -68,7 +65,6 @@ func GetSalesTransactions(w http.ResponseWriter, r *http.Request) {
 		}
 		transactions = append(transactions, transaction)
 	}
-
 	// Kirim data transaksi sebagai respon
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(transactions)
@@ -87,7 +83,6 @@ func GetSalesTransactionByID(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "Invalid sales transaction ID", http.StatusBadRequest)
 		return
 	}
-
 	// Ambil transaksi dari MongoDB
 	var transaction transaksi_penjualan.SalesTransaction
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
@@ -98,7 +93,6 @@ func GetSalesTransactionByID(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "Sales transaction not found", http.StatusNotFound)
 		return
 	}
-
 	// Kirim transaksi sebagai respon
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(transaction)
@@ -108,20 +102,17 @@ func GetSalesTransactionByID(w http.ResponseWriter, r *http.Request) {
 func UpdateSalesTransaction(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	id := vars["id"]
-
 	objectID, err := primitive.ObjectIDFromHex(id)
 	if err != nil {
 		http.Error(w, "Invalid sales transaction ID", http.StatusBadRequest)
 		return
 	}
-
 	// Decode data transaksi yang akan diupdate
 	var updatedTransaction transaksi_penjualan.SalesTransaction
 	if err := json.NewDecoder(r.Body).Decode(&updatedTransaction); err != nil {
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-
 	// Update transaksi di MongoDB
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()
@@ -136,13 +127,11 @@ func UpdateSalesTransaction(w http.ResponseWriter, r *http.Request) {
 			"transactionDate": time.Now(),
 		},
 	}
-
 	_, err = config.SalesTransactionCollection.UpdateOne(ctx, bson.M{"_id": objectID}, update)
 	if err != nil {
 		http.Error(w, "Failed to update sales transaction", http.StatusInternalServerError)
 		return
 	}
-
 	// Kirim respon sukses
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(map[string]string{"message": "Sales transaction updated successfully"})
@@ -152,13 +141,11 @@ func UpdateSalesTransaction(w http.ResponseWriter, r *http.Request) {
 func DeleteSalesTransaction(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	id := vars["id"]
-
 	objectID, err := primitive.ObjectIDFromHex(id)
 	if err != nil {
 		http.Error(w, "Invalid sales transaction ID", http.StatusBadRequest)
 		return
 	}
-
 	// Hapus transaksi dari MongoDB
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()
@@ -168,7 +155,6 @@ func DeleteSalesTransaction(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "Failed to delete sales transaction", http.StatusInternalServerError)
 		return
 	}
-
 	// Kirim respon sukses
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(map[string]string{"message": "Sales transaction deleted successfully"})
@@ -181,7 +167,6 @@ func ExportSalesTransactionsCSV(w http.ResponseWriter, r *http.Request) {
     var transactions []transaksi_penjualan.SalesTransaction
     ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
     defer cancel()
-
     cursor, err := config.SalesTransactionCollection.Find(ctx, bson.M{})
     if err != nil {
         http.Error(w, "Failed to fetch sales transactions", http.StatusInternalServerError)
@@ -197,7 +182,6 @@ func ExportSalesTransactionsCSV(w http.ResponseWriter, r *http.Request) {
         }
         transactions = append(transactions, transaction)
     }
-
     // Set header untuk file CSV
     w.Header().Set("Content-Type", "text/csv")
     w.Header().Set("Content-Disposition", "attachment; filename=sales_transactions.csv")
@@ -211,7 +195,6 @@ func ExportSalesTransactionsCSV(w http.ResponseWriter, r *http.Request) {
         http.Error(w, "Failed to write header to CSV", http.StatusInternalServerError)
         return
     }
-
     // Tulis data transaksi ke file CSV
     for _, transaction := range transactions {
         err := writer.Write([]string{
@@ -227,7 +210,6 @@ func ExportSalesTransactionsCSV(w http.ResponseWriter, r *http.Request) {
             return
         }
     }
-
     // Pastikan semua data tertulis ke response
     writer.Flush()
 }
