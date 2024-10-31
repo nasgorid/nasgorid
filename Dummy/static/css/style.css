@@ -2,11 +2,13 @@
     box-sizing: border-box;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-  }
+}
 
-
-
-
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
 /* Header */
 header {
@@ -23,21 +25,16 @@ header {
     display: flex;
     justify-content: center;
     padding: 0;
-    list-style: none;
-
 }
 
 .nav-menu li {
-    margin-right: 20px;
-    cursor: pointer;
     margin: 0 10px;
+    cursor: pointer;
     background-color: #e5f4f6;
     padding: 10px;
     border-radius: 5px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-
 }
-
 
 .nav-menu li a {
     color: #033537;
@@ -48,8 +45,6 @@ header {
     background-color: #d7f2f4;
 }
 
-
-/* User Profile Dropdown */
 .user-profile {
     display: flex;
     align-items: center;
@@ -64,6 +59,21 @@ header {
     margin-left: 10px;
     cursor: pointer;
 }
+button {
+    background-color: #3F72AF;
+    color: white;
+    border: none;
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #5db3b6;
+}
+
 
 .dropdown {
     position: relative;
@@ -92,7 +102,7 @@ header {
 }
 
 .dropdown-content a {
-    color: black;
+    color: #033537;
     padding: 12px 16px;
     text-decoration: none;
     display: block;
@@ -105,8 +115,6 @@ header {
 .dropdown:hover .dropdown-content {
     display: block;
 }
-
-
 
 main {
     padding: 2rem;
@@ -149,59 +157,10 @@ ul li {
 }
 
 ul li:hover {
-    background-color:  #97ced1;
-    
+    background-color: #97ced1;
 }
 
-/* new */
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-
-
-header {
-    background-color: #34a0a4;
-    padding: 10px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    color: white;
-}
-
-.nav-menu {
-    list-style: none;
-    display: flex;
-    justify-content: center;
-    padding: 0;
-    list-style: none;
-
-}
-
-.nav-menu li {
-    margin-right: 20px;
-    cursor: pointer;
-    margin: 0 10px;
-    background-color: #e5f4f6;
-    padding: 10px;
-    border-radius: 5px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-
-}
-
-
-.nav-menu li a {
-    color: #033537;
-    text-decoration: none;
-}
-
-.nav-menu li:hover {
-    background-color: #d7f2f4;
-}
-
+/* Dashboard */
 .dashboard {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -246,77 +205,12 @@ header {
 .logo img {
     max-height: 60px;
     margin-right: 90px;
-    
 }
-
-/* header */
-
-.user-profile {
-    position: relative;
-    display: flex;
-    align-items: center;
-}
-
-.user-image {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-left: 10px;
-    cursor: pointer;
-}
-
-.dropdown {
-    position: relative;
-    display: inline-block;
-}
-
-.dropbtn {
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    color: white;
-    font-size: 16px;
-    padding-left: 5px;
-}
-
-.dropdown-content {
-    display: none;
-    position: absolute;
-    right: 0;
-    background-color: white;
-    min-width: 160px;
-    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
-    z-index: 1;
-    border-radius: 5px;
-    overflow: hidden;
-}
-
-.dropdown-content a {
-    color: #033537;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-}
-
-.dropdown-content a:hover {
-    background-color: #f1f1f1;
-}
-
-.dropdown:hover .dropdown-content {
-    display: block;
-}
-
-/* Optional: Show dropdown on click using JavaScript */
-
-/* Business css */
 
 /* Body General Styling */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #F9F9F9;
-    margin: 0;
-    padding: 0;
 }
 
 /* Typography */
@@ -426,7 +320,6 @@ table tr:nth-child(even) {
 
 table tr:hover {
     background-color: #b6e4e7;
-    
 }
 
 table td {
@@ -448,16 +341,17 @@ table td {
         flex-direction: column;
     }
 }
-    
-a{
+
+a {
     color: rgb(255, 255, 255);
     text-decoration: none;
 }
-p{
+
+p {
     color: #022324;
 }
 
-.table-switcher btn{
+.table-switcher .btn {
     background-color: #3F72AF;
     color: white;
     padding: 10px 20px;

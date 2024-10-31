@@ -1,23 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard Akuntansi</title>
-    <link rel="stylesheet" href="/Dummy/static/css/style.css">
+    <link rel="stylesheet" href="/Dummy/static/css/business.css">
 
-    <style>
-        /* Background Image Styling */
-        /* body {
-            background:#d8eaff; 
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-        }*/
-    </style>
-    
+
+
 </head>
+
 <body>
 
     <!-- Navigation Bar -->
@@ -25,15 +18,16 @@
 
         <nav>
             <ul class="nav-menu">
-                <li><a href="LP.html" >Dashboard</a></li>
-                <li style="background-color: #112D4E;"><a href="Business_blank.html" style="color: rgb(255, 255, 255);">Business</a></li>
+                <li><a href="LP.html">Dashboard</a></li>
+                <li style="background-color: #97ced1;"><a href="Business_blank.html"
+                        style="color: rgb(255, 255, 255);">Business</a></li>
                 <li><a href="Accounting_blank.html">Accounting</a></li>
                 <li><a href="Product_blank.html">Product</a></li>
                 <li><a href="Contacts_blank.html">Contact Us</a></li>
             </ul>
         </nav>
 
-            
+
 
         <div class="user-profile">
             <img src="/Dummy/static/img/Guest.png" alt="User Profile" class="user-image" id="user-avatar">
@@ -48,77 +42,125 @@
         </div>
         </div>
     </header>
-    
- <!-- Main Business Dashboard Content -->
- <div class="business-dashboard">
-    <h1>Business Overview</h1>
 
-    <!-- Business Statistics -->
-    <section class="statistics">
-        <div class="stat-card">
-            <h3>Total Revenue</h3>
-            <p>$$$</p>
+    <!-- Main Business Dashboard Content -->
+    <div class="business-dashboard">
+        <h1>Business Overview</h1>
+
+        <!-- Business Statistics -->
+        <section class="statistics">
+            <div class="stat-card">
+                <h3>Total Revenue</h3>
+                <p>$$$</p>
+            </div>
+
+            <div class="stat-card">
+                <h3>Total Expenses</h3>
+                <p>$$$</p>
+            </div>
+
+            <div class="stat-card">
+                <h3>Net Profit</h3>
+                <p>$$$</p>
+            </div>
+        </section>
+
+        <!-- Button to switch between tables -->
+        <div class="table-switcher">
+            <button onclick="showSales()">Product Sales Transactions</button>
+            <button onclick="showExpenses()">Expense Transactions</button>
         </div>
 
-        <div class="stat-card">
-            <h3>Total Expenses</h3>
-            <p>$$$</p>
-        </div>
+        <!-- Sales Transactions Table -->
+        <div class="table-container" id="salesTable">
+            <h2>Sales Transactions
+                <div class="export-buttons">
+                    <button class="export-csv-btn" onclick="exportCurrentTableToCSV()">Export to CSV</button>
+                </div>
+            </h2>
 
-        <div class="stat-card">
-            <h3>Net Profit</h3>
-            <p>$$$</p>
-        </div>
-    </section>
 
-    <!-- Graph Section -->
-    <section class="graph-section">
-        <h2>Monthly Revenue and Expenses</h2>
-        <div class="chart-container">
-            <canvas id="businessChart"></canvas>
-        </div>
-    </section>
-
-    <!-- Employee and Customer Data -->
-    <section class="data-section">
-        <div class="data-table">
-            <h2>Employee Overview</h2>
             <table>
-                <tr>
-                    <th>Name</th>
-                    <th>Position</th>
-                    <th>Department</th>
-                </tr>
-                <tr>
-                    <td>Guest</td>
-                    <td>*Manager</td>
-                    <td>*HR</td>
-                </tr>
-                
+                <thead>
+                    <tr>
+                        <th>Transaction Date</th>
+                        <th>Customer Name</th>
+                        <th>Product Name</th>
+                        <th>Total Amount</th>
+                        <th>Payment Method</th>
+                    </tr>
+                </thead>
+                <tbody id="salesTableBody">
+                    <!-- Data will be populated here -->
+                </tbody>
             </table>
         </div>
 
-        <div class="data-table">
-            <h2>Customer Overview</h2>
+        <!-- Expense Transactions Table -->
+        <div class="table-container hidden" id="expensesTable">
+            <h2>Expense Transactions
+                <div class="export-buttons">
+                    <button class="export-csv-btn" onclick="exportCurrentTableToCSV()">Export to CSV</button>
+                </div>
+            </h2>
             <table>
-                <tr>
-                    <th>Customer Name</th>
-                    <th>Location</th>
-                    <th>Total Orders</th>
-                </tr>
-                <tr>
-                    <td>PT</td>
-                    <td>City</td>
-                    <td>000</td>
-                </tr>
-              
+                <thead>
+                    <tr>
+                        <th>Expense Date</th>
+                        <th>Expense Name</th>
+                        <th>Amount</th>
+                        <th>Category</th>
+                    </tr>
+                </thead>
+                <tbody id="expensesTableBody">
+                    <!-- Data will be populated here -->
+                </tbody>
             </table>
         </div>
-    </section>
 
-</div>
+        <!-- Employee and Customer Data -->
+        <section class="data-section">
+            <div class="data-table">
+                <h2>Employee Overview</h2>
+                <table>
+                    <tr>
+                        <th>Name</th>
+                        <th>Position</th>
+                        <th>Department</th>
+                    </tr>
+                    <tr>
+                        <td>Guest</td>
+                        <td>*Manager</td>
+                        <td>*HR</td>
+                    </tr>
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script src="/Dummy/static/js/business.js"></script>
+                </table>
+            </div>
+
+            <div class="data-table">
+                <h2>Customer Overview</h2>
+                <table>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Address</th>
+                    </tr>
+                    <tr>
+                        <td>Guset</td>
+                        <td>guest@gmail.com</td>
+                        <td>0898xxxxxxxx</td>
+                        <td>guest street</td>
+                    </tr>
+
+                </table>
+            </div>
+        </section>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="/Dummy/static/js/business.js"></script>
 </body>
+
 </html>
