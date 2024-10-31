@@ -45,6 +45,19 @@
     <!-- Recent Transactions -->
     <section class="transactions">
         <h2>Recent Transactions</h2>
+        <div class="container">
+
+            <div class="search-filter">
+                <input type="text" id="search-bar" placeholder="Search for transactions...">
+                <!-- Sorting Dropdown -->
+                <select id="sort-options">
+                    <option value="date">Sort by Date</option>
+                    <option value="description">Sort by Description</option>
+                    <option value="amount">Amount</option>
+                    <!-- <option value="stock">Sort by Stock</option> -->
+                </select>
+            </div>
+        </div>
         <table>
             <tr>
                 <th>Date</th>
