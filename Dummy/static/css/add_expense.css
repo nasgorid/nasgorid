@@ -40,9 +40,23 @@
     cursor: pointer;
     display: block;
     width: 100%;
+    margin-bottom: 10px;
+  }
+  button[type="button"] {
+    background-color: #ffffff;
+    color: rgb(0, 0, 0);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    display: block;
+    width: 100%;
   }
   
   button[type="submit"]:hover {
     background-color: #1c7376;
+  }
+  button[type="button"]:hover {
+    background-color: #8c8383;
   }
   
