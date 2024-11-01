@@ -45,6 +45,16 @@
     <!-- Recent Transactions -->
     <section class="transactions">
         <h2>Recent Transactions</h2>
+        <div class="container">
+            <div class="search-filter">
+                <input type="text" id="search-bar" placeholder="Search for transactions...">
+                <select id="sort-options">
+                    <option value="date">Sort by Date</option>
+                    <option value="description">Sort by Description</option>
+                    <option value="amount">Amount</option>
+                </select>
+            </div>
+        </div>
         <table>
             <tr>
                 <th>Date</th>
@@ -93,6 +103,42 @@
     </section>
 </div>
 
-<script src="/Dummy/static/js/accounting.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        const ctx = document.getElementById("bankBalanceChart").getContext("2d");
+        const bankBalanceChart = new Chart(ctx, {
+            type: "bar", // Menggunakan grafik bar
+            data: {
+                labels: ["Total Income", "Net Profit", "Total Expenses"], // Label untuk sumbu X
+                datasets: [
+                    {
+                        data: [100000, 30000, 70000], // Data dummy saldo
+                        backgroundColor: [
+                            'rgb(255, 205, 86)', // Warna untuk Total Income
+                            'rgb(54, 162, 235)', // Warna untuk Net Profit
+                            'rgb(255, 99, 132)'  // Warna untuk Total Expenses
+                        ],
+                    },
+                ],
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true, // Memastikan grafik mulai dari 0
+                        title: {
+                            display: true,
+                            text: "Financial ($)",
+                        },
+                    },
+                },
+                plugins: {
+                    legend: {
+                        display: false, // Menghilangkan legend
+                    },
+                },
+            },
+        });
+    </script>
 </body>
 </html>
