@@ -257,3 +257,45 @@ tr  {
 ::-webkit-scrollbar-thumb:hover {
     background-color: #1c7376; /* Color of the scrollbar thumb on hover */
 }
+
+.chart {
+    margin-top: 10px;
+    text-align: center;
+}
+
+#bankBalanceChart {
+    width: 50px;  /* Atur lebar tampilan */
+    height: 50px; /* Atur tinggi tampilan */
+}
+
+.container {
+    padding: 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+search-filter {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+
+#search-bar {
+    width: 70%;
+    padding: 10px;
+    font-size: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+::placeholder {
+    color: #99babb;
+}
+
+#sort-options {
+    width: 25%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    color: #0f575a;
+}
